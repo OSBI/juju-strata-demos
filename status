@@ -1,0 +1,25 @@
+#This file will contain the last tested status of demo functions.  
+#Please update as you use this demo and commit your changes with 
+#bzr to keep it up-to-date for all. This file wil be scraped and 
+#data imported into reporting sheets. Stick with the format below 
+#and refrain from any "colorful" commentary.
+
+
+#Format
+Demo:Data Ingest for Financial Services
+Complete: no (still WIP)
+DateOfTest: 27082015
+TestedBy: samuelc
+InfrastructureStatus: pass
+PostDeployStatus: pass 
+History: 
+27082015 - Several deployments on AWS of the first services (quasardb, zk, kafka brokers) everything OK, waiting for the other charms. 
+
+#####################################################################
+Demo:
+Complete:
+DateOfTest:
+TestedBy:
+InfrastructureStatus:
+PostDeployStatus:
+History:
