@@ -55,6 +55,16 @@ juju expose juju-gui 2>/dev/null \
   } \
   || log info juju-gui already deployed or failed to deploy juju-gui
 
+# Adding SSH Keys for our demo users
+juju authorized-keys import samuel-cozannet
+juju authorized-keys import asanjar
+juju authorized-keys import admcleod
+juju authorized-keys import kwmonroe
+juju authorized-keys import johnsca
+juju authorized-keys import arosales
+juju authorized-keys import aghedin
+juju authorized-keys import anatomic
+
 
 log debug Bootstrapping process finished for ${PROJECT_ID}. You can safely move to deployment. 
 
