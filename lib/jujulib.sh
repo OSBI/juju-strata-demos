@@ -48,9 +48,11 @@ function deploy() {
       && log debug Successfully deployed ${SERVICENAME} \
       || log crit Could not deploy ${SERVICENAME}
 
-    juju set-constraints --service "${SERVICENAME}" "${CONSTRAINTS}" 2>/dev/null \
-      && log debug Successfully set constraints \"${CONSTRAINTS}\" for ${SERVICENAME} \
-      || log err Could not set constraints for ${SERVICENAME}
+    if [ "x${CONSTRAINTS}" != "x" ]; then
+      juju set-constraints --service "${SERVICENAME}" "${CONSTRAINTS}" 2>/dev/null \
+        && log debug Successfully set constraints \"${CONSTRAINTS}\" for ${SERVICENAME} \
+        || log err Could not set constraints for ${SERVICENAME}
+    fi
 }
 
 # Alias to add a relation
@@ -77,3 +79,11 @@ function add-unit() {
       || log warn Could not add ${NEW_UNITS} units of ${SERVICE} 
 }
 
+# Alias to expose service
+function expose() {
+    local SERVICE="$1"
+    
+    juju expose "${SERVICE}" 2>/dev/null \
+      && log debug Successfully exposed ${SERVICE} \
+      || log warn Could not expose ${SERVICE} 
+}
