@@ -39,3 +39,15 @@ juju-deployer -T "${PROJECT_ID}" 2>/dev/null \
   && log debug Successfully reset "${PROJECT_ID}" \
   || log err Could not reset "${PROJECT_ID}"
 
+juju deploy --to 0 juju-gui 2>/dev/null \
+  && log debug Successfully deployed juju-gui to machine-0 \
+  || log info juju-gui already deployed or failed to deploy juju-gui
+
+juju expose juju-gui 2>/dev/null \
+  && {
+		export JUJU_GUI="$(juju api-endpoints | cut -f2 -d' ' | cut -f1 -d':')"
+		export JUJU_PASS="$(grep "password" "/home/${USER}/.juju/environments/${PROJECT_ID}.jenv" | cut -f2 -d' ')"
+		log info Juju GUI now available on https://${JUJU_GUI} with user admin:${JUJU_PASS}
+  } \
+  || log info juju-gui already deployed or failed to deploy juju-gui
+
