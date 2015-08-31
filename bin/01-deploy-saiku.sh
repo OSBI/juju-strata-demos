@@ -48,20 +48,12 @@ deploy apache-hadoop-hdfs-master hdfs-master "mem=4G cpu-cores=2 root-disk=32G"
 # Deploy YARN 
 deploy apache-hadoop-yarn-master yarn-master "mem=2G cpu-cores=2"
 
-# Now deploying ZK Server
-deploy apache-zookeeper zookeeper mem=2G cpu-cores=2
-add-unit zookeeper 2
-
 # Deploy Compute slaves
 deploy apache-hadoop-compute-slave compute-slave "mem=4G cpu-cores=2 root-disk=32G"
+add-unit compute-slave 2
 
 # Deploy Hadoop Plugin
 deploy apache-hadoop-plugin plugin
-
-# Deploy HBase
-deploy cs:~bigdata-dev/trusty/apache-hbase hbase-master "mem=4G cpu-cores=2"
-deploy cs:~bigdata-dev/trusty/apache-hbase hbase-regionserver "mem=4G cpu-cores=2"
-
 
 # Relations
 add-relation yarn-master hdfs-master
@@ -69,30 +61,6 @@ add-relation compute-slave yarn-master
 add-relation compute-slave hdfs-master
 add-relation plugin yarn-master
 add-relation plugin hdfs-master
-add-relation hbase-master plugin
-add-relation hbase-regionserver plugin
-add-relation zookeeper hbase-master
-add-relation zookeeper hbase-regionserver
-add-relation hbase-master:master hbase-regionserver:regionserver
-
-# Available services
-expose hbase-master
-
-#####################################################################
-#
-# Deploy Hive 
-# https://jujucharms.com/u/bigdata-dev/apache-hive/trusty/44
-#
-#####################################################################
-
-# Services
-deploy apache-hive hive "mem=2G cpu-cores=2"
-deploy mysql mysql-hive
-juju set mysql-hive binlog-format=ROW
-
-# Relations
-add-relation hive plugin
-add-relation hive mysql-hive
 
 #####################################################################
 #
@@ -109,58 +77,46 @@ add-relation spark plugin
 
 #####################################################################
 #
-# Deploy MySQL Server (for Data only, not metadata)
-# https://jujucharms.com/mysql/trusty/28
-#
-#####################################################################
-
-deploy mysql mysql-data-master "mem=2G cpu-core=2 root-disk=12G"
-
-#####################################################################
-#
-# Deploy PostGreSQL Server (for Data only)
-# https://jujucharms.com/postgresql/trusty/27
-#
-#####################################################################
-
-deploy postgresql postgresql-data-master "mem=2G cpu-core=2 root-disk=12G"
-
-#####################################################################
-#
-# Deploy 3 nodes of Cassandra
-# https://jujucharms.com/cassandra/trusty/3
-#
-#####################################################################
-
-deploy cassandra cassandra "mem=4G cpu-cores=2"
-add-unit cassandra 2
-
-#####################################################################
-#
 # Deploy single node of MongoDB
 # https://jujucharms.com/mongodb/trusty/26
 #
 #####################################################################
 
-deploy mongodb mongodb "mem=4G cpu-cores=2"
+#juju deploy --constraints "mem=4G cpu-cores=2 root-disk=16G" mongodb configsvr --config "${MYDIR}/../etc/mongodb-shard.yaml" -n3
+#deploy mongodb mongos
+#juju deploy mongodb shard1 --config "${MYDIR}/../etc/mongodb-shard.yaml" -n3
+#juju deploy mongodb shard2 --config "${MYDIR}/../etc/mongodb-shard.yaml" -n3
+#juju deploy mongodb shard3 --config "${MYDIR}/../etc/mongodb-shard.yaml" -n3
+
+#add-relation mongos:mongos-cfg configsvr:configsvr
+#add-relation mongos:mongos shard1:database
+#add-relation mongos:mongos shard2:database
+#add-relation mongos:mongos shard3:database
+
+deploy mongodb mongodb "mem=4G cpu-cores=2 root-disk=16G"
+add-unit mongodb
+sleep 60
+add-unit mongodb
+
 expose mongodb
 
 #####################################################################
 #
-# Deploy SpagoBI Server 
+# Deploy Saiku Server
+# https://jujucharms.com/u/f-tom-n/saikuanalytics/trusty/0 
 #
 #####################################################################
 
 # Tomcat Server
 # https://jujucharms.com/tomcat/trusty/1
-deploy tomcat tomcat "mem=8G cpu-core=4"
+deploy tomcat tomcat "mem=8G cpu-cores=4"
 
-# MySQL for metadata
-deploy mysql mysql-metadata 
-
-# SpagoBI
-# deploy spagobi spagobi
+# Saiku
+deploy cs:~f-tom-n/trusty/saikuanalytics-0 saiku
 
 # Relations
-# add-relation tomcat spagobi
-# add-relation spagobi mysql-metadata
+add-relation tomcat saiku
+
+# Expose
+expose tomcat
+

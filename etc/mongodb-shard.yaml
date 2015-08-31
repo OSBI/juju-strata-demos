@@ -1,0 +1,8 @@
+shard1:
+  replicaset: shard1
+shard2:
+  replicaset: shard2
+shard3:
+  replicaset: shard3
+configsvr:
+  replicaset: configsvr

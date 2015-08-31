@@ -1,6 +1,6 @@
 #####################################################################
 #
-# Demo Name: Analytics Demo - SpagoBI with Many Data Sources
+# Demo Name: Analytics Demo - Meteorite.bi Saiku on Spark and MongoDB
 #
 # Notes: 
 # 
@@ -10,54 +10,28 @@
 
 # Purpose of the demo
 
-This demo aims at deploying SpagoBI and connect it to many different data sources, to express how easy it is to deploy a very complex data analytics solution with Juju. 
-
+This demo aims at deploying Saiku and connect it to Spark and MongoDB, to express how easy it is to deploy a very complex data analytics solution with Juju. 
 
 # Main Services deployed
-## spagoBI
+## Saiku
 
-SpagoBI is the main attraction of this demo, and the center of gravity of all data sources. To deploy it, we install a small MySQL server, a powerful Tomcat server, and the spagoBI subordinate charm, then we connect them together. 
+Saiku is the main attraction of this demo, and the center of gravity of all data sources. To deploy it, we install a powerful Tomcat server, and the Saiku subordinate charm, then we connect them together. 
 
 ## Hadoop Cluster
 
 We run a simple Hadoop cluster with YARN, made of an HDFS Master + Compute Slaves, to which we attach a YARN Master to orchestrate compute. 
 
-## HBase
-
-On top of our Hadoop Cluster we run a HBase cluster, with a Master, a Region Server, orchestrated by a ZooKeeper cluster. 
-
 ## Spark 
 
 We run a set of Spark nodes managed via YARN on top of our Hadoop Cluster.
-
-## Hive
-
-We have a small instance of Hive, running with MySQL. 
-
-## Cassandra
-
-We run a small cluster of Cassandra (3 nodes), the main tabular noSQL datastore on the market.
 
 ## MongoDB
 
 We run a small cluster of MongoDB (only 1 node for this demo), the main noSQL document datastore available. 
 
-## MySQL
-
-noSQL is not everything, so we also have a data source in a MySQL node.
-
-## PostgreSQL
-
-To even things between SQL stores we also store some data in PostgreSQL.
-
-# Secondary Services deployed 
-## ZooKeeper
-
-ZK is a service to manage clusters of other services. In our case, the HBase cluster. We deploy 3 nodes of ZK to simulate a production cluster. 
-
 # Data Sources
 
-TBD (Engineering to provide sources)
+TBD (Tom to provide sources)
 
 # Usage
 ## Configuration
@@ -77,7 +51,7 @@ Will set up the environment
 
 ## Deploying  
 
-	./bin/01-deploy-spagobi.sh
+	./bin/01-deploy-saiku.sh
 
 Will deploy the charms required for the demo
 
@@ -103,60 +77,48 @@ Will completely rip of the environment and delete local files
 ## Bootstrapping
 
     :~$ ./bin/00-bootstrap.sh 
-    [Mon Aug 31 15:03:58 CEST 2015] [demo] [local0.debug] : Validating dependencies
-    [Mon Aug 31 15:03:58 CEST 2015] [demo] [local0.debug] : Successfully switched to spagobi
-    [Mon Aug 31 15:10:21 CEST 2015] [demo] [local0.debug] : Succesfully bootstrapped spagobi
-    [Mon Aug 31 15:10:39 CEST 2015] [demo] [local0.debug] : Successfully deployed juju-gui to machine-0
-    [Mon Aug 31 15:10:41 CEST 2015] [demo] [local0.info] : Juju GUI now available on https://X.X.X.X with user admin:XXXX
-    [Mon Aug 31 15:11:25 CEST 2015] [demo] [local0.debug] : Bootstrapping process finished for spagobi. You can safely move to deployment.
+    [Mon Aug 31 17:34:17 CEST 2015] [demo] [local0.debug] : Validating dependencies
+    [Mon Aug 31 17:34:17 CEST 2015] [demo] [local0.debug] : Successfully switched to saiku
+    [Mon Aug 31 17:39:19 CEST 2015] [demo] [local0.debug] : Succesfully bootstrapped saiku
+    [Mon Aug 31 17:39:32 CEST 2015] [demo] [local0.debug] : Successfully deployed juju-gui to machine-0
+    [Mon Aug 31 17:39:34 CEST 2015] [demo] [local0.info] : Juju GUI now available on https://X.X.X.X with user admin:XXX
+    [Mon Aug 31 17:39:54 CEST 2015] [demo] [local0.debug] : Bootstrapping process finished for saiku. You can safely move to deployment.
 
 
 ## Deployment
 
-    :~$ ./bin/01-deploy-spagobi.sh 
-    [Mon Aug 31 15:17:52 CEST 2015] [demo] [local0.debug] : Successfully switched to spagobi
-    [Mon Aug 31 15:18:11 CEST 2015] [demo] [local0.debug] : Successfully deployed hdfs-master
-    [Mon Aug 31 15:18:17 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for hdfs-master
-    [Mon Aug 31 15:18:38 CEST 2015] [demo] [local0.debug] : Successfully deployed yarn-master
-    [Mon Aug 31 15:18:44 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for yarn-master
-    [Mon Aug 31 15:19:05 CEST 2015] [demo] [local0.debug] : Successfully deployed zookeeper
-    [Mon Aug 31 15:19:10 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for zookeeper
-    [Mon Aug 31 15:19:32 CEST 2015] [demo] [local0.debug] : Successfully added 2 units of zookeeper
-    [Mon Aug 31 15:19:53 CEST 2015] [demo] [local0.debug] : Successfully deployed compute-slave
-    [Mon Aug 31 15:19:59 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for compute-slave
-    [Mon Aug 31 15:20:07 CEST 2015] [demo] [local0.debug] : Successfully deployed plugin
-    [Mon Aug 31 15:20:32 CEST 2015] [demo] [local0.debug] : Successfully deployed hbase-master
-    [Mon Aug 31 15:20:37 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for hbase-master
-    [Mon Aug 31 15:20:55 CEST 2015] [demo] [local0.debug] : Successfully deployed hbase-regionserver
-    [Mon Aug 31 15:21:02 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for hbase-regionserver
-    [Mon Aug 31 15:21:04 CEST 2015] [demo] [local0.debug] : Successfully created relation between yarn-master and hdfs-master
-    [Mon Aug 31 15:21:06 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and yarn-master
-    [Mon Aug 31 15:21:09 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and hdfs-master
-    [Mon Aug 31 15:21:11 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and yarn-master
-    [Mon Aug 31 15:21:13 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and hdfs-master
-    [Mon Aug 31 15:21:16 CEST 2015] [demo] [local0.debug] : Successfully created relation between hbase-master and plugin
-    [Mon Aug 31 15:21:18 CEST 2015] [demo] [local0.debug] : Successfully created relation between hbase-regionserver and plugin
-    [Mon Aug 31 15:21:20 CEST 2015] [demo] [local0.debug] : Successfully created relation between zookeeper and hbase-master
-    [Mon Aug 31 15:21:22 CEST 2015] [demo] [local0.debug] : Successfully created relation between zookeeper and hbase-regionserver
-    [Mon Aug 31 15:21:24 CEST 2015] [demo] [local0.debug] : Successfully created relation between hbase-master:master and hbase-regionserver:regionserver
-    [Mon Aug 31 15:21:49 CEST 2015] [demo] [local0.debug] : Successfully deployed hive
-    [Mon Aug 31 15:21:55 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for hive
-    [Mon Aug 31 15:22:13 CEST 2015] [demo] [local0.debug] : Successfully deployed mysql-hive
-    [Mon Aug 31 15:22:19 CEST 2015] [demo] [local0.debug] : Successfully set constraints "" for mysql-hive
-    [Mon Aug 31 15:22:23 CEST 2015] [demo] [local0.debug] : Successfully created relation between hive and plugin
-    [Mon Aug 31 15:22:25 CEST 2015] [demo] [local0.debug] : Successfully created relation between hive and mysql-hive
-    [Mon Aug 31 15:22:47 CEST 2015] [demo] [local0.debug] : Successfully deployed spark
-    [Mon Aug 31 15:22:54 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for spark
-    [Mon Aug 31 15:22:57 CEST 2015] [demo] [local0.debug] : Successfully created relation between spark and plugin
-    [Mon Aug 31 15:23:20 CEST 2015] [demo] [local0.debug] : Successfully deployed cassandra
-    [Mon Aug 31 15:23:26 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for cassandra
-    [Mon Aug 31 15:23:49 CEST 2015] [demo] [local0.debug] : Successfully added 2 units of cassandra
-    [Mon Aug 31 15:24:12 CEST 2015] [demo] [local0.debug] : Successfully deployed mongodb
-    [Mon Aug 31 15:24:18 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for mongodb
+    $ ./bin/01-deploy-saiku.sh 
+    [Mon Aug 31 17:56:04 CEST 2015] [demo] [local0.debug] : Successfully switched to saiku
+    [Mon Aug 31 17:56:19 CEST 2015] [demo] [local0.debug] : Successfully deployed hdfs-master
+    [Mon Aug 31 17:56:23 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for hdfs-master
+    [Mon Aug 31 17:56:40 CEST 2015] [demo] [local0.debug] : Successfully deployed yarn-master
+    [Mon Aug 31 17:56:44 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for yarn-master
+    [Mon Aug 31 17:57:01 CEST 2015] [demo] [local0.debug] : Successfully deployed compute-slave
+    [Mon Aug 31 17:57:06 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for compute-slave
+    [Mon Aug 31 17:57:24 CEST 2015] [demo] [local0.debug] : Successfully added 2 units of compute-slave
+    [Mon Aug 31 17:57:29 CEST 2015] [demo] [local0.debug] : Successfully deployed plugin
+    [Mon Aug 31 17:57:31 CEST 2015] [demo] [local0.debug] : Successfully created relation between yarn-master and hdfs-master
+    [Mon Aug 31 17:57:32 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and yarn-master
+    [Mon Aug 31 17:57:34 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and hdfs-master
+    [Mon Aug 31 17:57:37 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and yarn-master
+    [Mon Aug 31 17:57:38 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and hdfs-master
+    [Mon Aug 31 17:57:54 CEST 2015] [demo] [local0.debug] : Successfully deployed spark
+    [Mon Aug 31 17:57:58 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for spark
+    [Mon Aug 31 17:57:59 CEST 2015] [demo] [local0.debug] : Successfully created relation between spark and plugin
+    [Mon Aug 31 17:58:16 CEST 2015] [demo] [local0.debug] : Successfully deployed mongodb
+    [Mon Aug 31 17:58:20 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=16G" for mongodb
+    [Mon Aug 31 17:58:30 CEST 2015] [demo] [local0.debug] : Successfully added 1 units of mongodb
+    [Mon Aug 31 17:59:38 CEST 2015] [demo] [local0.debug] : Successfully added 1 units of mongodb
+    [Mon Aug 31 17:59:40 CEST 2015] [demo] [local0.debug] : Successfully exposed mongodb
+    [Mon Aug 31 17:59:40 CEST 2015] [demo] [local0.debug] : Successfully deployed tomcat
+    [Mon Aug 31 17:59:40 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=8G cpu-cores=4" for tomcat
+    [Mon Aug 31 17:59:47 CEST 2015] [demo] [local0.debug] : Successfully deployed saiku
+    [Mon Aug 31 17:59:49 CEST 2015] [demo] [local0.debug] : Successfully created relation between tomcat and saiku
+    [Mon Aug 31 17:59:50 CEST 2015] [demo] [local0.debug] : Successfully exposed tomcat
+ 
 
 ## Reset
 
     :~$ ./bin/50-reset.sh 
-    [Thu Aug 27 14:09:57 CEST 2015] [demo] [local0.debug] : Successfully switched to spagobi
-    [Thu Aug 27 14:12:22 CEST 2015] [demo] [local0.debug] : Successfully reset spagobi
+ 
 
