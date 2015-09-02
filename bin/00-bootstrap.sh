@@ -62,6 +62,7 @@ juju authorized-keys import admcleod
 juju authorized-keys import kwmonroe
 juju authorized-keys import johnsca
 juju authorized-keys import arosales
+juju authorized-keys import x3v947pl
 
 log debug Bootstrapping process finished for ${PROJECT_ID}. You can safely move to deployment. 
 

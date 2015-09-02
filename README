@@ -1,6 +1,6 @@
 #####################################################################
 #
-# Demo Name: Analytics Demo - Meteorite.bi Saiku on Spark and MongoDB
+# Demo Name: IoT Demo - DeviceHive, Spark, Cassandra, Kafka
 #
 # Notes: 
 # 
@@ -10,28 +10,32 @@
 
 # Purpose of the demo
 
-This demo aims at deploying Saiku and connect it to Spark and MongoDB, to express how easy it is to deploy a very complex data analytics solution with Juju. 
+DeviceHive makes any connected device part of the Internet of Things. It provides the communication layer, control software and multi-platform libraries to bootstrap development of smart energy, home automation, remote sensing, telemetry, remote control and monitoring software, and much more. Leave communications to DeviceHive and focus on product and innovation. Learn more at: http://devicehive.com
 
 # Main Services deployed
-## Saiku
+## DeviceHive
+### Master
 
-Saiku is the main attraction of this demo, and the center of gravity of all data sources. To deploy it, we install a powerful Tomcat server, and the Saiku subordinate charm, then we connect them together. 
 
-## Hadoop Cluster
+### Workers
 
-We run a simple Hadoop cluster with YARN, made of an HDFS Master + Compute Slaves, to which we attach a YARN Master to orchestrate compute. 
 
-## Spark 
+## Cassandra Cluster
 
-We run a set of Spark nodes managed via YARN on top of our Hadoop Cluster.
 
-## MongoDB
+## Kafka Cluster 
 
-We run a small cluster of MongoDB (only 1 node for this demo), the main noSQL document datastore available. 
+
+## PostgreSQL
+
+
+## Redis
+ 
 
 # Data Sources
 
-TBD (Tom to provide sources)
+Data is taken from Ubuntu Snappy devices sending data back to the DeviceHive API. 
+
 
 # Usage
 ## Configuration
@@ -77,44 +81,17 @@ Will completely rip of the environment and delete local files
 ## Bootstrapping
 
     :~$ ./bin/00-bootstrap.sh 
-    [Mon Aug 31 17:34:17 CEST 2015] [demo] [local0.debug] : Validating dependencies
-    [Mon Aug 31 17:34:17 CEST 2015] [demo] [local0.debug] : Successfully switched to saiku
-    [Mon Aug 31 17:39:19 CEST 2015] [demo] [local0.debug] : Succesfully bootstrapped saiku
-    [Mon Aug 31 17:39:32 CEST 2015] [demo] [local0.debug] : Successfully deployed juju-gui to machine-0
-    [Mon Aug 31 17:39:34 CEST 2015] [demo] [local0.info] : Juju GUI now available on https://X.X.X.X with user admin:XXX
-    [Mon Aug 31 17:39:54 CEST 2015] [demo] [local0.debug] : Bootstrapping process finished for saiku. You can safely move to deployment.
+    [Tue Sep 1 12:22:16 CEST 2015] [demo] [local0.debug] : Validating dependencies
+    [Tue Sep 1 12:22:16 CEST 2015] [demo] [local0.debug] : Successfully switched to dataart
+    [Tue Sep 1 12:27:46 CEST 2015] [demo] [local0.debug] : Succesfully bootstrapped dataart
+    [Tue Sep 1 12:28:02 CEST 2015] [demo] [local0.debug] : Successfully deployed juju-gui to machine-0
+    [Tue Sep 1 12:28:03 CEST 2015] [demo] [local0.info] : Juju GUI now available on https://52.2.244.223 with user admin:5e8490328953c902094c68c16a88226f
+    [Tue Sep 1 12:28:24 CEST 2015] [demo] [local0.debug] : Bootstrapping process finished for dataart. You can safely move to deployment.
 
 
 ## Deployment
 
-    $ ./bin/01-deploy-saiku.sh 
-    [Mon Aug 31 17:56:04 CEST 2015] [demo] [local0.debug] : Successfully switched to saiku
-    [Mon Aug 31 17:56:19 CEST 2015] [demo] [local0.debug] : Successfully deployed hdfs-master
-    [Mon Aug 31 17:56:23 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for hdfs-master
-    [Mon Aug 31 17:56:40 CEST 2015] [demo] [local0.debug] : Successfully deployed yarn-master
-    [Mon Aug 31 17:56:44 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for yarn-master
-    [Mon Aug 31 17:57:01 CEST 2015] [demo] [local0.debug] : Successfully deployed compute-slave
-    [Mon Aug 31 17:57:06 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for compute-slave
-    [Mon Aug 31 17:57:24 CEST 2015] [demo] [local0.debug] : Successfully added 2 units of compute-slave
-    [Mon Aug 31 17:57:29 CEST 2015] [demo] [local0.debug] : Successfully deployed plugin
-    [Mon Aug 31 17:57:31 CEST 2015] [demo] [local0.debug] : Successfully created relation between yarn-master and hdfs-master
-    [Mon Aug 31 17:57:32 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and yarn-master
-    [Mon Aug 31 17:57:34 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and hdfs-master
-    [Mon Aug 31 17:57:37 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and yarn-master
-    [Mon Aug 31 17:57:38 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and hdfs-master
-    [Mon Aug 31 17:57:54 CEST 2015] [demo] [local0.debug] : Successfully deployed spark
-    [Mon Aug 31 17:57:58 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for spark
-    [Mon Aug 31 17:57:59 CEST 2015] [demo] [local0.debug] : Successfully created relation between spark and plugin
-    [Mon Aug 31 17:58:16 CEST 2015] [demo] [local0.debug] : Successfully deployed mongodb
-    [Mon Aug 31 17:58:20 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=16G" for mongodb
-    [Mon Aug 31 17:58:30 CEST 2015] [demo] [local0.debug] : Successfully added 1 units of mongodb
-    [Mon Aug 31 17:59:38 CEST 2015] [demo] [local0.debug] : Successfully added 1 units of mongodb
-    [Mon Aug 31 17:59:40 CEST 2015] [demo] [local0.debug] : Successfully exposed mongodb
-    [Mon Aug 31 17:59:40 CEST 2015] [demo] [local0.debug] : Successfully deployed tomcat
-    [Mon Aug 31 17:59:40 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=8G cpu-cores=4" for tomcat
-    [Mon Aug 31 17:59:47 CEST 2015] [demo] [local0.debug] : Successfully deployed saiku
-    [Mon Aug 31 17:59:49 CEST 2015] [demo] [local0.debug] : Successfully created relation between tomcat and saiku
-    [Mon Aug 31 17:59:50 CEST 2015] [demo] [local0.debug] : Successfully exposed tomcat
+    $ ./bin/01-deploy-dataart.sh 
  
 
 ## Reset
