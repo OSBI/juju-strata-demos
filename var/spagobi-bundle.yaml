@@ -1,104 +1,23 @@
 series: trusty
 services: 
-  "hdfs-master": 
-    charm: "cs:trusty/apache-hadoop-hdfs-master-7"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=4096 root-disk=32768"
-    annotations: 
-      "gui-x": "1800"
-      "gui-y": "150"
-    to: 
-      - "0"
-  "yarn-master": 
-    charm: "cs:trusty/apache-hadoop-yarn-master-5"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=2048"
-    annotations: 
-      "gui-x": "1500"
-      "gui-y": "150"
-    to: 
-      - "1"
   zookeeper: 
     charm: "cs:trusty/apache-zookeeper-0"
     num_units: 3
     constraints: "cpu-cores=2 mem=2048"
     annotations: 
-      "gui-x": "-300"
-      "gui-y": "150"
+      "gui-x": "-400"
+      "gui-y": "200"
     to: 
       - "2"
       - "3"
       - "4"
-  "compute-slave": 
-    charm: "cs:trusty/apache-hadoop-compute-slave-7"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=4096 root-disk=32768"
-    annotations: 
-      "gui-x": "1597.20849609375"
-      "gui-y": "601.4360298924746"
-    to: 
-      - "5"
-  "hbase-master": 
-    charm: "cs:~bigdata-dev/trusty/apache-hbase-14"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=4096"
-    expose: true
-    annotations: 
-      "gui-x": "300"
-      "gui-y": "150"
-    to: 
-      - "6"
-  "hbase-regionserver": 
-    charm: "cs:~bigdata-dev/trusty/apache-hbase-14"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=4096"
-    annotations: 
-      "gui-x": "0"
-      "gui-y": "500"
-    to: 
-      - "7"
-  plugin: 
-    charm: "cs:trusty/apache-hadoop-plugin-5"
-    annotations: 
-      "gui-x": "750"
-      "gui-y": "500"
-  "mysql-hive": 
-    charm: "cs:trusty/mysql-28"
-    num_units: 1
-    options: 
-      "binlog-format": ROW
-    annotations: 
-      "gui-x": "1200"
-      "gui-y": "150"
-    to: 
-      - "8"
-  spark: 
-    charm: "cs:trusty/apache-spark-2"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=4096"
-    annotations: 
-      "gui-x": "600"
-      "gui-y": "150"
-    to: 
-      - "9"
-  cassandra: 
-    charm: "cs:trusty/cassandra-3"
-    num_units: 3
-    constraints: "cpu-cores=2 mem=4096"
-    annotations: 
-      "gui-x": "-300"
-      "gui-y": "-250"
-    to: 
-      - "10"
-      - "11"
-      - "12"
   mongodb: 
     charm: "cs:trusty/mongodb-26"
     num_units: 1
     constraints: "cpu-cores=2 mem=4096"
     annotations: 
-      "gui-x": "1500"
-      "gui-y": "-250"
+      "gui-x": "1400"
+      "gui-y": "-100"
     to: 
       - "13"
   "mysql-data-master": 
@@ -106,8 +25,8 @@ services:
     num_units: 1
     constraints: "cpu-cores=2 mem=2048 root-disk=16384"
     annotations: 
-      "gui-x": "1022.6279296875"
-      "gui-y": "-900"
+      "gui-x": "1100"
+      "gui-y": "-1000"
     to: 
       - "14"
   "postgresql-data-master": 
@@ -115,8 +34,8 @@ services:
     num_units: 1
     constraints: "cpu-cores=2 mem=2048 root-disk=16384"
     annotations: 
-      "gui-x": "18.8570556640625"
-      "gui-y": "-900"
+      "gui-x": "-100"
+      "gui-y": "-1000"
     to: 
       - "15"
   tomcat: 
@@ -125,26 +44,112 @@ services:
     constraints: "cpu-cores=4 mem=8192"
     annotations: 
       "gui-x": "650"
-      "gui-y": "-600"
+      "gui-y": "-650"
     to: 
       - "16"
   "mysql-metadata": 
     charm: "cs:trusty/mysql-28"
     num_units: 1
     annotations: 
-      "gui-x": "400"
-      "gui-y": "-600"
+      "gui-x": "350"
+      "gui-y": "-650"
     to: 
       - "17"
-  hive: 
-    charm: "cs:trusty/apache-hive-6"
+  spark: 
+    charm: "cs:trusty/apache-spark-2"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=4096"
+    annotations: 
+      "gui-x": "500"
+      "gui-y": "200"
+    to: 
+      - "9"
+  cassandra: 
+    charm: "cs:trusty/cassandra-3"
+    num_units: 3
+    constraints: "cpu-cores=2 mem=4096"
+    annotations: 
+      "gui-x": "1400"
+      "gui-y": "-700"
+    to: 
+      - "10"
+      - "11"
+      - "12"
+  "mysql-hive": 
+    charm: "cs:trusty/mysql-28"
+    num_units: 1
+    options: 
+      "binlog-format": ROW
+    annotations: 
+      "gui-x": "1100"
+      "gui-y": "200"
+    to: 
+      - "8"
+  "hdfs-master": 
+    charm: "cs:trusty/apache-hadoop-hdfs-master-7"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=4096 root-disk=32768"
+    annotations: 
+      "gui-x": "2000"
+      "gui-y": "200"
+    to: 
+      - "0"
+  "compute-slave": 
+    charm: "cs:trusty/apache-hadoop-compute-slave-7"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=4096 root-disk=32768"
+    annotations: 
+      "gui-x": "1700"
+      "gui-y": "500"
+    to: 
+      - "5"
+  "yarn-master": 
+    charm: "cs:trusty/apache-hadoop-yarn-master-5"
     num_units: 1
     constraints: "cpu-cores=2 mem=2048"
     annotations: 
-      "gui-x": "900"
-      "gui-y": "150"
+      "gui-x": "1400"
+      "gui-y": "200"
+    to: 
+      - "1"
+  plugin: 
+    charm: "cs:trusty/apache-hadoop-plugin-5"
+    annotations: 
+      "gui-x": "500"
+      "gui-y": "500"
+  hive: 
+    charm: "cs:trusty/apache-hive-7"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=2048"
+    annotations: 
+      "gui-x": "800"
+      "gui-y": "200"
     to: 
       - "18"
+  "hbase-master": 
+    charm: "cs:~bigdata-dev/trusty/apache-hbase-14"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=4096"
+    expose: true
+    annotations: 
+      "gui-x": "200"
+      "gui-y": "200"
+    to: 
+      - "6"
+  "apache-phoenix": 
+    charm: "cs:~bigdata-dev/trusty/apache-phoenix-1"
+    annotations: 
+      "gui-x": "-100"
+      "gui-y": "-100"
+  "hbase-regionserver": 
+    charm: "cs:~bigdata-dev/trusty/apache-hbase-14"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=4096"
+    annotations: 
+      "gui-x": "-100"
+      "gui-y": "500"
+    to: 
+      - "7"
 relations: 
   - - "plugin:namenode"
     - "hdfs-master:namenode"
@@ -168,10 +173,14 @@ relations:
     - "yarn-master:nodemanager"
   - - "plugin:resourcemanager"
     - "yarn-master:resourcemanager"
-  - - "hive:hadoop-plugin"
-    - "plugin:hadoop-plugin"
   - - "hive:db"
     - "mysql-hive:db"
+  - - "hive:hadoop-plugin"
+    - "plugin:hadoop-plugin"
+  - - "apache-phoenix:hbase"
+    - "hbase-master:hbase"
+  - - "apache-phoenix:hbase"
+    - "hbase-regionserver:hbase"
 machines: 
   "0": 
     series: trusty
