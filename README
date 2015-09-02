@@ -1,6 +1,6 @@
 #####################################################################
 #
-# Demo Name: Analytics Demo - SpagoBI with Many Data Sources
+# Demo Name: Hadoop & Spark Functionnality
 #
 # Notes: 
 # 
@@ -10,54 +10,29 @@
 
 # Purpose of the demo
 
-This demo aims at deploying SpagoBI and connect it to many different data sources, to express how easy it is to deploy a very complex data analytics solution with Juju. 
+This demo aims at deploying Spark on YARN, and test the functionality through various setups and GUIs.
 
 
 # Main Services deployed
-## spagoBI
-
-SpagoBI is the main attraction of this demo, and the center of gravity of all data sources. To deploy it, we install a small MySQL server, a powerful Tomcat server, and the spagoBI subordinate charm, then we connect them together. 
-
 ## Hadoop Cluster
 
-We run a simple Hadoop cluster with YARN, made of an HDFS Master + Compute Slaves, to which we attach a YARN Master to orchestrate compute. 
+In this example the Hadoop Cluster is production ready. It has 2 HDFS namenodes (master & secondary), 3 compute slaves and a YARN Master. 
 
-## HBase
-
-On top of our Hadoop Cluster we run a HBase cluster, with a Master, a Region Server, orchestrated by a ZooKeeper cluster. 
+It can scale out by adding more compute-slave units.
 
 ## Spark 
 
-We run a set of Spark nodes managed via YARN on top of our Hadoop Cluster.
+Spark is deployed and connected to YARN to scale to all HDFS nodes. 
 
-## Hive
+## GUIs
+### Zeppelin
 
-We have a small instance of Hive, running with MySQL. 
+Zeppelin (from NFLabs) is deployed on the Spark unit, and provides an interface to publish Spark Apps into Spark in real time. 
 
-## Cassandra
+### iPython Notebook
 
-We run a small cluster of Cassandra (3 nodes), the main tabular noSQL datastore on the market.
+iPython Notebook is deployed on the Spark unit, and also provides an interface to publish Spark Apps into Spark in real time. 
 
-## MongoDB
-
-We run a small cluster of MongoDB (only 1 node for this demo), the main noSQL document datastore available. 
-
-## MySQL
-
-noSQL is not everything, so we also have a data source in a MySQL node.
-
-## PostgreSQL
-
-To even things between SQL stores we also store some data in PostgreSQL.
-
-# Secondary Services deployed 
-## ZooKeeper
-
-ZK is a service to manage clusters of other services. In our case, the HBase cluster. We deploy 3 nodes of ZK to simulate a production cluster. 
-
-# Data Sources
-
-TBD (Engineering to provide sources)
 
 # Usage
 ## Configuration
@@ -81,11 +56,204 @@ Will set up the environment
 
 Will deploy the charms required for the demo
 
-## Configure  
+## Demos  
 
-	./bin/10-setup.sh
+All the scripts starting in "1X-XXXXXXX.sh" are demo scripts you can run
 
-Will configure whatever needs to be configured
+### Spark Pi demo
+
+	./bin/10-run-sparkpi.sh
+
+This will run a Spark Application that computes Pi to a given decimal. 
+
+    $ ./bin/10-run-sparkpi.sh 
+    [Wed Sep 2 18:21:12 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
+    Warning: Permanently added 'X.X.X.X' (ECDSA) to the list of known hosts.
+    Warning: Permanently added 'Y.Y.Y.Y' (ECDSA) to the list of known hosts.
+    Spark assembly has been built with Hive, including Datanucleus jars on classpath
+    Pi is roughly 3.141056                                                                                                                                       
+    Connection to Y.Y.Y.Y closed.
+
+
+### Zeppelin demo
+
+    ./bin/11-run-zeppelin.sh
+
+This will give you the URL to connect to to start using Zeppelin
+
+    $ ./bin/11-run-zeppelin.sh 
+    [Wed Sep 2 18:22:53 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
+    [Wed Sep 2 18:22:54 CEST 2015] [demo] [local0.info] : Point your browser at http://X.X.X.X:9090
+
+
+### Notebook demo
+
+    ./bin/12-run-notebook.sh
+
+This will give you the URL to connect to to start using iPython Notebook
+
+    $ ./bin/12-run-notebook.sh 
+    [Wed Sep 2 18:23:25 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
+    [Wed Sep 2 18:23:26 CEST 2015] [demo] [local0.info] : Point your browser at http://X.X.X.X:8880
+
+### HDFS demo
+
+    ./bin/13-run-hdfs.sh
+
+This is a simple demo that shows we can manipulate HDFS via CLI
+
+    $ ./bin/13-run-hdfs.sh 
+    [Wed Sep 2 18:24:59 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
+    Warning: Permanently added 'X.X.X.X' (ECDSA) to the list of known hosts.
+    Warning: Permanently added 'X.X.X.X' (ECDSA) to the list of known hosts.
+    Found 3 items
+    drwxr-xr-x   - hdfs   supergroup          0 2015-09-02 16:05 /tmp/hadoop
+    drwxrwxrwt   - hdfs   supergroup          0 2015-09-02 16:05 /tmp/hadoop-yarn
+    drwxrwxrwx   - ubuntu supergroup          0 2015-09-02 16:25 /tmp/hdfs-test
+    15/09/02 16:25:15 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 0 minutes, Emptier interval = 0 minutes.
+    Deleted /tmp/hdfs-test
+    Found 2 items
+    drwxr-xr-x   - hdfs supergroup          0 2015-09-02 16:05 /tmp/hadoop
+    drwxrwxrwt   - hdfs supergroup          0 2015-09-02 16:05 /tmp/hadoop-yarn
+    Connection to X.X.X.X closed.
+
+
+### Terasort demo
+
+    ./bin/14-run-terasort.sh
+
+This runs terasort on our bundle.
+
+    $ ./bin/14-run-terasort.sh 
+    [Wed Sep 2 18:28:55 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
+    15/09/02 16:29:05 INFO client.RMProxy: Connecting to ResourceManager at yarn-master-0/X.X.X.X:8032
+    15/09/02 16:29:06 INFO terasort.TeraSort: Generating 1000000 using 3
+    15/09/02 16:29:06 INFO mapreduce.JobSubmitter: number of splits:3
+    15/09/02 16:29:06 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1441210010493_0002
+    15/09/02 16:29:06 INFO impl.YarnClientImpl: Submitted application application_1441210010493_0002
+    15/09/02 16:29:06 INFO mapreduce.Job: The url to track the job: http://yarn-master-0:8088/proxy/application_1441210010493_0002/
+    15/09/02 16:29:06 INFO mapreduce.Job: Running job: job_1441210010493_0002
+    15/09/02 16:29:13 INFO mapreduce.Job: Job job_1441210010493_0002 running in uber mode : false
+    15/09/02 16:29:13 INFO mapreduce.Job:  map 0% reduce 0%
+    15/09/02 16:29:20 INFO mapreduce.Job:  map 100% reduce 0%
+    15/09/02 16:29:21 INFO mapreduce.Job: Job job_1441210010493_0002 completed successfully
+    15/09/02 16:29:21 INFO mapreduce.Job: Counters: 31
+        File System Counters
+            FILE: Number of bytes read=0
+            FILE: Number of bytes written=279855
+            FILE: Number of read operations=0
+            FILE: Number of large read operations=0
+            FILE: Number of write operations=0
+            HDFS: Number of bytes read=252
+            HDFS: Number of bytes written=100000000
+            HDFS: Number of read operations=12
+            HDFS: Number of large read operations=0
+            HDFS: Number of write operations=6
+        Job Counters 
+            Launched map tasks=3
+            Other local map tasks=3
+            Total time spent by all maps in occupied slots (ms)=15497
+            Total time spent by all reduces in occupied slots (ms)=0
+            Total time spent by all map tasks (ms)=15497
+            Total vcore-seconds taken by all map tasks=15497
+            Total megabyte-seconds taken by all map tasks=15868928
+        Map-Reduce Framework
+            Map input records=1000000
+            Map output records=1000000
+            Input split bytes=252
+            Spilled Records=0
+            Failed Shuffles=0
+            Merged Map outputs=0
+            GC time elapsed (ms)=223
+            CPU time spent (ms)=6520
+            Physical memory (bytes) snapshot=557150208
+            Virtual memory (bytes) snapshot=2500542464
+            Total committed heap usage (bytes)=297271296
+        org.apache.hadoop.examples.terasort.TeraGen$Counters
+            CHECKSUM=2148987642402270
+        File Input Format Counters 
+            Bytes Read=0
+        File Output Format Counters 
+            Bytes Written=100000000
+    15/09/02 16:29:42 INFO terasort.TeraSort: starting
+    15/09/02 16:29:43 INFO input.FileInputFormat: Total input paths to process : 3
+    Spent 124ms computing base-splits.
+    Spent 2ms computing TeraScheduler splits.
+    Computing input splits took 128ms
+    Sampling 3 splits of 3
+    Making 3 from 99999 sampled records
+    Computing parititions took 761ms
+    Spent 902ms computing partitions.
+    15/09/02 16:29:44 INFO client.RMProxy: Connecting to ResourceManager at yarn-master-0/172.31.16.103:8032
+    15/09/02 16:29:44 INFO mapreduce.JobSubmitter: number of splits:3
+    15/09/02 16:29:45 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1441210010493_0003
+    15/09/02 16:29:45 INFO impl.YarnClientImpl: Submitted application application_1441210010493_0003
+    15/09/02 16:29:45 INFO mapreduce.Job: The url to track the job: http://yarn-master-0:8088/proxy/application_1441210010493_0003/
+    15/09/02 16:29:45 INFO mapreduce.Job: Running job: job_1441210010493_0003
+    15/09/02 16:29:51 INFO mapreduce.Job: Job job_1441210010493_0003 running in uber mode : false
+    15/09/02 16:29:51 INFO mapreduce.Job:  map 0% reduce 0%
+    15/09/02 16:29:59 INFO mapreduce.Job:  map 100% reduce 0%
+    15/09/02 16:30:07 INFO mapreduce.Job:  map 100% reduce 100%
+    15/09/02 16:30:07 INFO mapreduce.Job: Job job_1441210010493_0003 completed successfully
+    15/09/02 16:30:08 INFO mapreduce.Job: Counters: 50
+        File System Counters
+            FILE: Number of bytes read=43312639
+            FILE: Number of bytes written=87217341
+            FILE: Number of read operations=0
+            FILE: Number of large read operations=0
+            FILE: Number of write operations=0
+            HDFS: Number of bytes read=100000384
+            HDFS: Number of bytes written=100000000
+            HDFS: Number of read operations=18
+            HDFS: Number of large read operations=0
+            HDFS: Number of write operations=6
+        Job Counters 
+            Launched map tasks=3
+            Launched reduce tasks=3
+            Data-local map tasks=2
+            Rack-local map tasks=1
+            Total time spent by all maps in occupied slots (ms)=16301
+            Total time spent by all reduces in occupied slots (ms)=17815
+            Total time spent by all map tasks (ms)=16301
+            Total time spent by all reduce tasks (ms)=17815
+            Total vcore-seconds taken by all map tasks=16301
+            Total vcore-seconds taken by all reduce tasks=17815
+            Total megabyte-seconds taken by all map tasks=16692224
+            Total megabyte-seconds taken by all reduce tasks=18242560
+        Map-Reduce Framework
+            Map input records=1000000
+            Map output records=1000000
+            Map output bytes=102000000
+            Map output materialized bytes=43336637
+            Input split bytes=384
+            Combine input records=0
+            Combine output records=0
+            Reduce input groups=1000000
+            Reduce shuffle bytes=43336637
+            Reduce input records=1000000
+            Reduce output records=1000000
+            Spilled Records=2000000
+            Shuffled Maps =9
+            Failed Shuffles=0
+            Merged Map outputs=9
+            GC time elapsed (ms)=813
+            CPU time spent (ms)=19830
+            Physical memory (bytes) snapshot=1516605440
+            Virtual memory (bytes) snapshot=5014552576
+            Total committed heap usage (bytes)=974651392
+        Shuffle Errors
+            BAD_ID=0
+            CONNECTION=0
+            IO_ERROR=0
+            WRONG_LENGTH=0
+            WRONG_MAP=0
+            WRONG_REDUCE=0
+        File Input Format Counters 
+            Bytes Read=100000000
+        File Output Format Counters 
+            Bytes Written=100000000
+    15/09/02 16:30:08 INFO terasort.TeraSort: done
+
 
 ## Resetting 
 
@@ -99,64 +267,48 @@ Will reset the environment but keep it alive
 
 Will completely rip of the environment and delete local files
 
-# SpagoBI GUI Access
-
-Once deployed, you can connect on the Tomcat unit on port 8080 (by default) to access the SpagoBI GUI
-
 # Sample Outputs
 ## Bootstrapping
 
     :~$ ./bin/00-bootstrap.sh 
-    [Mon Aug 31 15:03:58 CEST 2015] [demo] [local0.debug] : Validating dependencies
-    [Mon Aug 31 15:03:58 CEST 2015] [demo] [local0.debug] : Successfully switched to spagobi
-    [Mon Aug 31 15:10:21 CEST 2015] [demo] [local0.debug] : Succesfully bootstrapped spagobi
-    [Mon Aug 31 15:10:39 CEST 2015] [demo] [local0.debug] : Successfully deployed juju-gui to machine-0
-    [Mon Aug 31 15:10:41 CEST 2015] [demo] [local0.info] : Juju GUI now available on https://X.X.X.X with user admin:XXXX
-    [Mon Aug 31 15:11:25 CEST 2015] [demo] [local0.debug] : Bootstrapping process finished for spagobi. You can safely move to deployment.
+    [Wed Sep 2 17:52:36 CEST 2015] [demo] [local0.debug] : Validating dependencies
+    [Wed Sep 2 17:52:37 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
+    [Wed Sep 2 17:56:53 CEST 2015] [demo] [local0.debug] : Succesfully bootstrapped canonical
+    [Wed Sep 2 17:57:04 CEST 2015] [demo] [local0.debug] : Successfully deployed juju-gui to machine-0
+    [Wed Sep 2 17:57:06 CEST 2015] [demo] [local0.info] : Juju GUI now available on https://52.18.73.57 with user admin:869ab5e5049321d54a8fca0f27d6cdf0
+    [Wed Sep 2 17:57:18 CEST 2015] [demo] [local0.debug] : Bootstrapping process finished for canonical. You can safely move to deployment.
+
 
 
 ## Deployment
 
-    :~$ ./bin/01-deploy-spagobi.sh 
-    [Mon Aug 31 15:17:52 CEST 2015] [demo] [local0.debug] : Successfully switched to spagobi
-    [Mon Aug 31 15:18:11 CEST 2015] [demo] [local0.debug] : Successfully deployed hdfs-master
-    [Mon Aug 31 15:18:17 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for hdfs-master
-    [Mon Aug 31 15:18:38 CEST 2015] [demo] [local0.debug] : Successfully deployed yarn-master
-    [Mon Aug 31 15:18:44 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for yarn-master
-    [Mon Aug 31 15:19:05 CEST 2015] [demo] [local0.debug] : Successfully deployed zookeeper
-    [Mon Aug 31 15:19:10 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for zookeeper
-    [Mon Aug 31 15:19:32 CEST 2015] [demo] [local0.debug] : Successfully added 2 units of zookeeper
-    [Mon Aug 31 15:19:53 CEST 2015] [demo] [local0.debug] : Successfully deployed compute-slave
-    [Mon Aug 31 15:19:59 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for compute-slave
-    [Mon Aug 31 15:20:07 CEST 2015] [demo] [local0.debug] : Successfully deployed plugin
-    [Mon Aug 31 15:20:32 CEST 2015] [demo] [local0.debug] : Successfully deployed hbase-master
-    [Mon Aug 31 15:20:37 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for hbase-master
-    [Mon Aug 31 15:20:55 CEST 2015] [demo] [local0.debug] : Successfully deployed hbase-regionserver
-    [Mon Aug 31 15:21:02 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for hbase-regionserver
-    [Mon Aug 31 15:21:04 CEST 2015] [demo] [local0.debug] : Successfully created relation between yarn-master and hdfs-master
-    [Mon Aug 31 15:21:06 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and yarn-master
-    [Mon Aug 31 15:21:09 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and hdfs-master
-    [Mon Aug 31 15:21:11 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and yarn-master
-    [Mon Aug 31 15:21:13 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and hdfs-master
-    [Mon Aug 31 15:21:16 CEST 2015] [demo] [local0.debug] : Successfully created relation between hbase-master and plugin
-    [Mon Aug 31 15:21:18 CEST 2015] [demo] [local0.debug] : Successfully created relation between hbase-regionserver and plugin
-    [Mon Aug 31 15:21:20 CEST 2015] [demo] [local0.debug] : Successfully created relation between zookeeper and hbase-master
-    [Mon Aug 31 15:21:22 CEST 2015] [demo] [local0.debug] : Successfully created relation between zookeeper and hbase-regionserver
-    [Mon Aug 31 15:21:24 CEST 2015] [demo] [local0.debug] : Successfully created relation between hbase-master:master and hbase-regionserver:regionserver
-    [Mon Aug 31 15:21:49 CEST 2015] [demo] [local0.debug] : Successfully deployed hive
-    [Mon Aug 31 15:21:55 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for hive
-    [Mon Aug 31 15:22:13 CEST 2015] [demo] [local0.debug] : Successfully deployed mysql-hive
-    [Mon Aug 31 15:22:19 CEST 2015] [demo] [local0.debug] : Successfully set constraints "" for mysql-hive
-    [Mon Aug 31 15:22:23 CEST 2015] [demo] [local0.debug] : Successfully created relation between hive and plugin
-    [Mon Aug 31 15:22:25 CEST 2015] [demo] [local0.debug] : Successfully created relation between hive and mysql-hive
-    [Mon Aug 31 15:22:47 CEST 2015] [demo] [local0.debug] : Successfully deployed spark
-    [Mon Aug 31 15:22:54 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for spark
-    [Mon Aug 31 15:22:57 CEST 2015] [demo] [local0.debug] : Successfully created relation between spark and plugin
-    [Mon Aug 31 15:23:20 CEST 2015] [demo] [local0.debug] : Successfully deployed cassandra
-    [Mon Aug 31 15:23:26 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for cassandra
-    [Mon Aug 31 15:23:49 CEST 2015] [demo] [local0.debug] : Successfully added 2 units of cassandra
-    [Mon Aug 31 15:24:12 CEST 2015] [demo] [local0.debug] : Successfully deployed mongodb
-    [Mon Aug 31 15:24:18 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2" for mongodb
+    :~$ ./bin/01-deploy-apache-spark.sh 
+    [Wed Sep 2 18:00:04 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
+    [Wed Sep 2 18:00:16 CEST 2015] [demo] [local0.debug] : Successfully deployed hdfs-master
+    [Wed Sep 2 18:00:19 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=7G cpu-cores=2 root-disk=32G" for hdfs-master
+    [Wed Sep 2 18:00:33 CEST 2015] [demo] [local0.debug] : Successfully deployed secondary-namenode
+    [Wed Sep 2 18:00:36 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=7G cpu-cores=2 root-disk=32G" for secondary-namenode
+    [Wed Sep 2 18:00:37 CEST 2015] [demo] [local0.debug] : Successfully created relation between hdfs-master and secondary-namenode
+    [Wed Sep 2 18:00:50 CEST 2015] [demo] [local0.debug] : Successfully deployed yarn-master
+    [Wed Sep 2 18:00:53 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=7G cpu-cores=2" for yarn-master
+    [Wed Sep 2 18:01:07 CEST 2015] [demo] [local0.debug] : Successfully deployed compute-slave
+    [Wed Sep 2 18:01:10 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=3G cpu-cores=2 root-disk=32G" for compute-slave
+    [Wed Sep 2 18:01:24 CEST 2015] [demo] [local0.debug] : Successfully added 2 units of compute-slave
+    [Wed Sep 2 18:01:29 CEST 2015] [demo] [local0.debug] : Successfully deployed plugin
+    [Wed Sep 2 18:01:30 CEST 2015] [demo] [local0.debug] : Successfully created relation between yarn-master and hdfs-master
+    [Wed Sep 2 18:01:32 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and yarn-master
+    [Wed Sep 2 18:01:33 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and hdfs-master
+    [Wed Sep 2 18:01:36 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and yarn-master
+    [Wed Sep 2 18:01:37 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and hdfs-master
+    [Wed Sep 2 18:01:48 CEST 2015] [demo] [local0.debug] : Successfully deployed spark
+    [Wed Sep 2 18:01:51 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=3G cpu-cores=2" for spark
+    [Wed Sep 2 18:01:52 CEST 2015] [demo] [local0.debug] : Successfully created relation between spark and plugin
+    [Wed Sep 2 18:01:57 CEST 2015] [demo] [local0.debug] : Successfully deployed zeppelin
+    [Wed Sep 2 18:01:58 CEST 2015] [demo] [local0.debug] : Successfully created relation between between spark and zeppelin
+    [Wed Sep 2 18:01:59 CEST 2015] [demo] [local0.debug] : Successfully exposed zeppelin
+    [Wed Sep 2 18:02:02 CEST 2015] [demo] [local0.debug] : Successfully deployed notebook
+    [Wed Sep 2 18:02:03 CEST 2015] [demo] [local0.debug] : Successfully created relation between between spark and notebook
+    [Wed Sep 2 18:02:04 CEST 2015] [demo] [local0.debug] : Successfully exposed notebook
 
 ## Reset
 

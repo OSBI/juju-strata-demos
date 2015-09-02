@@ -33,7 +33,18 @@ done
 log debug Validating dependencies
 ensure_cmd_or_install_package_apt jq jq
 ensure_cmd_or_install_package_apt awk awk
+ensure_cmd_or_install_package_apt git git-all
 ensure_cmd_or_install_package_apt juju juju juju-core juju-deployer juju-quickstart python-jujuclient
+
+if [ ! -d ~/.juju-plugins ]; then 
+	git clone -q https://github.com/juju/plugins.git ~/.juju-plugins \
+	&& log info Successfully downloaded plugins \
+	|| log err Plugins could not be installed 
+fi
+
+export PATH="$PATH:$HOME/.juju-plugins"
+echo "PATH=$PATH:$HOME/.juju-plugins" >> ~/.bash_profile
+source ~/.bash_profile
 
 # Switching to project
 switchenv "${PROJECT_ID}" 
@@ -62,9 +73,6 @@ juju authorized-keys import admcleod
 juju authorized-keys import kwmonroe
 juju authorized-keys import johnsca
 juju authorized-keys import arosales
-juju authorized-keys import aghedin
-juju authorized-keys import anatomic
-
 
 log debug Bootstrapping process finished for ${PROJECT_ID}. You can safely move to deployment. 
 
