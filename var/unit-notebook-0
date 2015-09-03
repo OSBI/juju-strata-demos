@@ -1,253 +1,243 @@
-2015-09-02 16:07:10 INFO juju.cmd supercommand.go:37 running jujud [1.24.5-trusty-amd64 gc]
-2015-09-02 16:07:10 DEBUG juju.agent agent.go:432 read agent config, format "1.18"
-2015-09-02 16:07:10 INFO juju.jujud unit.go:135 unit agent unit-notebook-0 start (1.24.5-trusty-amd64 [gc])
-2015-09-02 16:07:10 INFO juju.network network.go:194 setting prefer-ipv6 to false
-2015-09-02 16:07:10 INFO juju.worker runner.go:269 start "api"
-2015-09-02 16:07:10 INFO juju.api apiclient.go:331 dialing "wss://172.31.22.252:17070/environment/647cd019-3900-4377-8d75-a907c4efb189/api"
-2015-09-02 16:07:10 INFO juju.api apiclient.go:263 connection established to "wss://172.31.22.252:17070/environment/647cd019-3900-4377-8d75-a907c4efb189/api"
-2015-09-02 16:07:10 INFO juju.api apiclient.go:331 dialing "wss://172.31.22.252:17070/environment/647cd019-3900-4377-8d75-a907c4efb189/api"
-2015-09-02 16:07:10 INFO juju.api apiclient.go:263 connection established to "wss://172.31.22.252:17070/environment/647cd019-3900-4377-8d75-a907c4efb189/api"
-2015-09-02 16:07:11 INFO juju.api apiclient.go:331 dialing "wss://172.31.22.252:17070/environment/647cd019-3900-4377-8d75-a907c4efb189/api"
-2015-09-02 16:07:11 INFO juju.api apiclient.go:263 connection established to "wss://172.31.22.252:17070/environment/647cd019-3900-4377-8d75-a907c4efb189/api"
-2015-09-02 16:07:11 INFO juju.worker runner.go:269 start "proxyupdater"
-2015-09-02 16:07:11 DEBUG juju.worker.proxyupdater proxyupdater.go:69 write system files: false
-2015-09-02 16:07:11 DEBUG juju.worker runner.go:196 "proxyupdater" started
-2015-09-02 16:07:11 INFO juju.worker runner.go:269 start "upgrader"
-2015-09-02 16:07:11 INFO juju.worker runner.go:269 start "logger"
-2015-09-02 16:07:11 DEBUG juju.worker.logger logger.go:35 initial log config: "<root>=DEBUG"
-2015-09-02 16:07:11 DEBUG juju.worker runner.go:196 "upgrader" started
-2015-09-02 16:07:11 DEBUG juju.worker runner.go:196 "logger" started
-2015-09-02 16:07:11 DEBUG juju.worker.logger logger.go:60 logger setup
-2015-09-02 16:07:11 INFO juju.worker runner.go:269 start "uniter"
-2015-09-02 16:07:11 DEBUG juju.worker runner.go:196 "uniter" started
-2015-09-02 16:07:11 INFO juju.worker runner.go:269 start "apiaddressupdater"
-2015-09-02 16:07:11 INFO juju.worker runner.go:269 start "rsyslog"
-2015-09-02 16:07:11 DEBUG juju.worker.rsyslog worker.go:106 starting rsyslog worker mode 1 for "unit-notebook-0" ""
-2015-09-02 16:07:11 DEBUG juju.worker.leadership tracker.go:123 notebook/0 making initial claim for notebook leadership
-2015-09-02 16:07:11 DEBUG juju.worker.leadership tracker.go:165 checking notebook/0 for notebook leadership
-2015-09-02 16:07:11 DEBUG juju.worker runner.go:196 "apiaddressupdater" started
-2015-09-02 16:07:11 DEBUG juju.worker runner.go:196 "rsyslog" started
-2015-09-02 16:07:11 DEBUG juju.worker runner.go:196 "api" started
-2015-09-02 16:07:11 DEBUG juju.worker.proxyupdater proxyupdater.go:151 new proxy settings proxy.Settings{Http:"", Https:"", Ftp:"", NoProxy:""}
-2015-09-02 16:07:11 DEBUG juju.worker.logger logger.go:45 reconfiguring logging from "<root>=DEBUG" to "<root>=WARNING;unit=DEBUG"
-2015-09-02 16:08:10 INFO install Reading package lists...
-2015-09-02 16:08:10 INFO install Building dependency tree...
-2015-09-02 16:08:10 INFO install Reading state information...
-2015-09-02 16:08:10 INFO install bzr is already the newest version.
-2015-09-02 16:08:10 INFO install python-pip is already the newest version.
-2015-09-02 16:08:10 INFO install 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-2015-09-02 16:08:10 INFO install Unpacking ./resources/python/charmhelpers-0.3.1.tar.gz
-2015-09-02 16:08:10 INFO install   Running setup.py (path:/tmp/pip-eP0Ykm-build/setup.py) egg_info for package from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/charmhelpers-0.3.1.tar.gz
-2015-09-02 16:08:10 INFO install     
-2015-09-02 16:08:10 INFO install   Requirement already satisfied (use --upgrade to upgrade): charmhelpers==0.3.1 from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/charmhelpers-0.3.1.tar.gz in /usr/local/lib/python2.7/dist-packages
-2015-09-02 16:08:10 INFO install Unpacking ./resources/python/jujuresources-0.2.9.tar.gz
-2015-09-02 16:08:10 INFO install   Running setup.py (path:/tmp/pip-HeSrmf-build/setup.py) egg_info for package from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/jujuresources-0.2.9.tar.gz
-2015-09-02 16:08:10 INFO install     
-2015-09-02 16:08:10 INFO install   Requirement already satisfied (use --upgrade to upgrade): jujuresources==0.2.9 from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/jujuresources-0.2.9.tar.gz in /usr/local/lib/python2.7/dist-packages
-2015-09-02 16:08:10 INFO install Unpacking ./resources/python/six-1.9.0-py2.py3-none-any.whl
-2015-09-02 16:08:10 INFO install Unpacking ./resources/python/pyaml-15.5.7.tar.gz
-2015-09-02 16:08:10 INFO install   Running setup.py (path:/tmp/pip-SJEGAD-build/setup.py) egg_info for package from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/pyaml-15.5.7.tar.gz
-2015-09-02 16:08:10 INFO install     
-2015-09-02 16:08:10 INFO install Unpacking ./resources/python/PyYAML-3.11.tar.gz
-2015-09-02 16:08:11 INFO install   Running setup.py (path:/tmp/pip-LHRMc5-build/setup.py) egg_info for package from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/PyYAML-3.11.tar.gz
-2015-09-02 16:08:11 INFO install     
-2015-09-02 16:08:11 INFO install Requirement already satisfied (use --upgrade to upgrade): pyaml in /usr/local/lib/python2.7/dist-packages (from jujuresources==0.2.9)
-2015-09-02 16:08:11 INFO install Requirement already satisfied (use --upgrade to upgrade): PyYAML in /usr/lib/python2.7/dist-packages (from pyaml==15.5.7)
-2015-09-02 16:08:11 INFO install Installing collected packages: six
-2015-09-02 16:08:11 INFO install Successfully installed six
-2015-09-02 16:08:11 INFO install Cleaning up...
-2015-09-02 16:08:11 INFO juju-log All resources successfully fetched
-2015-09-02 16:08:12 INFO install Unpacking /home/ubuntu/resources/path.py/path.py-8.1-py2.py3-none-any.whl
-2015-09-02 16:08:12 INFO install Unpacking /home/ubuntu/resources/jujubigdata/jujubigdata-4.2.0.tar.gz
-2015-09-02 16:08:12 INFO install   Running setup.py (path:/tmp/pip-kWBMdY-build/setup.py) egg_info for package from file:///home/ubuntu/resources/jujubigdata/jujubigdata-4.2.0.tar.gz
-2015-09-02 16:08:12 INFO install     
-2015-09-02 16:08:12 INFO install   Requirement already satisfied (use --upgrade to upgrade): jujubigdata==4.2.0 from file:///home/ubuntu/resources/jujubigdata/jujubigdata-4.2.0.tar.gz in /usr/local/lib/python2.7/dist-packages
-2015-09-02 16:08:12 INFO install Requirement already satisfied (use --upgrade to upgrade): six in /usr/local/lib/python2.7/dist-packages (from jujubigdata==4.2.0)
-2015-09-02 16:08:12 INFO install Requirement already satisfied (use --upgrade to upgrade): pyaml in /usr/local/lib/python2.7/dist-packages (from jujubigdata==4.2.0)
-2015-09-02 16:08:12 INFO install Requirement already satisfied (use --upgrade to upgrade): jujuresources>=0.2.5 in /usr/local/lib/python2.7/dist-packages (from jujubigdata==4.2.0)
-2015-09-02 16:08:12 INFO install Requirement already satisfied (use --upgrade to upgrade): PyYAML in /usr/lib/python2.7/dist-packages (from pyaml->jujubigdata==4.2.0)
-2015-09-02 16:08:12 INFO install Installing collected packages: path.py
-2015-09-02 16:08:12 INFO install Successfully installed path.py
-2015-09-02 16:08:12 INFO install Cleaning up...
-2015-09-02 16:08:12 INFO juju-log Component notebook blocked on: [<Spark ready=False >]
-2015-09-02 16:08:13 INFO juju-log Component notebook blocked on: [<Spark ready=False >]
-2015-09-02 16:08:14 INFO juju-log Component notebook blocked on: [<Spark ready=False >]
-2015-09-02 16:08:16 INFO juju-log spark:8: Component notebook blocked on: [<Spark ready=False spark/0=missing(ready)>]
-2015-09-02 16:09:25 INFO juju-log spark:8: Making dir /var/lib/spark-notebook/notebook ubuntu:hadoop 755
-2015-09-02 16:09:25 INFO spark-relation-changed Ign http://eu-west-1.ec2.archive.ubuntu.com trusty InRelease
-2015-09-02 16:09:25 INFO spark-relation-changed Ign http://eu-west-1.ec2.archive.ubuntu.com trusty-updates InRelease
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty Release.gpg
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates Release.gpg
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty Release
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates Release
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/main Sources
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/universe Sources
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/main amd64 Packages
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/universe amd64 Packages
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/main Translation-en
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/universe Translation-en
-2015-09-02 16:09:25 INFO spark-relation-changed Ign http://security.ubuntu.com trusty-security InRelease
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/main Sources
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/universe Sources
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/main amd64 Packages
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/universe amd64 Packages
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/main Translation-en
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/universe Translation-en
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security Release.gpg
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security Release
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/main Sources
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/universe Sources
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/main amd64 Packages
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/universe amd64 Packages
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/main Translation-en
-2015-09-02 16:09:25 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/universe Translation-en
-2015-09-02 16:09:29 INFO spark-relation-changed Reading package lists...
-2015-09-02 16:09:29 INFO juju-log spark:8: Installing ['ipython', 'ipython-notebook'] with options: ['--option=Dpkg::Options::=--force-confold']
-2015-09-02 16:09:29 INFO spark-relation-changed Reading package lists...
-2015-09-02 16:09:29 INFO spark-relation-changed Building dependency tree...
-2015-09-02 16:09:29 INFO spark-relation-changed Reading state information...
-2015-09-02 16:09:30 INFO spark-relation-changed ipython is already the newest version.
-2015-09-02 16:09:30 INFO spark-relation-changed The following extra packages will be installed:
-2015-09-02 16:09:30 INFO spark-relation-changed   fonts-font-awesome fonts-mathjax ipython-notebook-common javascript-common
-2015-09-02 16:09:30 INFO spark-relation-changed   libjs-highlight libjs-jquery-ui libjs-marked libjs-mathjax libmysqlclient18
-2015-09-02 16:09:30 INFO spark-relation-changed   libpgm-5.1-0 libzmq3 mysql-common python-jinja2 python-markupsafe
-2015-09-02 16:09:30 INFO spark-relation-changed   python-mysqldb python-tornado python-zmq
-2015-09-02 16:09:30 INFO spark-relation-changed Suggested packages:
-2015-09-02 16:09:30 INFO spark-relation-changed   pandoc pgf apache2 lighttpd httpd libjs-jquery-ui-docs fonts-stix
-2015-09-02 16:09:30 INFO spark-relation-changed   fonts-mathjax-extras libjs-mathjax-doc python-jinja2-doc
-2015-09-02 16:09:30 INFO spark-relation-changed   python-egenix-mxdatetime mysql-server-5.1 mysql-server python-mysqldb-dbg
-2015-09-02 16:09:30 INFO spark-relation-changed The following NEW packages will be installed:
-2015-09-02 16:09:30 INFO spark-relation-changed   fonts-font-awesome fonts-mathjax ipython-notebook ipython-notebook-common
-2015-09-02 16:09:30 INFO spark-relation-changed   javascript-common libjs-highlight libjs-jquery-ui libjs-marked libjs-mathjax
-2015-09-02 16:09:30 INFO spark-relation-changed   libmysqlclient18 libpgm-5.1-0 libzmq3 mysql-common python-jinja2
-2015-09-02 16:09:30 INFO spark-relation-changed   python-markupsafe python-mysqldb python-tornado python-zmq
-2015-09-02 16:09:30 INFO spark-relation-changed 0 upgraded, 18 newly installed, 0 to remove and 0 not upgraded.
-2015-09-02 16:09:30 INFO spark-relation-changed Need to get 9410 kB of archives.
-2015-09-02 16:09:30 INFO spark-relation-changed After this operation, 56.4 MB of additional disk space will be used.
-2015-09-02 16:09:30 INFO spark-relation-changed Get:1 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe fonts-mathjax all 2.3-1 [959 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:2 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main mysql-common all 5.5.44-0ubuntu0.14.04.1 [13.9 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:3 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main libmysqlclient18 amd64 5.5.44-0ubuntu0.14.04.1 [596 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:4 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libpgm-5.1-0 amd64 5.1.118-1~dfsg-0.1ubuntu3 [156 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:5 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libzmq3 amd64 4.0.4+dfsg-2 [129 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:6 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libjs-mathjax all 2.3-1 [5396 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:7 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe fonts-font-awesome all 4.0.0~dfsg-1 [266 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:8 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libjs-highlight all 7.4+ds-1 [140 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:9 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libjs-jquery-ui all 1.10.1+dfsg-1 [458 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:10 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libjs-marked all 0.3.1+dfsg-1 [12.5 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:11 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe ipython-notebook-common all 1.2.1-2 [629 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:12 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main python-markupsafe amd64 0.18-1build2 [14.3 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:13 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main python-jinja2 all 2.7.2-2 [161 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:14 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main python-tornado all 3.1.1-1ubuntu2 [215 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:15 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe python-zmq amd64 14.0.1-1build2 [175 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:16 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe ipython-notebook all 1.2.1-2 [28.9 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:17 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main javascript-common all 11 [6066 B]
-2015-09-02 16:09:30 INFO spark-relation-changed Get:18 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main python-mysqldb amd64 1.2.3-2ubuntu1 [55.4 kB]
-2015-09-02 16:09:30 INFO spark-relation-changed Fetched 9410 kB in 0s (36.9 MB/s)
-2015-09-02 16:09:30 INFO spark-relation-changed Selecting previously unselected package fonts-mathjax.
-2015-09-02 16:09:30 INFO spark-relation-changed (Reading database ... 64100 files and directories currently installed.)
-2015-09-02 16:09:30 INFO spark-relation-changed Preparing to unpack .../fonts-mathjax_2.3-1_all.deb ...
-2015-09-02 16:09:30 INFO spark-relation-changed Unpacking fonts-mathjax (2.3-1) ...
-2015-09-02 16:09:30 INFO spark-relation-changed Selecting previously unselected package mysql-common.
-2015-09-02 16:09:30 INFO spark-relation-changed Preparing to unpack .../mysql-common_5.5.44-0ubuntu0.14.04.1_all.deb ...
-2015-09-02 16:09:30 INFO spark-relation-changed Unpacking mysql-common (5.5.44-0ubuntu0.14.04.1) ...
-2015-09-02 16:09:30 INFO spark-relation-changed Selecting previously unselected package libmysqlclient18:amd64.
-2015-09-02 16:09:30 INFO spark-relation-changed Preparing to unpack .../libmysqlclient18_5.5.44-0ubuntu0.14.04.1_amd64.deb ...
-2015-09-02 16:09:30 INFO spark-relation-changed Unpacking libmysqlclient18:amd64 (5.5.44-0ubuntu0.14.04.1) ...
-2015-09-02 16:09:31 INFO spark-relation-changed Selecting previously unselected package libpgm-5.1-0:amd64.
-2015-09-02 16:09:31 INFO spark-relation-changed Preparing to unpack .../libpgm-5.1-0_5.1.118-1~dfsg-0.1ubuntu3_amd64.deb ...
-2015-09-02 16:09:31 INFO spark-relation-changed Unpacking libpgm-5.1-0:amd64 (5.1.118-1~dfsg-0.1ubuntu3) ...
-2015-09-02 16:09:31 INFO spark-relation-changed Selecting previously unselected package libzmq3:amd64.
-2015-09-02 16:09:31 INFO spark-relation-changed Preparing to unpack .../libzmq3_4.0.4+dfsg-2_amd64.deb ...
-2015-09-02 16:09:31 INFO spark-relation-changed Unpacking libzmq3:amd64 (4.0.4+dfsg-2) ...
-2015-09-02 16:09:31 INFO spark-relation-changed Selecting previously unselected package libjs-mathjax.
-2015-09-02 16:09:31 INFO spark-relation-changed Preparing to unpack .../libjs-mathjax_2.3-1_all.deb ...
-2015-09-02 16:09:31 INFO spark-relation-changed Unpacking libjs-mathjax (2.3-1) ...
-2015-09-02 16:09:32 INFO spark-relation-changed Selecting previously unselected package fonts-font-awesome.
-2015-09-02 16:09:32 INFO spark-relation-changed Preparing to unpack .../fonts-font-awesome_4.0.0~dfsg-1_all.deb ...
-2015-09-02 16:09:32 INFO spark-relation-changed Unpacking fonts-font-awesome (4.0.0~dfsg-1) ...
-2015-09-02 16:09:32 INFO spark-relation-changed Selecting previously unselected package libjs-highlight.
-2015-09-02 16:09:32 INFO spark-relation-changed Preparing to unpack .../libjs-highlight_7.4+ds-1_all.deb ...
-2015-09-02 16:09:32 INFO spark-relation-changed Unpacking libjs-highlight (7.4+ds-1) ...
-2015-09-02 16:09:32 INFO spark-relation-changed Selecting previously unselected package libjs-jquery-ui.
-2015-09-02 16:09:32 INFO spark-relation-changed Preparing to unpack .../libjs-jquery-ui_1.10.1+dfsg-1_all.deb ...
-2015-09-02 16:09:32 INFO spark-relation-changed Unpacking libjs-jquery-ui (1.10.1+dfsg-1) ...
-2015-09-02 16:09:32 INFO spark-relation-changed Selecting previously unselected package libjs-marked.
-2015-09-02 16:09:32 INFO spark-relation-changed Preparing to unpack .../libjs-marked_0.3.1+dfsg-1_all.deb ...
-2015-09-02 16:09:32 INFO spark-relation-changed Unpacking libjs-marked (0.3.1+dfsg-1) ...
-2015-09-02 16:09:33 INFO spark-relation-changed Selecting previously unselected package ipython-notebook-common.
-2015-09-02 16:09:33 INFO spark-relation-changed Preparing to unpack .../ipython-notebook-common_1.2.1-2_all.deb ...
-2015-09-02 16:09:33 INFO spark-relation-changed Unpacking ipython-notebook-common (1.2.1-2) ...
-2015-09-02 16:09:33 INFO spark-relation-changed Selecting previously unselected package python-markupsafe.
-2015-09-02 16:09:33 INFO spark-relation-changed Preparing to unpack .../python-markupsafe_0.18-1build2_amd64.deb ...
-2015-09-02 16:09:33 INFO spark-relation-changed Unpacking python-markupsafe (0.18-1build2) ...
-2015-09-02 16:09:33 INFO spark-relation-changed Selecting previously unselected package python-jinja2.
-2015-09-02 16:09:33 INFO spark-relation-changed Preparing to unpack .../python-jinja2_2.7.2-2_all.deb ...
-2015-09-02 16:09:33 INFO spark-relation-changed Unpacking python-jinja2 (2.7.2-2) ...
-2015-09-02 16:09:33 INFO spark-relation-changed Selecting previously unselected package python-tornado.
-2015-09-02 16:09:33 INFO spark-relation-changed Preparing to unpack .../python-tornado_3.1.1-1ubuntu2_all.deb ...
-2015-09-02 16:09:33 INFO spark-relation-changed Unpacking python-tornado (3.1.1-1ubuntu2) ...
-2015-09-02 16:09:33 INFO spark-relation-changed Selecting previously unselected package python-zmq.
-2015-09-02 16:09:33 INFO spark-relation-changed Preparing to unpack .../python-zmq_14.0.1-1build2_amd64.deb ...
-2015-09-02 16:09:33 INFO spark-relation-changed Unpacking python-zmq (14.0.1-1build2) ...
-2015-09-02 16:09:33 INFO spark-relation-changed Selecting previously unselected package ipython-notebook.
-2015-09-02 16:09:33 INFO spark-relation-changed Preparing to unpack .../ipython-notebook_1.2.1-2_all.deb ...
-2015-09-02 16:09:33 INFO spark-relation-changed Unpacking ipython-notebook (1.2.1-2) ...
-2015-09-02 16:09:33 INFO spark-relation-changed Selecting previously unselected package javascript-common.
-2015-09-02 16:09:33 INFO spark-relation-changed Preparing to unpack .../javascript-common_11_all.deb ...
-2015-09-02 16:09:33 INFO spark-relation-changed Unpacking javascript-common (11) ...
-2015-09-02 16:09:33 INFO spark-relation-changed Selecting previously unselected package python-mysqldb.
-2015-09-02 16:09:33 INFO spark-relation-changed Preparing to unpack .../python-mysqldb_1.2.3-2ubuntu1_amd64.deb ...
-2015-09-02 16:09:33 INFO spark-relation-changed Unpacking python-mysqldb (1.2.3-2ubuntu1) ...
-2015-09-02 16:09:33 INFO spark-relation-changed Processing triggers for fontconfig (2.11.0-0ubuntu4.1) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up fonts-mathjax (2.3-1) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up mysql-common (5.5.44-0ubuntu0.14.04.1) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up libmysqlclient18:amd64 (5.5.44-0ubuntu0.14.04.1) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up libpgm-5.1-0:amd64 (5.1.118-1~dfsg-0.1ubuntu3) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up libzmq3:amd64 (4.0.4+dfsg-2) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up libjs-mathjax (2.3-1) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up fonts-font-awesome (4.0.0~dfsg-1) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up libjs-highlight (7.4+ds-1) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up libjs-jquery-ui (1.10.1+dfsg-1) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up libjs-marked (0.3.1+dfsg-1) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up ipython-notebook-common (1.2.1-2) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up python-markupsafe (0.18-1build2) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up python-jinja2 (2.7.2-2) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up python-tornado (3.1.1-1ubuntu2) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up python-zmq (14.0.1-1build2) ...
-2015-09-02 16:09:36 INFO spark-relation-changed Setting up ipython-notebook (1.2.1-2) ...
-2015-09-02 16:09:37 INFO spark-relation-changed Setting up javascript-common (11) ...
-2015-09-02 16:09:37 INFO spark-relation-changed Setting up python-mysqldb (1.2.3-2ubuntu1) ...
-2015-09-02 16:09:37 INFO spark-relation-changed Processing triggers for libc-bin (2.19-0ubuntu6.6) ...
-2015-09-02 16:09:38 INFO spark-relation-changed Traceback (most recent call last):
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/bin/ipython", line 5, in <module>
-2015-09-02 16:09:38 INFO spark-relation-changed     from IPython import start_ipython
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/lib/python2.7/dist-packages/IPython/__init__.py", line 43, in <module>
-2015-09-02 16:09:38 INFO spark-relation-changed     from .config.loader import Config
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/lib/python2.7/dist-packages/IPython/config/__init__.py", line 16, in <module>
-2015-09-02 16:09:38 INFO spark-relation-changed     from .application import *
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/lib/python2.7/dist-packages/IPython/config/application.py", line 31, in <module>
-2015-09-02 16:09:38 INFO spark-relation-changed     from IPython.config.configurable import SingletonConfigurable
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/lib/python2.7/dist-packages/IPython/config/configurable.py", line 33, in <module>
-2015-09-02 16:09:38 INFO spark-relation-changed     from IPython.utils.text import indent, wrap_paragraphs
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/lib/python2.7/dist-packages/IPython/utils/text.py", line 28, in <module>
-2015-09-02 16:09:38 INFO spark-relation-changed     from IPython.external.path import path
-2015-09-02 16:09:38 INFO spark-relation-changed ImportError: cannot import name path
-2015-09-02 16:09:38 INFO spark-relation-changed Traceback (most recent call last):
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/var/lib/juju/agents/unit-notebook-0/charm/hooks/spark-relation-changed", line 15, in <module>
-2015-09-02 16:09:38 INFO spark-relation-changed     common.manage()
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/var/lib/juju/agents/unit-notebook-0/charm/hooks/common.py", line 79, in manage
-2015-09-02 16:09:38 INFO spark-relation-changed     manager.manage()
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/local/lib/python2.7/dist-packages/charmhelpers/core/charmframework/base.py", line 115, in manage
-2015-09-02 16:09:38 INFO spark-relation-changed     self.run_callbacks()
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/local/lib/python2.7/dist-packages/charmhelpers/core/charmframework/base.py", line 159, in run_callbacks
-2015-09-02 16:09:38 INFO spark-relation-changed     self.fire_event('callbacks', component)
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/local/lib/python2.7/dist-packages/charmhelpers/core/charmframework/base.py", line 189, in fire_event
-2015-09-02 16:09:38 INFO spark-relation-changed     callback()
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/var/lib/juju/agents/unit-notebook-0/charm/hooks/callbacks.py", line 65, in install
-2015-09-02 16:09:38 INFO spark-relation-changed     utils.run_as("ubuntu", 'ipython', 'profile', 'create', 'pyspark')
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/local/lib/python2.7/dist-packages/jujubigdata/utils.py", line 322, in run_as
-2015-09-02 16:09:38 INFO spark-relation-changed     return run(['su', user, '-c', quoted], env=env)
-2015-09-02 16:09:38 INFO spark-relation-changed   File "/usr/lib/python2.7/subprocess.py", line 540, in check_call
-2015-09-02 16:09:38 INFO spark-relation-changed     raise CalledProcessError(retcode, cmd)
-2015-09-02 16:09:38 INFO spark-relation-changed subprocess.CalledProcessError: Command '['su', 'ubuntu', '-c', "'ipython' 'profile' 'create' 'pyspark'"]' returned non-zero exit status 1
-2015-09-02 16:09:38 ERROR juju.worker.uniter.operation runhook.go:103 hook "spark-relation-changed" failed: exit status 1
+2015-09-03 15:28:56 INFO juju.cmd supercommand.go:37 running jujud [1.24.5-trusty-amd64 gc]
+2015-09-03 15:28:56 DEBUG juju.agent agent.go:432 read agent config, format "1.18"
+2015-09-03 15:28:56 INFO juju.jujud unit.go:135 unit agent unit-notebook-0 start (1.24.5-trusty-amd64 [gc])
+2015-09-03 15:28:56 INFO juju.network network.go:194 setting prefer-ipv6 to false
+2015-09-03 15:28:56 INFO juju.worker runner.go:269 start "api"
+2015-09-03 15:28:56 INFO juju.api apiclient.go:331 dialing "wss://172.31.18.222:17070/environment/912b63d8-e4b8-4c89-8816-dd561a02d816/api"
+2015-09-03 15:28:56 INFO juju.api apiclient.go:263 connection established to "wss://172.31.18.222:17070/environment/912b63d8-e4b8-4c89-8816-dd561a02d816/api"
+2015-09-03 15:28:56 INFO juju.api apiclient.go:331 dialing "wss://172.31.18.222:17070/environment/912b63d8-e4b8-4c89-8816-dd561a02d816/api"
+2015-09-03 15:28:56 INFO juju.api apiclient.go:263 connection established to "wss://172.31.18.222:17070/environment/912b63d8-e4b8-4c89-8816-dd561a02d816/api"
+2015-09-03 15:28:56 INFO juju.api apiclient.go:331 dialing "wss://172.31.18.222:17070/environment/912b63d8-e4b8-4c89-8816-dd561a02d816/api"
+2015-09-03 15:28:56 INFO juju.api apiclient.go:263 connection established to "wss://172.31.18.222:17070/environment/912b63d8-e4b8-4c89-8816-dd561a02d816/api"
+2015-09-03 15:28:57 INFO juju.worker runner.go:269 start "proxyupdater"
+2015-09-03 15:28:57 DEBUG juju.worker.proxyupdater proxyupdater.go:69 write system files: false
+2015-09-03 15:28:57 DEBUG juju.worker runner.go:196 "proxyupdater" started
+2015-09-03 15:28:57 INFO juju.worker runner.go:269 start "upgrader"
+2015-09-03 15:28:57 INFO juju.worker runner.go:269 start "logger"
+2015-09-03 15:28:57 DEBUG juju.worker.logger logger.go:35 initial log config: "<root>=DEBUG"
+2015-09-03 15:28:57 DEBUG juju.worker runner.go:196 "upgrader" started
+2015-09-03 15:28:57 DEBUG juju.worker runner.go:196 "logger" started
+2015-09-03 15:28:57 DEBUG juju.worker.logger logger.go:60 logger setup
+2015-09-03 15:28:57 INFO juju.worker runner.go:269 start "uniter"
+2015-09-03 15:28:57 DEBUG juju.worker runner.go:196 "uniter" started
+2015-09-03 15:28:57 INFO juju.worker runner.go:269 start "apiaddressupdater"
+2015-09-03 15:28:57 INFO juju.worker runner.go:269 start "rsyslog"
+2015-09-03 15:28:57 DEBUG juju.worker.rsyslog worker.go:106 starting rsyslog worker mode 1 for "unit-notebook-0" ""
+2015-09-03 15:28:57 DEBUG juju.worker.leadership tracker.go:123 notebook/0 making initial claim for notebook leadership
+2015-09-03 15:28:57 DEBUG juju.worker.leadership tracker.go:165 checking notebook/0 for notebook leadership
+2015-09-03 15:28:57 DEBUG juju.worker runner.go:196 "apiaddressupdater" started
+2015-09-03 15:28:57 DEBUG juju.worker runner.go:196 "rsyslog" started
+2015-09-03 15:28:57 DEBUG juju.worker runner.go:196 "api" started
+2015-09-03 15:28:57 DEBUG juju.worker.logger logger.go:45 reconfiguring logging from "<root>=DEBUG" to "<root>=WARNING;unit=DEBUG"
+2015-09-03 15:32:25 INFO install Reading package lists...
+2015-09-03 15:32:25 INFO install Building dependency tree...
+2015-09-03 15:32:25 INFO install Reading state information...
+2015-09-03 15:32:25 INFO install bzr is already the newest version.
+2015-09-03 15:32:25 INFO install python-pip is already the newest version.
+2015-09-03 15:32:25 INFO install 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2015-09-03 15:32:25 INFO install Unpacking ./resources/python/charmhelpers-0.3.1.tar.gz
+2015-09-03 15:32:25 INFO install   Running setup.py (path:/tmp/pip-zTBo5y-build/setup.py) egg_info for package from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/charmhelpers-0.3.1.tar.gz
+2015-09-03 15:32:25 INFO install     
+2015-09-03 15:32:25 INFO install   Requirement already satisfied (use --upgrade to upgrade): charmhelpers==0.3.1 from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/charmhelpers-0.3.1.tar.gz in /usr/local/lib/python2.7/dist-packages
+2015-09-03 15:32:25 INFO install Unpacking ./resources/python/six-1.9.0-py2.py3-none-any.whl
+2015-09-03 15:32:25 INFO install Unpacking ./resources/python/pyaml-15.5.7.tar.gz
+2015-09-03 15:32:25 INFO install   Running setup.py (path:/tmp/pip-A3Gkwi-build/setup.py) egg_info for package from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/pyaml-15.5.7.tar.gz
+2015-09-03 15:32:26 INFO install     
+2015-09-03 15:32:26 INFO install Unpacking ./resources/python/PyYAML-3.11.tar.gz
+2015-09-03 15:32:26 INFO install   Running setup.py (path:/tmp/pip-RZdY2C-build/setup.py) egg_info for package from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/PyYAML-3.11.tar.gz
+2015-09-03 15:32:26 INFO install     
+2015-09-03 15:32:26 INFO install Unpacking ./resources/python/jujuresources-0.2.11.tar.gz
+2015-09-03 15:32:26 INFO install   Running setup.py (path:/tmp/pip-2WX6HZ-build/setup.py) egg_info for package from file:///var/lib/juju/agents/unit-notebook-0/charm/resources/python/jujuresources-0.2.11.tar.gz
+2015-09-03 15:32:26 INFO install     
+2015-09-03 15:32:26 INFO install Requirement already satisfied (use --upgrade to upgrade): PyYAML in /usr/lib/python2.7/dist-packages (from pyaml==15.5.7)
+2015-09-03 15:32:26 INFO install Installing collected packages: six, pyaml, jujuresources
+2015-09-03 15:32:26 INFO install   Found existing installation: pyaml 15.8.2
+2015-09-03 15:32:26 INFO install     Uninstalling pyaml:
+2015-09-03 15:32:26 INFO install       Successfully uninstalled pyaml
+2015-09-03 15:32:26 INFO install   Running setup.py install for pyaml
+2015-09-03 15:32:26 INFO install     
+2015-09-03 15:32:26 INFO install   Found existing installation: jujuresources 0.2.9
+2015-09-03 15:32:26 INFO install     Uninstalling jujuresources:
+2015-09-03 15:32:26 INFO install       Successfully uninstalled jujuresources
+2015-09-03 15:32:26 INFO install   Running setup.py install for jujuresources
+2015-09-03 15:32:26 INFO install     
+2015-09-03 15:32:26 INFO install     Installing juju-resources script to /usr/local/bin
+2015-09-03 15:32:26 INFO install Successfully installed six pyaml jujuresources
+2015-09-03 15:32:26 INFO install Cleaning up...
+2015-09-03 15:32:27 INFO juju-log All resources successfully fetched
+2015-09-03 15:32:27 INFO install Unpacking /home/ubuntu/resources/path.py/path.py-8.1-py2.py3-none-any.whl
+2015-09-03 15:32:27 INFO install Unpacking /home/ubuntu/resources/jujubigdata/jujubigdata-4.2.0.tar.gz
+2015-09-03 15:32:27 INFO install   Running setup.py (path:/tmp/pip-BDo2X6-build/setup.py) egg_info for package from file:///home/ubuntu/resources/jujubigdata/jujubigdata-4.2.0.tar.gz
+2015-09-03 15:32:27 INFO install     
+2015-09-03 15:32:27 INFO install   Requirement already satisfied (use --upgrade to upgrade): jujubigdata==4.2.0 from file:///home/ubuntu/resources/jujubigdata/jujubigdata-4.2.0.tar.gz in /usr/local/lib/python2.7/dist-packages
+2015-09-03 15:32:27 INFO install Requirement already satisfied (use --upgrade to upgrade): six in /usr/local/lib/python2.7/dist-packages (from jujubigdata==4.2.0)
+2015-09-03 15:32:27 INFO install Requirement already satisfied (use --upgrade to upgrade): pyaml in /usr/local/lib/python2.7/dist-packages (from jujubigdata==4.2.0)
+2015-09-03 15:32:27 INFO install Requirement already satisfied (use --upgrade to upgrade): jujuresources>=0.2.5 in /usr/local/lib/python2.7/dist-packages (from jujubigdata==4.2.0)
+2015-09-03 15:32:27 INFO install Requirement already satisfied (use --upgrade to upgrade): PyYAML in /usr/lib/python2.7/dist-packages (from pyaml->jujubigdata==4.2.0)
+2015-09-03 15:32:27 INFO install Installing collected packages: path.py
+2015-09-03 15:32:27 INFO install Successfully installed path.py
+2015-09-03 15:32:27 INFO install Cleaning up...
+2015-09-03 15:32:28 INFO juju-log Component notebook blocked on: [<Spark ready=False >]
+2015-09-03 15:32:29 INFO juju-log Component notebook blocked on: [<Spark ready=False >]
+2015-09-03 15:32:29 INFO juju-log Component notebook blocked on: [<Spark ready=False >]
+2015-09-03 15:32:31 INFO juju-log spark:18: Component notebook blocked on: [<Spark ready=False spark/0=missing(ready)>]
+2015-09-03 15:35:01 INFO juju-log spark:18: Making dir /var/lib/spark-notebook/notebook ubuntu:hadoop 755
+2015-09-03 15:35:02 INFO spark-relation-changed Ign http://eu-west-1.ec2.archive.ubuntu.com trusty InRelease
+2015-09-03 15:35:02 INFO spark-relation-changed Ign http://eu-west-1.ec2.archive.ubuntu.com trusty-updates InRelease
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty Release.gpg
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates Release.gpg
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty Release
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates Release
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/main Sources
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/universe Sources
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/main amd64 Packages
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/universe amd64 Packages
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/main Translation-en
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty/universe Translation-en
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/main Sources
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/universe Sources
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/main amd64 Packages
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/universe amd64 Packages
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/main Translation-en
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://eu-west-1.ec2.archive.ubuntu.com trusty-updates/universe Translation-en
+2015-09-03 15:35:02 INFO spark-relation-changed Ign http://security.ubuntu.com trusty-security InRelease
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security Release.gpg
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security Release
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/main Sources
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/universe Sources
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/main amd64 Packages
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/universe amd64 Packages
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/main Translation-en
+2015-09-03 15:35:02 INFO spark-relation-changed Hit http://security.ubuntu.com trusty-security/universe Translation-en
+2015-09-03 15:35:08 INFO spark-relation-changed Reading package lists...
+2015-09-03 15:35:08 INFO juju-log spark:18: Installing ['ipython', 'ipython-notebook'] with options: ['--option=Dpkg::Options::=--force-confold']
+2015-09-03 15:35:08 INFO spark-relation-changed Reading package lists...
+2015-09-03 15:35:08 INFO spark-relation-changed Building dependency tree...
+2015-09-03 15:35:08 INFO spark-relation-changed Reading state information...
+2015-09-03 15:35:08 INFO spark-relation-changed ipython is already the newest version.
+2015-09-03 15:35:08 INFO spark-relation-changed The following extra packages will be installed:
+2015-09-03 15:35:08 INFO spark-relation-changed   fonts-font-awesome fonts-mathjax ipython-notebook-common javascript-common
+2015-09-03 15:35:08 INFO spark-relation-changed   libjs-highlight libjs-jquery-ui libjs-marked libjs-mathjax libmysqlclient18
+2015-09-03 15:35:08 INFO spark-relation-changed   libpgm-5.1-0 libzmq3 mysql-common python-jinja2 python-markupsafe
+2015-09-03 15:35:08 INFO spark-relation-changed   python-mysqldb python-tornado python-zmq
+2015-09-03 15:35:08 INFO spark-relation-changed Suggested packages:
+2015-09-03 15:35:08 INFO spark-relation-changed   pandoc pgf apache2 lighttpd httpd libjs-jquery-ui-docs fonts-stix
+2015-09-03 15:35:08 INFO spark-relation-changed   fonts-mathjax-extras libjs-mathjax-doc python-jinja2-doc
+2015-09-03 15:35:08 INFO spark-relation-changed   python-egenix-mxdatetime mysql-server-5.1 mysql-server python-mysqldb-dbg
+2015-09-03 15:35:08 INFO spark-relation-changed The following NEW packages will be installed:
+2015-09-03 15:35:08 INFO spark-relation-changed   fonts-font-awesome fonts-mathjax ipython-notebook ipython-notebook-common
+2015-09-03 15:35:08 INFO spark-relation-changed   javascript-common libjs-highlight libjs-jquery-ui libjs-marked libjs-mathjax
+2015-09-03 15:35:08 INFO spark-relation-changed   libmysqlclient18 libpgm-5.1-0 libzmq3 mysql-common python-jinja2
+2015-09-03 15:35:08 INFO spark-relation-changed   python-markupsafe python-mysqldb python-tornado python-zmq
+2015-09-03 15:35:08 INFO spark-relation-changed 0 upgraded, 18 newly installed, 0 to remove and 0 not upgraded.
+2015-09-03 15:35:08 INFO spark-relation-changed Need to get 9410 kB of archives.
+2015-09-03 15:35:08 INFO spark-relation-changed After this operation, 56.4 MB of additional disk space will be used.
+2015-09-03 15:35:08 INFO spark-relation-changed Get:1 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe fonts-mathjax all 2.3-1 [959 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:2 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main mysql-common all 5.5.44-0ubuntu0.14.04.1 [13.9 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:3 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates/main libmysqlclient18 amd64 5.5.44-0ubuntu0.14.04.1 [596 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:4 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libpgm-5.1-0 amd64 5.1.118-1~dfsg-0.1ubuntu3 [156 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:5 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libzmq3 amd64 4.0.4+dfsg-2 [129 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:6 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libjs-mathjax all 2.3-1 [5396 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:7 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe fonts-font-awesome all 4.0.0~dfsg-1 [266 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:8 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libjs-highlight all 7.4+ds-1 [140 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:9 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libjs-jquery-ui all 1.10.1+dfsg-1 [458 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:10 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libjs-marked all 0.3.1+dfsg-1 [12.5 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:11 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe ipython-notebook-common all 1.2.1-2 [629 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:12 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main python-markupsafe amd64 0.18-1build2 [14.3 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:13 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main python-jinja2 all 2.7.2-2 [161 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:14 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main python-tornado all 3.1.1-1ubuntu2 [215 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:15 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe python-zmq amd64 14.0.1-1build2 [175 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:16 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/universe ipython-notebook all 1.2.1-2 [28.9 kB]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:17 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main javascript-common all 11 [6066 B]
+2015-09-03 15:35:08 INFO spark-relation-changed Get:18 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu/ trusty/main python-mysqldb amd64 1.2.3-2ubuntu1 [55.4 kB]
+2015-09-03 15:35:09 INFO spark-relation-changed Fetched 9410 kB in 0s (40.4 MB/s)
+2015-09-03 15:35:09 INFO spark-relation-changed Selecting previously unselected package fonts-mathjax.
+2015-09-03 15:35:09 INFO spark-relation-changed (Reading database ... 89825 files and directories currently installed.)
+2015-09-03 15:35:09 INFO spark-relation-changed Preparing to unpack .../fonts-mathjax_2.3-1_all.deb ...
+2015-09-03 15:35:09 INFO spark-relation-changed Unpacking fonts-mathjax (2.3-1) ...
+2015-09-03 15:35:09 INFO spark-relation-changed Selecting previously unselected package mysql-common.
+2015-09-03 15:35:09 INFO spark-relation-changed Preparing to unpack .../mysql-common_5.5.44-0ubuntu0.14.04.1_all.deb ...
+2015-09-03 15:35:09 INFO spark-relation-changed Unpacking mysql-common (5.5.44-0ubuntu0.14.04.1) ...
+2015-09-03 15:35:09 INFO spark-relation-changed Selecting previously unselected package libmysqlclient18:amd64.
+2015-09-03 15:35:09 INFO spark-relation-changed Preparing to unpack .../libmysqlclient18_5.5.44-0ubuntu0.14.04.1_amd64.deb ...
+2015-09-03 15:35:09 INFO spark-relation-changed Unpacking libmysqlclient18:amd64 (5.5.44-0ubuntu0.14.04.1) ...
+2015-09-03 15:35:10 INFO spark-relation-changed Selecting previously unselected package libpgm-5.1-0:amd64.
+2015-09-03 15:35:10 INFO spark-relation-changed Preparing to unpack .../libpgm-5.1-0_5.1.118-1~dfsg-0.1ubuntu3_amd64.deb ...
+2015-09-03 15:35:10 INFO spark-relation-changed Unpacking libpgm-5.1-0:amd64 (5.1.118-1~dfsg-0.1ubuntu3) ...
+2015-09-03 15:35:23 INFO spark-relation-changed Selecting previously unselected package libzmq3:amd64.
+2015-09-03 15:35:23 INFO spark-relation-changed Preparing to unpack .../libzmq3_4.0.4+dfsg-2_amd64.deb ...
+2015-09-03 15:35:23 INFO spark-relation-changed Unpacking libzmq3:amd64 (4.0.4+dfsg-2) ...
+2015-09-03 15:35:23 INFO spark-relation-changed Selecting previously unselected package libjs-mathjax.
+2015-09-03 15:35:23 INFO spark-relation-changed Preparing to unpack .../libjs-mathjax_2.3-1_all.deb ...
+2015-09-03 15:35:23 INFO spark-relation-changed Unpacking libjs-mathjax (2.3-1) ...
+2015-09-03 15:35:26 INFO spark-relation-changed Selecting previously unselected package fonts-font-awesome.
+2015-09-03 15:35:26 INFO spark-relation-changed Preparing to unpack .../fonts-font-awesome_4.0.0~dfsg-1_all.deb ...
+2015-09-03 15:35:26 INFO spark-relation-changed Unpacking fonts-font-awesome (4.0.0~dfsg-1) ...
+2015-09-03 15:35:26 INFO spark-relation-changed Selecting previously unselected package libjs-highlight.
+2015-09-03 15:35:26 INFO spark-relation-changed Preparing to unpack .../libjs-highlight_7.4+ds-1_all.deb ...
+2015-09-03 15:35:26 INFO spark-relation-changed Unpacking libjs-highlight (7.4+ds-1) ...
+2015-09-03 15:35:26 INFO spark-relation-changed Selecting previously unselected package libjs-jquery-ui.
+2015-09-03 15:35:26 INFO spark-relation-changed Preparing to unpack .../libjs-jquery-ui_1.10.1+dfsg-1_all.deb ...
+2015-09-03 15:35:26 INFO spark-relation-changed Unpacking libjs-jquery-ui (1.10.1+dfsg-1) ...
+2015-09-03 15:35:27 INFO spark-relation-changed Selecting previously unselected package libjs-marked.
+2015-09-03 15:35:27 INFO spark-relation-changed Preparing to unpack .../libjs-marked_0.3.1+dfsg-1_all.deb ...
+2015-09-03 15:35:27 INFO spark-relation-changed Unpacking libjs-marked (0.3.1+dfsg-1) ...
+2015-09-03 15:35:27 INFO spark-relation-changed Selecting previously unselected package ipython-notebook-common.
+2015-09-03 15:35:27 INFO spark-relation-changed Preparing to unpack .../ipython-notebook-common_1.2.1-2_all.deb ...
+2015-09-03 15:35:27 INFO spark-relation-changed Unpacking ipython-notebook-common (1.2.1-2) ...
+2015-09-03 15:35:27 INFO spark-relation-changed Selecting previously unselected package python-markupsafe.
+2015-09-03 15:35:27 INFO spark-relation-changed Preparing to unpack .../python-markupsafe_0.18-1build2_amd64.deb ...
+2015-09-03 15:35:27 INFO spark-relation-changed Unpacking python-markupsafe (0.18-1build2) ...
+2015-09-03 15:35:27 INFO spark-relation-changed Selecting previously unselected package python-jinja2.
+2015-09-03 15:35:27 INFO spark-relation-changed Preparing to unpack .../python-jinja2_2.7.2-2_all.deb ...
+2015-09-03 15:35:27 INFO spark-relation-changed Unpacking python-jinja2 (2.7.2-2) ...
+2015-09-03 15:35:28 INFO spark-relation-changed Selecting previously unselected package python-tornado.
+2015-09-03 15:35:28 INFO spark-relation-changed Preparing to unpack .../python-tornado_3.1.1-1ubuntu2_all.deb ...
+2015-09-03 15:35:28 INFO spark-relation-changed Unpacking python-tornado (3.1.1-1ubuntu2) ...
+2015-09-03 15:35:28 INFO spark-relation-changed Selecting previously unselected package python-zmq.
+2015-09-03 15:35:28 INFO spark-relation-changed Preparing to unpack .../python-zmq_14.0.1-1build2_amd64.deb ...
+2015-09-03 15:35:28 INFO spark-relation-changed Unpacking python-zmq (14.0.1-1build2) ...
+2015-09-03 15:35:28 INFO spark-relation-changed Selecting previously unselected package ipython-notebook.
+2015-09-03 15:35:28 INFO spark-relation-changed Preparing to unpack .../ipython-notebook_1.2.1-2_all.deb ...
+2015-09-03 15:35:28 INFO spark-relation-changed Unpacking ipython-notebook (1.2.1-2) ...
+2015-09-03 15:35:28 INFO spark-relation-changed Selecting previously unselected package javascript-common.
+2015-09-03 15:35:28 INFO spark-relation-changed Preparing to unpack .../javascript-common_11_all.deb ...
+2015-09-03 15:35:28 INFO spark-relation-changed Unpacking javascript-common (11) ...
+2015-09-03 15:35:28 INFO spark-relation-changed Selecting previously unselected package python-mysqldb.
+2015-09-03 15:35:28 INFO spark-relation-changed Preparing to unpack .../python-mysqldb_1.2.3-2ubuntu1_amd64.deb ...
+2015-09-03 15:35:28 INFO spark-relation-changed Unpacking python-mysqldb (1.2.3-2ubuntu1) ...
+2015-09-03 15:35:28 INFO spark-relation-changed Processing triggers for fontconfig (2.11.0-0ubuntu4.1) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up fonts-mathjax (2.3-1) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up mysql-common (5.5.44-0ubuntu0.14.04.1) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up libmysqlclient18:amd64 (5.5.44-0ubuntu0.14.04.1) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up libpgm-5.1-0:amd64 (5.1.118-1~dfsg-0.1ubuntu3) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up libzmq3:amd64 (4.0.4+dfsg-2) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up libjs-mathjax (2.3-1) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up fonts-font-awesome (4.0.0~dfsg-1) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up libjs-highlight (7.4+ds-1) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up libjs-jquery-ui (1.10.1+dfsg-1) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up libjs-marked (0.3.1+dfsg-1) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up ipython-notebook-common (1.2.1-2) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up python-markupsafe (0.18-1build2) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up python-jinja2 (2.7.2-2) ...
+2015-09-03 15:35:31 INFO spark-relation-changed Setting up python-tornado (3.1.1-1ubuntu2) ...
+2015-09-03 15:35:32 INFO spark-relation-changed Setting up python-zmq (14.0.1-1build2) ...
+2015-09-03 15:35:32 INFO spark-relation-changed Setting up ipython-notebook (1.2.1-2) ...
+2015-09-03 15:35:32 INFO spark-relation-changed Setting up javascript-common (11) ...
+2015-09-03 15:35:32 INFO spark-relation-changed Setting up python-mysqldb (1.2.3-2ubuntu1) ...
+2015-09-03 15:35:32 INFO spark-relation-changed Processing triggers for libc-bin (2.19-0ubuntu6.6) ...
+2015-09-03 15:35:34 INFO spark-relation-changed Traceback (most recent call last):
+2015-09-03 15:35:34 INFO spark-relation-changed   File "/var/lib/juju/agents/unit-notebook-0/charm/hooks/spark-relation-changed", line 15, in <module>
+2015-09-03 15:35:34 INFO spark-relation-changed     common.manage()
+2015-09-03 15:35:34 INFO spark-relation-changed   File "/var/lib/juju/agents/unit-notebook-0/charm/hooks/common.py", line 79, in manage
+2015-09-03 15:35:34 INFO spark-relation-changed     manager.manage()
+2015-09-03 15:35:34 INFO spark-relation-changed   File "/usr/local/lib/python2.7/dist-packages/charmhelpers/core/charmframework/base.py", line 115, in manage
+2015-09-03 15:35:34 INFO spark-relation-changed     self.run_callbacks()
+2015-09-03 15:35:34 INFO spark-relation-changed   File "/usr/local/lib/python2.7/dist-packages/charmhelpers/core/charmframework/base.py", line 159, in run_callbacks
+2015-09-03 15:35:34 INFO spark-relation-changed     self.fire_event('callbacks', component)
+2015-09-03 15:35:34 INFO spark-relation-changed   File "/usr/local/lib/python2.7/dist-packages/charmhelpers/core/charmframework/base.py", line 189, in fire_event
+2015-09-03 15:35:34 INFO spark-relation-changed     callback()
+2015-09-03 15:35:34 INFO spark-relation-changed   File "/var/lib/juju/agents/unit-notebook-0/charm/hooks/callbacks.py", line 69, in install
+2015-09-03 15:35:34 INFO spark-relation-changed     call(cmd.split())
+2015-09-03 15:35:34 INFO spark-relation-changed NameError: global name 'call' is not defined
+2015-09-03 15:35:34 ERROR juju.worker.uniter.operation runhook.go:103 hook "spark-relation-changed" failed: exit status 1
