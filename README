@@ -52,7 +52,7 @@ Will set up the environment
 
 ## Deploying  
 
-	./bin/01-deploy-spagobi.sh
+	./bin/01-deploy-apache-spark.sh
 
 Will deploy the charms required for the demo
 
@@ -313,6 +313,3 @@ Will completely rip of the environment and delete local files
 ## Reset
 
     :~$ ./bin/50-reset.sh 
-    [Thu Aug 27 14:09:57 CEST 2015] [demo] [local0.debug] : Successfully switched to spagobi
-    [Thu Aug 27 14:12:22 CEST 2015] [demo] [local0.debug] : Successfully reset spagobi
-

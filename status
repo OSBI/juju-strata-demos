@@ -6,14 +6,14 @@
 
 
 #Format
-Demo:Data Ingest for Financial Services
+Demo:Hadoop + Spark functionality
 Complete: no (still WIP)
-DateOfTest: 27082015
+DateOfTest: 03092015
 TestedBy: samuelc
-InfrastructureStatus: pass
-PostDeployStatus: pass 
+InfrastructureStatus: fail
+PostDeployStatus: fail
 History: 
-27082015 - Several deployments on AWS of the first services (quasardb, zk, kafka brokers) everything OK, waiting for the other charms. 
+03092015 - The notebook charm doesn't deploy due to a revision in the libraries. Team aware.  
 
 #####################################################################
 Demo:
