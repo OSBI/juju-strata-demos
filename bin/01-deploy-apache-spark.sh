@@ -84,8 +84,8 @@ add-relation spark zeppelin
 # Expose
 expose zeppelin
 
-# Deploy Zeppelin
-deploy apache-spark-notebook notebook 
+# Deploy Notebook
+deploy cs:~bigdata-dev/trusty/apache-spark-notebook notebook 
 # Relations
 add-relation spark notebook
 # Expose
