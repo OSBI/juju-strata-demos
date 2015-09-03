@@ -37,9 +37,8 @@ switchenv "${PROJECT_ID}"
 
 #####################################################################
 #
-# Deploy HBase Environment
-# https://jujucharms.com/u/bigdata-dev/apache-hbase/trusty/14
-#
+# Deploy Hadoop Environment
+# 
 #####################################################################
 
 # Deploy HDFS 
@@ -66,28 +65,20 @@ add-relation plugin hdfs-master
 
 #####################################################################
 #
-# Deploy Apache Spark 
-# https://jujucharms.com/apache-spark/trusty/2
+# Deploy Apache Flume 
+# https://jujucharms.com/apache-flume-syslog/trusty/1
 #
 #####################################################################
 
-# Deploy Spark
-deploy apache-spark spark "mem=3G cpu-cores=2"
+# Main Agent
+deploy apache-flume-hdfs flume-hdfs "mem=7G cpu-cores=2"
+add-relation plugin flume-hdfs
 
-# Relations
-add-relation spark plugin
+# Syslog Flume Agent
+deploy apache-flume-syslog flume-syslog
+add-relation flume-syslog flume-hdfs
 
-# Deploy Zeppelin
-deploy apache-zeppelin zeppelin 
-# Relations
-add-relation spark zeppelin
-# Expose
-expose zeppelin
-
-# Deploy Zeppelin
-deploy apache-spark-notebook notebook 
-# Relations
-add-relation spark notebook
-# Expose
-expose notebook
-
+# Add rsyslog connector on some nodes
+deploy rsyslog-forwarder-ha rsyslog-forwarder-ha
+juju add-relation rsyslog-forwarder-ha hdfs-master
+juju add-relation rsyslog-forwarder-ha flume-syslog

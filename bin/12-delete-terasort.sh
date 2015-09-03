@@ -32,7 +32,4 @@ done
 # Switching to project 
 switchenv "${PROJECT_ID}" 
 
-EXT_IP_ADDR="$(juju pprint | grep spark | awk '{print $3 }')"
-EXT_PORT=8880
-
-log info Point your browser at http://${EXT_IP_ADDR}:${EXT_PORT}
+juju ssh flume-hdfs/0 hdfs dfs -rm -R /user/ubuntu/tera_demo_out

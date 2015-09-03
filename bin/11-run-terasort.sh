@@ -32,7 +32,5 @@ done
 # Switching to project 
 switchenv "${PROJECT_ID}" 
 
-# Running the Spark demo
-juju ssh spark/0 spark-submit --class org.apache.spark.examples.SparkPi \
-    --master yarn-client /usr/lib/spark/lib/spark-examples*.jar 10
+juju ssh flume-hdfs/0 /home/ubuntu/terasort.sh
 

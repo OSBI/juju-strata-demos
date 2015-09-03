@@ -6,14 +6,14 @@
 
 
 #Format
-Demo:Data Ingest for Financial Services
+Demo:Flume Syslog sink to HDFS demo
 Complete: no (still WIP)
-DateOfTest: 27082015
+DateOfTest: 03092015
 TestedBy: samuelc
 InfrastructureStatus: pass
 PostDeployStatus: pass 
 History: 
-27082015 - Several deployments on AWS of the first services (quasardb, zk, kafka brokers) everything OK, waiting for the other charms. 
+03092015 - All services functional but behavior of Flume is unexpected. Working on configuration to fix it. 
 
 #####################################################################
 Demo:
