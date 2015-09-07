@@ -1,7 +1,7 @@
 #!/bin/bash
 #####################################################################
 #
-# Deploy financial ingest demo
+# Deploy SpagoBI Multi Datasource demo
 #
 # Notes: 
 # 
@@ -153,14 +153,32 @@ expose mongodb
 
 # Tomcat Server
 # https://jujucharms.com/tomcat/trusty/1
-deploy tomcat tomcat "mem=8G cpu-core=4"
+deploy tomcat tomcat "mem=8G cpu-cores=4"
 
 # MySQL for metadata
 deploy mysql mysql-metadata 
 
 # SpagoBI
-# deploy spagobi spagobi
+deploy cs:~ana-tomic/trusty/spagobi spagobi
 
-# Relations
-# add-relation tomcat spagobi
-# add-relation spagobi mysql-metadata
+# Relations for metadata
+add-relation tomcat spagobi
+add-relation spagobi:metadatadb mysql-metadata:db
+
+# Expose
+expose tomcat
+
+#####################################################################
+#
+# Deploy relation with Data Sources 
+#
+#####################################################################
+
+# Create relation with Data Sources
+add-relation spagobi:mysqlds mysql-data-master
+add-relation spagobi:mongodbds mongodb
+add-relation spagobi:hiveds hive
+add-relation spagobi:cassandrads cassandra
+add-relation spagobi:hbaseds apache-phoenix
+add-relation spagobi:postgresqlds postgresql-data-master:db
+

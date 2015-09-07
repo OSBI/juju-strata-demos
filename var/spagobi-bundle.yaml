@@ -150,6 +150,11 @@ services:
       "gui-y": "500"
     to: 
       - "7"
+  spagobi: 
+    charm: "cs:~ana-tomic/trusty/spagobi-1"
+    annotations: 
+      "gui-x": "500"
+      "gui-y": "-250"
 relations: 
   - - "plugin:namenode"
     - "hdfs-master:namenode"
