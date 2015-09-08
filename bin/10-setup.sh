@@ -52,7 +52,6 @@ juju ssh "${TARGET_UNIT}" sudo /home/ubuntu/import-${WORKLOAD}-db.sh
 sleep 5
 # juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="" password=""
 
-exit 0 
 #####################################################################
 #
 # Deploy MySQL Data
@@ -109,4 +108,28 @@ C_PASSWORD=$(grep "password" "${MYDIR}/../tmp/cqlshrc" | cut -f3 -d' ')
 
 log info COnnecting to Cassandra with ${C_USERNAME} and password ${C_PASSWORD}
 juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="${C_USERNAME}" password="${C_PASSWORD}"
+
+#####################################################################
+#
+# Deploy HBase Data
+#
+#####################################################################
+
+WORKLOAD=hbase
+TARGET_UNIT="${WORKLOAD}-master/0"
+juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="" password=""
+
+#####################################################################
+#
+# Deploy PostgreSQL Data
+#
+#####################################################################
+
+#####################################################################
+#
+# Spark
+#
+#####################################################################
+
+
 

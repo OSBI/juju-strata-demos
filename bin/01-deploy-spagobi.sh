@@ -185,6 +185,6 @@ add-relation spagobi:mysqlds mysql-data-master
 add-relation spagobi:mongodbds mongodb
 add-relation spagobi:hiveds hive
 add-relation spagobi:cassandrads cassandra
-add-relation spagobi:hbaseds hbase-master
+add-relation spagobi:hbaseds hbase-master:hbase
 add-relation spagobi:postgresqlds postgresql-data-master:db
 
