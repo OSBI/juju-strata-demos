@@ -5,8 +5,8 @@ services:
     num_units: 3
     constraints: "cpu-cores=2 mem=2048"
     annotations: 
-      "gui-x": "435.132080078125"
-      "gui-y": "1661.6721801757812"
+      "gui-x": "-900"
+      "gui-y": "1200"
     to: 
       - "2"
       - "3"
@@ -16,8 +16,8 @@ services:
     num_units: 1
     constraints: "cpu-cores=2 mem=4096 root-disk=32768"
     annotations: 
-      "gui-x": "1510.9095458984375"
-      "gui-y": "2658.42724609375"
+      "gui-x": "0"
+      "gui-y": "2100"
     to: 
       - "5"
   "yarn-master": 
@@ -25,22 +25,22 @@ services:
     num_units: 1
     constraints: "cpu-cores=2 mem=2048"
     annotations: 
-      "gui-x": "1778.419189453125"
-      "gui-y": "2186.4267578125"
+      "gui-x": "300"
+      "gui-y": "1650"
     to: 
       - "1"
   plugin: 
     charm: "cs:trusty/apache-hadoop-plugin-5"
     annotations: 
-      "gui-x": "1526.7510986328125"
-      "gui-y": "1721.7212524414062"
+      "gui-x": "0"
+      "gui-y": "1200"
   "hdfs-master": 
     charm: "cs:trusty/apache-hadoop-hdfs-master-7"
     num_units: 1
     constraints: "cpu-cores=2 mem=4096 root-disk=32768"
     annotations: 
-      "gui-x": "1289.743408203125"
-      "gui-y": "2184.9627685546875"
+      "gui-x": "-300"
+      "gui-y": "1650"
     to: 
       - "0"
   "hbase-regionserver": 
@@ -48,8 +48,8 @@ services:
     num_units: 1
     constraints: "cpu-cores=2 mem=4096"
     annotations: 
-      "gui-x": "908.0714111328125"
-      "gui-y": "1866.4497375488281"
+      "gui-x": "-600"
+      "gui-y": "1500"
     to: 
       - "7"
   "hbase-master": 
@@ -58,8 +58,8 @@ services:
     constraints: "cpu-cores=2 mem=4096"
     expose: true
     annotations: 
-      "gui-x": "905.61865234375"
-      "gui-y": "1481.4532470703125"
+      "gui-x": "-600"
+      "gui-y": "900"
     to: 
       - "6"
   hive: 
@@ -67,8 +67,8 @@ services:
     num_units: 1
     constraints: "cpu-cores=2 mem=2048"
     annotations: 
-      "gui-x": "1528"
-      "gui-y": "1052"
+      "gui-x": "-150"
+      "gui-y": "600"
     to: 
       - "8"
   "mysql-hive": 
@@ -77,8 +77,8 @@ services:
     options: 
       "binlog-format": ROW
     annotations: 
-      "gui-x": "1728"
-      "gui-y": "1360"
+      "gui-x": "150"
+      "gui-y": "600"
     to: 
       - "9"
   spark: 
@@ -86,8 +86,8 @@ services:
     num_units: 1
     constraints: "cpu-cores=2 mem=4096"
     annotations: 
-      "gui-x": "2168.135498046875"
-      "gui-y": "1463.162353515625"
+      "gui-x": "600"
+      "gui-y": "900"
     to: 
       - "10"
   cassandra: 
@@ -95,8 +95,8 @@ services:
     num_units: 3
     constraints: "cpu-cores=2 mem=4096"
     annotations: 
-      "gui-x": "635.54345703125"
-      "gui-y": "813.4225463867188"
+      "gui-x": "-600"
+      "gui-y": "300"
     to: 
       - "11"
       - "12"
@@ -107,8 +107,8 @@ services:
     constraints: "cpu-cores=2 mem=4096"
     expose: true
     annotations: 
-      "gui-x": "629"
-      "gui-y": "253"
+      "gui-x": "-600"
+      "gui-y": "-300"
     to: 
       - "14"
   tomcat: 
@@ -117,30 +117,30 @@ services:
     constraints: "cpu-cores=4 mem=8192"
     expose: true
     annotations: 
-      "gui-x": "1713.520263671875"
-      "gui-y": "153.8150634765625"
+      "gui-x": "150"
+      "gui-y": "-600"
     to: 
       - "15"
   "mysql-metadata": 
     charm: "cs:trusty/mysql-28"
     num_units: 1
     annotations: 
-      "gui-x": "1341.939208984375"
-      "gui-y": "161.71343994140625"
+      "gui-x": "-150"
+      "gui-y": "-600"
     to: 
       - "16"
   spagobi: 
     charm: "cs:~ana-tomic/trusty/spagobi-5"
     annotations: 
-      "gui-x": "1517.617919921875"
-      "gui-y": "527.1663208007812"
+      "gui-x": "0"
+      "gui-y": "0"
   "mysql-data-master": 
     charm: "cs:trusty/mysql-28"
     num_units: 1
     constraints: "cpu-cores=2 mem=2048 root-disk=12288"
     annotations: 
-      "gui-x": "2465.504638671875"
-      "gui-y": "919.74072265625"
+      "gui-x": "600"
+      "gui-y": "300"
     to: 
       - "17"
   "postgresql-data-master": 
@@ -148,8 +148,8 @@ services:
     num_units: 1
     constraints: "cpu-cores=2 mem=2048 root-disk=12288"
     annotations: 
-      "gui-x": "2434.88916015625"
-      "gui-y": "191.548095703125"
+      "gui-x": "600"
+      "gui-y": "-300"
     to: 
       - "18"
 relations: 
