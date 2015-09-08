@@ -2,11 +2,10 @@
 #
 # Demo Name: Analytics Demo - SpagoBI with Many Data Sources
 #
-# Notes: 
-# 
-# Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
 #
 #####################################################################
+
+Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
 
 # Purpose of the demo
 
