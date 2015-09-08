@@ -1,7 +1,7 @@
 #!/bin/bash
 #####################################################################
 #
-# Deploy financial ingest demo
+# Deploy IoT Platform demo
 #
 # Notes: 
 # 
@@ -58,10 +58,10 @@ deploy cs:~x3v947pl/trusty/nginx-dh nginx "mem=2G cpu-cores=2"
 
 # Relations
 add-relation zookeeper:ka kafka:zk
-add-relation zookeeper:dh devicehice:zk
-add-relation kafka:dh devicehive:ka
 add-relation devicehive:pg postgresql:dh
 add-relation nginx:dh devicehive:website
+add-relation zookeeper devicehice
+add-relation kafka:dh devicehive:ka
 
 # Expose
 expose nginx

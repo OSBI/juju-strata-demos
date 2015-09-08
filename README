@@ -92,8 +92,25 @@ Will completely rip of the environment and delete local files
 ## Deployment
 
     $ ./bin/01-deploy-dataart.sh 
- 
+    [Mon Sep 7 16:34:47 CEST 2015] [demo] [local0.debug] : Successfully switched to dataart
+    [Mon Sep 7 16:35:03 CEST 2015] [demo] [local0.debug] : Successfully deployed devicehive
+    [Mon Sep 7 16:35:08 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for devicehive
+    [Mon Sep 7 16:35:24 CEST 2015] [demo] [local0.debug] : Successfully deployed postgresql
+    [Mon Sep 7 16:35:28 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2 root-disk=32G" for postgresql
+    [Mon Sep 7 16:35:51 CEST 2015] [demo] [local0.debug] : Successfully deployed kafka
+    [Mon Sep 7 16:35:55 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for kafka
+    [Mon Sep 7 16:36:20 CEST 2015] [demo] [local0.debug] : Successfully deployed zookeeper
+    [Mon Sep 7 16:36:24 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for zookeeper
+    [Mon Sep 7 16:36:40 CEST 2015] [demo] [local0.debug] : Successfully deployed nginx
+    [Mon Sep 7 16:36:44 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for nginx
+    [Mon Sep 7 16:36:46 CEST 2015] [demo] [local0.debug] : Successfully created relation between zookeeper:ka and kafka:zk
+    [Mon Sep 7 16:36:47 CEST 2015] [demo] [local0.crit] : Could not create relation between zookeeper:dh and devicehice:zk
+    [Mon Sep 7 16:36:48 CEST 2015] [demo] [local0.debug] : Successfully created relation between kafka:dh and devicehive:ka
+    [Mon Sep 7 16:36:52 CEST 2015] [demo] [local0.debug] : Successfully created relation between devicehive:pg and postgresql:dh
+    [Mon Sep 7 16:36:53 CEST 2015] [demo] [local0.debug] : Successfully created relation between nginx:dh and devicehive:website
+    [Mon Sep 7 16:36:54 CEST 2015] [demo] [local0.debug] : Successfully exposed nginx
 
+ 
 ## Reset
 
     :~$ ./bin/50-reset.sh 

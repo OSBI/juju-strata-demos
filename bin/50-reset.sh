@@ -1,7 +1,7 @@
 #!/bin/bash
 #####################################################################
 #
-# Initialize Demo environment
+# Reset Demo environment
 #
 # Notes: 
 # 
