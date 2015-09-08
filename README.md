@@ -56,7 +56,9 @@ ZK is a service to manage clusters of other services. In our case, the HBase clu
 
 # Data Sources
 
-TBD (Engineering to provide sources)
+We have databases from MySQL, Hive, Cassandra and MongoDB stored in /var, along with auto deployment scripts. 
+
+The databases are all the same, made of data about products and called foodmart. The target is to split all data across all data stores and show how we can agregate many of them through a unique interface, SpagoBI.
 
 # Usage
 ## Configuration
@@ -90,7 +92,7 @@ Will install datasources into each database and run actions to install them into
 
 	./bin/50-reset.sh
 
-Will reset the environment but keep it alive
+Will reset the environment but keep it alive.
 
 ## Clean
 
@@ -101,13 +103,13 @@ Will completely rip of the environment and delete local files
 # Validation Check and GUIs
 ## SpagoBI GUI Access
 
-Once deployed, you can connect on the Tomcat unit on port 8080 (by default) to access the SpagoBI GUI: http://<TOMCAT>/SpagoBI
+Once deployed, you can connect on the Tomcat unit on port 8080 (by default) to access the SpagoBI GUI: http://TOMCAT/SpagoBI
 
 3 default users are provided by default, with a button to access the UI with them. 
 
 * To access the configuration, use the biadmin; 
-* To access visualization as an end-user, user biuser;
-* To configure more aspects of BI, use bimanager
+* To access visualization as an end-user, user bidemo;
+* To configure more aspects of BI, use biuser.
 
 ## Using MySQL
 
