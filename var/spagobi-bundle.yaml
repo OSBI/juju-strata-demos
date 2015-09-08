@@ -5,102 +5,19 @@ services:
     num_units: 3
     constraints: "cpu-cores=2 mem=2048"
     annotations: 
-      "gui-x": "-400"
-      "gui-y": "200"
+      "gui-x": "435.132080078125"
+      "gui-y": "1661.6721801757812"
     to: 
       - "2"
       - "3"
       - "4"
-  mongodb: 
-    charm: "cs:trusty/mongodb-26"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=4096"
-    annotations: 
-      "gui-x": "1400"
-      "gui-y": "-100"
-    to: 
-      - "13"
-  "mysql-data-master": 
-    charm: "cs:trusty/mysql-28"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=2048 root-disk=16384"
-    annotations: 
-      "gui-x": "1100"
-      "gui-y": "-1000"
-    to: 
-      - "14"
-  "postgresql-data-master": 
-    charm: "cs:trusty/postgresql-27"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=2048 root-disk=16384"
-    annotations: 
-      "gui-x": "-100"
-      "gui-y": "-1000"
-    to: 
-      - "15"
-  tomcat: 
-    charm: "cs:trusty/tomcat-1"
-    num_units: 1
-    constraints: "cpu-cores=4 mem=8192"
-    annotations: 
-      "gui-x": "650"
-      "gui-y": "-650"
-    to: 
-      - "16"
-  "mysql-metadata": 
-    charm: "cs:trusty/mysql-28"
-    num_units: 1
-    annotations: 
-      "gui-x": "350"
-      "gui-y": "-650"
-    to: 
-      - "17"
-  spark: 
-    charm: "cs:trusty/apache-spark-2"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=4096"
-    annotations: 
-      "gui-x": "500"
-      "gui-y": "200"
-    to: 
-      - "9"
-  cassandra: 
-    charm: "cs:trusty/cassandra-3"
-    num_units: 3
-    constraints: "cpu-cores=2 mem=4096"
-    annotations: 
-      "gui-x": "1400"
-      "gui-y": "-700"
-    to: 
-      - "10"
-      - "11"
-      - "12"
-  "mysql-hive": 
-    charm: "cs:trusty/mysql-28"
-    num_units: 1
-    options: 
-      "binlog-format": ROW
-    annotations: 
-      "gui-x": "1100"
-      "gui-y": "200"
-    to: 
-      - "8"
-  "hdfs-master": 
-    charm: "cs:trusty/apache-hadoop-hdfs-master-7"
-    num_units: 1
-    constraints: "cpu-cores=2 mem=4096 root-disk=32768"
-    annotations: 
-      "gui-x": "2000"
-      "gui-y": "200"
-    to: 
-      - "0"
   "compute-slave": 
     charm: "cs:trusty/apache-hadoop-compute-slave-7"
     num_units: 1
     constraints: "cpu-cores=2 mem=4096 root-disk=32768"
     annotations: 
-      "gui-x": "1700"
-      "gui-y": "500"
+      "gui-x": "1510.9095458984375"
+      "gui-y": "2658.42724609375"
     to: 
       - "5"
   "yarn-master": 
@@ -108,84 +25,176 @@ services:
     num_units: 1
     constraints: "cpu-cores=2 mem=2048"
     annotations: 
-      "gui-x": "1400"
-      "gui-y": "200"
+      "gui-x": "1778.419189453125"
+      "gui-y": "2186.4267578125"
     to: 
       - "1"
   plugin: 
     charm: "cs:trusty/apache-hadoop-plugin-5"
     annotations: 
-      "gui-x": "500"
-      "gui-y": "500"
+      "gui-x": "1526.7510986328125"
+      "gui-y": "1721.7212524414062"
+  "hdfs-master": 
+    charm: "cs:trusty/apache-hadoop-hdfs-master-7"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=4096 root-disk=32768"
+    annotations: 
+      "gui-x": "1289.743408203125"
+      "gui-y": "2184.9627685546875"
+    to: 
+      - "0"
+  "hbase-regionserver": 
+    charm: "cs:~bigdata-dev/trusty/apache-hbase-17"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=4096"
+    annotations: 
+      "gui-x": "908.0714111328125"
+      "gui-y": "1866.4497375488281"
+    to: 
+      - "7"
+  "hbase-master": 
+    charm: "cs:~bigdata-dev/trusty/apache-hbase-17"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=4096"
+    expose: true
+    annotations: 
+      "gui-x": "905.61865234375"
+      "gui-y": "1481.4532470703125"
+    to: 
+      - "6"
   hive: 
     charm: "cs:trusty/apache-hive-7"
     num_units: 1
     constraints: "cpu-cores=2 mem=2048"
     annotations: 
-      "gui-x": "800"
-      "gui-y": "200"
+      "gui-x": "1528"
+      "gui-y": "1052"
     to: 
-      - "18"
-  "hbase-master": 
-    charm: "cs:~bigdata-dev/trusty/apache-hbase-14"
+      - "8"
+  "mysql-hive": 
+    charm: "cs:trusty/mysql-28"
+    num_units: 1
+    options: 
+      "binlog-format": ROW
+    annotations: 
+      "gui-x": "1728"
+      "gui-y": "1360"
+    to: 
+      - "9"
+  spark: 
+    charm: "cs:trusty/apache-spark-2"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=4096"
+    annotations: 
+      "gui-x": "2168.135498046875"
+      "gui-y": "1463.162353515625"
+    to: 
+      - "10"
+  cassandra: 
+    charm: "cs:trusty/cassandra-4"
+    num_units: 3
+    constraints: "cpu-cores=2 mem=4096"
+    annotations: 
+      "gui-x": "635.54345703125"
+      "gui-y": "813.4225463867188"
+    to: 
+      - "11"
+      - "12"
+      - "13"
+  mongodb: 
+    charm: "cs:trusty/mongodb-26"
     num_units: 1
     constraints: "cpu-cores=2 mem=4096"
     expose: true
     annotations: 
-      "gui-x": "200"
-      "gui-y": "200"
+      "gui-x": "629"
+      "gui-y": "253"
     to: 
-      - "6"
-  "apache-phoenix": 
-    charm: "cs:~bigdata-dev/trusty/apache-phoenix-1"
-    annotations: 
-      "gui-x": "-100"
-      "gui-y": "-100"
-  "hbase-regionserver": 
-    charm: "cs:~bigdata-dev/trusty/apache-hbase-14"
+      - "14"
+  tomcat: 
+    charm: "cs:trusty/tomcat-1"
     num_units: 1
-    constraints: "cpu-cores=2 mem=4096"
+    constraints: "cpu-cores=4 mem=8192"
+    expose: true
     annotations: 
-      "gui-x": "-100"
-      "gui-y": "500"
+      "gui-x": "1713.520263671875"
+      "gui-y": "153.8150634765625"
     to: 
-      - "7"
-  spagobi: 
-    charm: "cs:~ana-tomic/trusty/spagobi-1"
+      - "15"
+  "mysql-metadata": 
+    charm: "cs:trusty/mysql-28"
+    num_units: 1
     annotations: 
-      "gui-x": "500"
-      "gui-y": "-250"
+      "gui-x": "1341.939208984375"
+      "gui-y": "161.71343994140625"
+    to: 
+      - "16"
+  spagobi: 
+    charm: "cs:~ana-tomic/trusty/spagobi-5"
+    annotations: 
+      "gui-x": "1517.617919921875"
+      "gui-y": "527.1663208007812"
+  "mysql-data-master": 
+    charm: "cs:trusty/mysql-28"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=2048 root-disk=12288"
+    annotations: 
+      "gui-x": "2465.504638671875"
+      "gui-y": "919.74072265625"
+    to: 
+      - "17"
+  "postgresql-data-master": 
+    charm: "cs:trusty/postgresql-27"
+    num_units: 1
+    constraints: "cpu-cores=2 mem=2048 root-disk=12288"
+    annotations: 
+      "gui-x": "2434.88916015625"
+      "gui-y": "191.548095703125"
+    to: 
+      - "18"
 relations: 
-  - - "plugin:namenode"
-    - "hdfs-master:namenode"
-  - - "compute-slave:datanode"
-    - "hdfs-master:datanode"
   - - "yarn-master:namenode"
     - "hdfs-master:namenode"
-  - - "zookeeper:zookeeper"
-    - "hbase-master:zookeeper"
-  - - "spark:hadoop-plugin"
-    - "plugin:hadoop-plugin"
-  - - "hbase-master:hadoop-plugin"
-    - "plugin:hadoop-plugin"
-  - - "hbase-master:master"
-    - "hbase-regionserver:regionserver"
-  - - "zookeeper:zookeeper"
-    - "hbase-regionserver:zookeeper"
-  - - "hbase-regionserver:hadoop-plugin"
-    - "plugin:hadoop-plugin"
   - - "compute-slave:nodemanager"
     - "yarn-master:nodemanager"
+  - - "compute-slave:datanode"
+    - "hdfs-master:datanode"
   - - "plugin:resourcemanager"
     - "yarn-master:resourcemanager"
-  - - "hive:db"
-    - "mysql-hive:db"
+  - - "plugin:namenode"
+    - "hdfs-master:namenode"
+  - - "hbase-master:hadoop-plugin"
+    - "plugin:hadoop-plugin"
+  - - "hbase-regionserver:hadoop-plugin"
+    - "plugin:hadoop-plugin"
+  - - "zookeeper:zookeeper"
+    - "hbase-master:zookeeper"
+  - - "zookeeper:zookeeper"
+    - "hbase-regionserver:zookeeper"
+  - - "hbase-master:master"
+    - "hbase-regionserver:regionserver"
   - - "hive:hadoop-plugin"
     - "plugin:hadoop-plugin"
-  - - "apache-phoenix:hbase"
+  - - "hive:db"
+    - "mysql-hive:db"
+  - - "spark:hadoop-plugin"
+    - "plugin:hadoop-plugin"
+  - - "tomcat:juju-info"
+    - "spagobi:tomcat-war"
+  - - "spagobi:metadatadb"
+    - "mysql-metadata:db"
+  - - "spagobi:mongodbds"
+    - "mongodb:database"
+  - - "spagobi:hiveds"
+    - "hive:hive"
+  - - "spagobi:cassandrads"
+    - "cassandra:database"
+  - - "spagobi:mysqlds"
+    - "mysql-data-master:db"
+  - - "spagobi:postgresqlds"
+    - "postgresql-data-master:db"
+  - - "spagobi:hbaseds"
     - "hbase-master:hbase"
-  - - "apache-phoenix:hbase"
-    - "hbase-regionserver:hbase"
 machines: 
   "0": 
     series: trusty
@@ -213,10 +222,10 @@ machines:
     constraints: "arch=amd64 cpu-cores=2 cpu-power=650 mem=7680 root-disk=8192"
   "8": 
     series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=8192"
+    constraints: "arch=amd64 cpu-cores=2 cpu-power=700 mem=3840 root-disk=8192"
   "9": 
     series: trusty
-    constraints: "arch=amd64 cpu-cores=2 cpu-power=650 mem=7680 root-disk=8192"
+    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=8192"
   "10": 
     series: trusty
     constraints: "arch=amd64 cpu-cores=2 cpu-power=650 mem=7680 root-disk=8192"
@@ -231,16 +240,16 @@ machines:
     constraints: "arch=amd64 cpu-cores=2 cpu-power=650 mem=7680 root-disk=8192"
   "14": 
     series: trusty
-    constraints: "arch=amd64 cpu-cores=2 cpu-power=700 mem=3840 root-disk=16384"
+    constraints: "arch=amd64 cpu-cores=2 cpu-power=650 mem=7680 root-disk=8192"
   "15": 
     series: trusty
-    constraints: "arch=amd64 cpu-cores=2 cpu-power=700 mem=3840 root-disk=16384"
+    constraints: "arch=amd64 cpu-cores=4 cpu-power=1300 mem=15360 root-disk=8192"
   "16": 
     series: trusty
-    constraints: "arch=amd64 cpu-cores=4 cpu-power=1300 mem=15360 root-disk=8192"
+    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=8192"
   "17": 
     series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=8192"
+    constraints: "arch=amd64 cpu-cores=2 cpu-power=700 mem=3840 root-disk=12288"
   "18": 
     series: trusty
-    constraints: "arch=amd64 cpu-cores=2 cpu-power=700 mem=3840 root-disk=8192"
+    constraints: "arch=amd64 cpu-cores=2 cpu-power=700 mem=3840 root-disk=12288"
