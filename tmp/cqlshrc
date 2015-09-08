@@ -1,0 +1,8 @@
+[authentication]
+username = juju_cassandra_0
+password = GzWK88C5Y48M8z67BjnzPhxZRf6YgcFpmVy
+
+[connection]
+hostname = 52.27.130.110
+port = 9042
+

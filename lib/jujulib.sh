@@ -87,3 +87,8 @@ function expose() {
       && log debug Successfully exposed ${SERVICE} \
       || log warn Could not expose ${SERVICE} 
 }
+
+function get-status() {
+    local SERVICE="$1"
+    juju pprint | grep ${SERVICE} | cut -f2 -d"(" | cut -f1 -d")"
+}

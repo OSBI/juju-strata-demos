@@ -114,7 +114,7 @@ add-relation spark plugin
 #
 #####################################################################
 
-deploy mysql mysql-data-master "mem=2G cpu-core=2 root-disk=12G"
+deploy mysql mysql-data-master "mem=2G cpu-cores=2 root-disk=12G"
 
 #####################################################################
 #
@@ -123,7 +123,7 @@ deploy mysql mysql-data-master "mem=2G cpu-core=2 root-disk=12G"
 #
 #####################################################################
 
-deploy postgresql postgresql-data-master "mem=2G cpu-core=2 root-disk=12G"
+deploy postgresql postgresql-data-master "mem=2G cpu-cores=2 root-disk=12G"
 
 #####################################################################
 #
@@ -165,6 +165,12 @@ deploy cs:~ana-tomic/trusty/spagobi spagobi
 add-relation tomcat spagobi
 add-relation spagobi:metadatadb mysql-metadata:db
 
+until [ "$(get-status spagobi)" = "started" ] 
+do 
+	log debug waiting for SpagoBI to be up and running
+	sleep 30
+done
+
 # Expose
 expose tomcat
 
@@ -179,6 +185,6 @@ add-relation spagobi:mysqlds mysql-data-master
 add-relation spagobi:mongodbds mongodb
 add-relation spagobi:hiveds hive
 add-relation spagobi:cassandrads cassandra
-add-relation spagobi:hbaseds apache-phoenix
+add-relation spagobi:hbaseds hbase-master
 add-relation spagobi:postgresqlds postgresql-data-master:db
 

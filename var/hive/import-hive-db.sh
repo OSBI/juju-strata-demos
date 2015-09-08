@@ -5,7 +5,12 @@ WORKLOAD=hive
 
 cd /home/ubuntu
 
-[ -f "./foodmart.${WORKLOAD}.tar.gz" ] && { tar xfz "./foodmart.${WORKLOAD}.tar.gz" ; sleep 1; rm -f "./foodmart.${WORKLOAD}.tar.gz"; }
+if [ -f /home/ubuntu/foodmart.${WORKLOAD}.tar.gz ]
+then 
+	tar xfz /home/ubuntu/foodmart.${WORKLOAD}.tar.gz
+	sleep 1
+	rm -f /home/ubuntu/foodmart.${WORKLOAD}.tar.gz
+fi
 
 su -c "hive -f ${WORKLOAD}.sql" ${WORKLOAD}
 
@@ -17,4 +22,4 @@ do
 
 done
 
-echo "Imported Cassandra& files. See yah!"
+echo "Imported Hive files. See yah!"

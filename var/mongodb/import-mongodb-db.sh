@@ -4,7 +4,12 @@
 WORKLOAD=mongodb
 cd /home/ubuntu
 
-[ -f "./foodmart.${WORKLOAD}.tar.gz" ] && { tar xfz "./foodmart.${WORKLOAD}.tar.gz" ; sleep 1; rm -f "./foodmart.${WORKLOAD}.tar.gz"; }
+if [ -f /home/ubuntu/foodmart.${WORKLOAD}.tar.gz ]
+then 
+	tar xfz /home/ubuntu/foodmart.${WORKLOAD}.tar.gz
+	sleep 1
+	rm -f /home/ubuntu/foodmart.${WORKLOAD}.tar.gz
+fi
 
 mongoimport --db foodmart --collection product --type csv --headerline --file product.csv
 mongoimport --db foodmart --collection product_class --type csv --headerline --file product_class.csv
