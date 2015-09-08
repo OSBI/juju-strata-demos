@@ -2,40 +2,71 @@
 #
 # Demo Name: IoT Demo - DeviceHive, Spark, Cassandra, Kafka
 #
-# Notes: 
-# 
-# Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
-#
 #####################################################################
+
+Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
 
 # Purpose of the demo
 
 DeviceHive makes any connected device part of the Internet of Things. It provides the communication layer, control software and multi-platform libraries to bootstrap development of smart energy, home automation, remote sensing, telemetry, remote control and monitoring software, and much more. Leave communications to DeviceHive and focus on product and innovation. Learn more at: http://devicehive.com
 
 # Main Services deployed
+## nginx
+
+nginx is used as a Load Balancer and Router between DeviceHive instances. It allows to scale out the deployment. 
+
 ## DeviceHive
-### Master
 
-
-### Workers
-
-
-## Cassandra Cluster
-
-
-## Kafka Cluster 
-
+DeviceHive is the main Java server, which is listening for notifications from connected devices and sends them to Kafka nodes. 
 
 ## PostgreSQL
 
+PostgreSQL is used as the default database to store information about the deployment, user authentication, devices, networks and other metadata.
 
-## Redis
+## Kafka Cluster 
+
+Kafka is used to maintain a stream of pubsub messages available at any time. 
+
+## Cassandra Cluster
+
+Cassandra is used for long term data storage. 
+
+## Spark / Zeppelin
+
+Spark Streaming and Zeppelin are used to provide a programming interface to the cluster. 
  
-
 # Data Sources
+## Snappy
 
 Data is taken from Ubuntu Snappy devices sending data back to the DeviceHive API. 
 
+## Simulator
+
+The simulator is a script that simulates a device and send values back to the cluster. These values can be "OK Values" and the behavior of the simulated device is OK, or "KO Values" and the cluster will think this device is broken or soon to be broken. 
+
+# Using the demo: Interfaces, GUIs... 
+## DeviceHive
+
+The DeviceHive charm is only exposed through nginx. It will answer on port 80 on 2 routes: 
+
+* /admin will provide access to DeviceHive administration panel. Default credentials are dhadmin:dhadmin_#911
+* /api is the endpoint to send information back to DeviceHive. 
+
+In order to discover the version of the API and endpoints, you can curl the API: 
+
+    $ curl -s http://X.X.X.X/api/rest/info/
+    {
+      "apiVersion": "2.0.0",
+      "serverTimestamp": "2015-09-08T11:02:28.389",
+      "webSocketServerUrl": "ws://X.X.X.X/api/websocket"
+    }
+
+
+## Zeppelin
+
+Zeppelin is a GUI that allows users to code in their browser for Spark and other execution backends (Flink...). It opens an interface on port 8090 by default. You can connect directly on that interface once the service is exposed. 
+
+Once Zeppelin is exposed, you should copy-paste the code in var/zeppelin-code in a new note, then make sure the ZOOKEEPER_HOST is set properly to the URL set in the charm. Then you can run it. 
 
 # Usage
 ## Configuration

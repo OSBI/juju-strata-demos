@@ -15,10 +15,10 @@ MYDIR="$(dirname "${MYNAME}")"
 MYLIB="${MYDIR}/../lib/bashlib.sh"
 
 for file in "${MYLIB}" ; do
-	[ -f ${file} ] && source ${file} || { 
-		echo "Could not find required file. Exiting..."
-		exit 0
-	}
+  [ -f ${file} ] && source ${file} || { 
+    echo "Could not find required file. Exiting..."
+    exit 0
+  }
 done 
 
 # Alias to switch to environment and log
@@ -86,4 +86,9 @@ function expose() {
     juju expose "${SERVICE}" 2>/dev/null \
       && log debug Successfully exposed ${SERVICE} \
       || log warn Could not expose ${SERVICE} 
+}
+
+function get-status() {
+    local SERVICE="$1"
+    juju pprint | grep ${SERVICE} | cut -f2 -d"(" | cut -f1 -d")"
 }

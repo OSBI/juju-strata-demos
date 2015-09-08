@@ -56,13 +56,22 @@ deploy cs:~x3v947pl/trusty/zookeeper-dh zookeeper "mem=2G cpu-cores=2"
 # Deploy nginx
 deploy cs:~x3v947pl/trusty/nginx-dh nginx "mem=2G cpu-cores=2"
 
+# Deploy Zeppelin
+deploy cs:~x3v947pl/trusty/zeppelin-dh zeppelin --constraints="mem=4G cpu-cores=4"
+
+# Deploy Spark
+deploy cs:~x3v947pl/trusty/spark-dh spark --constraints="mem=4G cpu-cores=4"
+
 # Relations
 add-relation zookeeper:ka kafka:zk
 add-relation devicehive:pg postgresql:dh
 add-relation nginx:dh devicehive:website
 add-relation zookeeper devicehice
 add-relation kafka:dh devicehive:ka
+add-relation zeppelin zookeeper
+add-relation zeppelin spark
 
 # Expose
 expose nginx
+expose zeppelin
 
