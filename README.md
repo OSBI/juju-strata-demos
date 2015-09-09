@@ -118,7 +118,7 @@ And we can read inside one file with
     [Wed Sep 9 09:04:23 CEST 2015] [demo] [local0.debug] : Successfully switched to datafari
     [Wed Sep 9 09:09:19 CEST 2015] [demo] [local0.debug] : Succesfully bootstrapped datafari
     [Wed Sep 9 09:09:31 CEST 2015] [demo] [local0.debug] : Successfully deployed juju-gui to machine-0
-    [Wed Sep 9 09:09:32 CEST 2015] [demo] [local0.info] : Juju GUI now available on https://52.19.109.218 with user admin:3f793dd629b195e1edaef8a07557ed5f
+    [Wed Sep 9 09:09:32 CEST 2015] [demo] [local0.info] : Juju GUI now available on https://X.X.X.X with user admin:
     [Wed Sep 9 09:09:48 CEST 2015] [demo] [local0.debug] : Bootstrapping process finished for datafari. You can safely move to deployment.
 
 ## Deployment
