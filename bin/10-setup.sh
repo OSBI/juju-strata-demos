@@ -50,7 +50,21 @@ juju scp "${DATADIR}/${WORKLOAD}/"${DATASET}".${WORKLOAD}.tar.gz" "${DATADIR}/${
 juju ssh "${TARGET_UNIT}" sudo /home/ubuntu/import-${WORKLOAD}-db.sh
 
 sleep 5
-# juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="" password=""
+juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="default" username="hive" password="password"
+
+# IMPORTANT NOTE: There is a lib versioning issue (SpagoBI runs libthrift-0.7.0.jar and we use libthrift-0.9.0.jar )
+# Engineering to update their repo, but in essence the libthrift lib can be downloaded from Hive: 
+# juju scp hive/0:/usr/lib/hive/lib/libthrift-0.9.0.jar /tmp/
+# Then uploaded on Tomcat
+# juju scp /tmp/libthrift-0.9.0.jar tomcat/0:/home/ubuntu
+# juju ssh tomcat/0 sudo cp libthrift-0.9.0.jar /home/ubuntu/SpagoBI/lib/
+# juju ssh tomcat/0 sudo cp libthrift-0.9.0.jar /usr/share/tomcat7/lib/
+# juju ssh tomcat/0 sudo rm -f /usr/share/tomcat7/lib/libthrift-0.7.0.jar /home/ubuntu/SpagoBI/lib/libthrift-0.7.0.jar
+# juju ssh tomcat/0 sudo service tomcat7 restart
+# See http://stackoverflow.com/questions/30852380/java-nosuchmethoderror-when-connecting-via-jdbc-to-hive for info about the error
+
+
+
 
 #####################################################################
 #
@@ -67,8 +81,9 @@ juju ssh "${TARGET_UNIT}" sudo /home/ubuntu/import-${WORKLOAD}-db.sh
 juju scp "${TARGET_UNIT}":/home/ubuntu/mysql.passwd "${MYDIR}/../tmp/mysql.passwd"
 juju ssh "${TARGET_UNIT}" sudo rm -f /home/ubuntu/mysql.passwd
 
-M_USERNAME=root
-M_PASSWORD=$(cat "${MYDIR}/../tmp/cqlshrc")
+# Note: these are hard coded in the import-mysql-db.sh. Do not change if you don't update the other file. 
+M_USERNAME=spagobi
+M_PASSWORD=SpagoBI
 
 juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}_key" username="${M_USERNAME}" password="${M_PASSWORD}"
 

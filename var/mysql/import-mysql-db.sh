@@ -15,5 +15,7 @@ fi
 
 mysql -u root -p`cat /var/lib/mysql/mysql.passwd` < foodmart.sql
 
+mysql -u root -p`sudo cat /var/lib/mysql/mysql.passwd` -e "grant all privileges on foodmart_key.* to 'spagobi'@'%' identified by 'SpagoBI';"
+
 echo "All done. See yah!"
 
