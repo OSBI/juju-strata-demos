@@ -1,7 +1,7 @@
 #!/bin/bash
 #####################################################################
 #
-# Install SpagoBI Data
+# Install Datafari Data
 #
 # Notes: 
 # 
@@ -39,97 +39,14 @@ switchenv "${PROJECT_ID}"
 
 #####################################################################
 #
-# Deploy Hive Data
+# Download Dataset in Hadoop
 #
 #####################################################################
 
-WORKLOAD=hive
+WORKLOAD=hadoop-master
 TARGET_UNIT="${WORKLOAD}/0"
 
 juju scp "${DATADIR}/${WORKLOAD}/"${DATASET}".${WORKLOAD}.tar.gz" "${DATADIR}/${WORKLOAD}/import-${WORKLOAD}-db.sh" "${TARGET_UNIT}":/home/ubuntu/
 juju ssh "${TARGET_UNIT}" sudo /home/ubuntu/import-${WORKLOAD}-db.sh
 
 sleep 5
-# juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="" password=""
-
-#####################################################################
-#
-# Deploy MySQL Data
-#
-#####################################################################
-
-WORKLOAD=mysql
-TARGET_UNIT="${WORKLOAD}-data-master/0"
-
-juju scp "${DATADIR}/${WORKLOAD}/${DATASET}.${WORKLOAD}.tar.gz" "${DATADIR}/${WORKLOAD}/import-${WORKLOAD}-db.sh" "${TARGET_UNIT}":/home/ubuntu/
-juju ssh "${TARGET_UNIT}" sudo /home/ubuntu/import-${WORKLOAD}-db.sh
-
-juju scp "${TARGET_UNIT}":/home/ubuntu/mysql.passwd "${MYDIR}/../tmp/mysql.passwd"
-juju ssh "${TARGET_UNIT}" sudo rm -f /home/ubuntu/mysql.passwd
-
-M_USERNAME=root
-M_PASSWORD=$(cat "${MYDIR}/../tmp/cqlshrc")
-
-juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}_key" username="${M_USERNAME}" password="${M_PASSWORD}"
-
-
-#####################################################################
-#
-# Deploy MongoDB Data
-#
-#####################################################################
-
-WORKLOAD=mongodb
-TARGET_UNIT="${WORKLOAD}/0"
-
-juju scp "${DATADIR}/${WORKLOAD}/${DATASET}.${WORKLOAD}.tar.gz" "${DATADIR}/${WORKLOAD}/import-${WORKLOAD}-db.sh" "${TARGET_UNIT}":/home/ubuntu/
-juju ssh "${TARGET_UNIT}" sudo /home/ubuntu/import-${WORKLOAD}-db.sh
-
-juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="" password=""
-
-#####################################################################
-#
-# Deploy Cassandra Data
-#
-#####################################################################
-
-WORKLOAD=cassandra
-TARGET_UNIT="${WORKLOAD}/0"
-
-juju scp "${DATADIR}/${WORKLOAD}/${DATASET}.${WORKLOAD}.tar.gz" "${DATADIR}/${WORKLOAD}/import-${WORKLOAD}-db.sh" "${TARGET_UNIT}":/home/ubuntu/
-juju ssh "${TARGET_UNIT}" sudo /home/ubuntu/import-${WORKLOAD}-db.sh
-
-sleep 5
-juju scp "${TARGET_UNIT}":/home/ubuntu/cqlshrc "${MYDIR}/../tmp/cqlshrc"
-juju ssh "${TARGET_UNIT}" sudo rm -f /home/ubuntu/cqlshrc
-
-C_USERNAME=$(grep "username" "${MYDIR}/../tmp/cqlshrc" | cut -f3 -d' ')
-C_PASSWORD=$(grep "password" "${MYDIR}/../tmp/cqlshrc" | cut -f3 -d' ')
-
-log info COnnecting to Cassandra with ${C_USERNAME} and password ${C_PASSWORD}
-juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="${C_USERNAME}" password="${C_PASSWORD}"
-
-#####################################################################
-#
-# Deploy HBase Data
-#
-#####################################################################
-
-WORKLOAD=hbase
-TARGET_UNIT="${WORKLOAD}-master/0"
-juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="" password=""
-
-#####################################################################
-#
-# Deploy PostgreSQL Data
-#
-#####################################################################
-
-#####################################################################
-#
-# Spark
-#
-#####################################################################
-
-
-

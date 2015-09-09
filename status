@@ -6,14 +6,14 @@
 
 
 #Format
-Demo:Data Ingest for Financial Services
+Demo:Search Engine for Hadoop (Datafair)
 Complete: no (still WIP)
 DateOfTest: 27082015
 TestedBy: samuelc
 InfrastructureStatus: pass
 PostDeployStatus: pass 
 History: 
-27082015 - Several deployments on AWS of the first services (quasardb, zk, kafka brokers) everything OK, waiting for the other charms. 
+09092015 - Deployment OK for the first intrastructure. Missing main charm
 
 #####################################################################
 Demo:

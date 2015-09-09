@@ -1,7 +1,7 @@
 #!/bin/bash
 #####################################################################
 #
-# Initialize Demo environment
+# Initialize Datafari environment
 #
 # Notes: 
 # 
@@ -62,8 +62,7 @@ juju authorized-keys import admcleod
 juju authorized-keys import kwmonroe
 juju authorized-keys import johnsca
 juju authorized-keys import arosales
-juju authorized-keys import aghedin
-juju authorized-keys import anatomic
+juju authorized-keys import  aurelien-mazoyer
 
 
 log debug Bootstrapping process finished for ${PROJECT_ID}. You can safely move to deployment. 

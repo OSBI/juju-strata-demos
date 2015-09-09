@@ -1,7 +1,7 @@
 #!/bin/bash
 #####################################################################
 #
-# Initialize Demo environment
+# Initialize Datafari environment
 #
 # Notes: 
 # 
