@@ -131,6 +131,7 @@ deploy cs:~f-tom-n/trusty/saikuanalytics-0 saiku
 
 # Relations
 add-relation tomcat saiku
+add-relation spark saiku
 
 # Expose
 expose tomcat
