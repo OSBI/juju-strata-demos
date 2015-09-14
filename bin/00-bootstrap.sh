@@ -72,6 +72,7 @@ juju authorized-keys import johnsca
 juju authorized-keys import arosales
 juju authorized-keys import aghedin
 juju authorized-keys import anatomic
+juju authorized-keys import doug-s1k0ra
 
 
 log debug Bootstrapping process finished for ${PROJECT_ID}. You can safely move to deployment. 
