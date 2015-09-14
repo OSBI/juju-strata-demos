@@ -1,0 +1,108 @@
+{
+    "queryModel": {
+        "axes": {
+            "FILTER": {
+                "mdx": null,
+                "filters": [],
+                "sortOrder": null,
+                "sortEvaluationLiteral": null,
+                "hierarchizeMode": null,
+                "location": "FILTER",
+                "hierarchies": [],
+                "nonEmpty": false,
+                "aggregators": []
+            },
+            "COLUMNS": {
+                "mdx": null,
+                "filters": [],
+                "sortOrder": null,
+                "sortEvaluationLiteral": null,
+                "hierarchizeMode": null,
+                "location": "COLUMNS",
+                "hierarchies": [],
+                "nonEmpty": true,
+                "aggregators": []
+            },
+            "ROWS": {
+                "mdx": null,
+                "filters": [],
+                "sortOrder": null,
+                "sortEvaluationLiteral": null,
+                "hierarchizeMode": null,
+                "location": "ROWS",
+                "hierarchies": [
+                    {
+                        "mdx": null,
+                        "filters": [],
+                        "sortOrder": null,
+                        "sortEvaluationLiteral": null,
+                        "hierarchizeMode": null,
+                        "name": "[Customer].[Medallion]",
+                        "caption": "Customer - Medallion",
+                        "dimension": "Customer",
+                        "levels": {
+                            "Medallion": {
+                                "mdx": null,
+                                "filters": [],
+                                "name": "Medallion",
+                                "caption": "Medallion",
+                                "selection": {
+                                    "type": "INCLUSION",
+                                    "members": [],
+                                    "parameterName": null
+                                },
+                                "aggregators": []
+                            }
+                        }
+                    }
+                ],
+                "nonEmpty": true,
+                "aggregators": []
+            }
+        },
+        "visualTotals": false,
+        "visualTotalsPattern": null,
+        "lowestLevelsOnly": false,
+        "details": {
+            "axis": "COLUMNS",
+            "location": "BOTTOM",
+            "measures": [
+                {
+                    "name": "Passenger Count",
+                    "uniqueName": "[Measures].[Passenger Count]",
+                    "caption": "Passenger Count",
+                    "type": "EXACT"
+                }
+            ]
+        },
+        "calculatedMeasures": []
+    },
+    "cube": {
+        "uniqueName": "[taxi].[Spark].[Spark].[Taxi]",
+        "name": "Taxi",
+        "connection": "taxi",
+        "catalog": "Spark",
+        "schema": "Spark",
+        "caption": null,
+        "visible": false
+    },
+    "mdx": "WITH\nSET [~ROWS] AS\n    {[Customer].[Medallion].[Medallion].Members}\nSELECT\nNON EMPTY {[Measures].[Passenger Count]} ON COLUMNS,\nNON EMPTY [~ROWS] ON ROWS\nFROM [Taxi]",
+    "name": "6D5E0825-9AED-38F8-8E40-582496E08BEA",
+    "parameters": {},
+    "plugins": {},
+    "properties": {
+        "saiku.olap.query.automatic_execution": true,
+        "saiku.olap.query.nonempty": true,
+        "saiku.olap.query.nonempty.rows": true,
+        "saiku.olap.query.nonempty.columns": true,
+        "saiku.ui.render.mode": "table",
+        "saiku.olap.query.filter": true,
+        "saiku.olap.result.formatter": "flattened",
+        "org.saiku.query.explain": true,
+        "org.saiku.connection.scenario": false,
+        "saiku.olap.query.drillthrough": true
+    },
+    "metadata": {},
+    "queryType": "OLAP",
+    "type": "QUERYMODEL"
+}

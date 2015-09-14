@@ -133,9 +133,6 @@ deploy cs:~f-tom-n/trusty/saikuanalytics-0 saiku
 add-relation tomcat saiku
 add-relation spark saiku
 
-action do saiku/0 addschema name=spark content="$(cat ./spark_schema.xml)"
-action do saiku/0 addschema name=mongo content="$(cat ./mongo_schema.xml)"
-
 # Expose
 expose tomcat
 

@@ -1,0 +1,12 @@
+{
+    "id": "d60238bc-6b71-4450-802a-d7b57a7ac5f9",
+    "advanced": "type=OLAP\nname=taxi2\ndriver=mondrian.olap4j.MondrianOlap4jDriver\nlocation=jdbc:mondrian:Jdbc=jdbc:hive2://10.0.3.194:10000;Catalog=mondrian:///datasources/taxi.xml;JdbcDrivers=org.apache.hive.jdbc.HiveDriver;\nusername=admin\npassword=admin\n",
+    "connectiontype": null,
+    "connectionname": "taxi2",
+    "jdbcurl": null,
+    "schema": null,
+    "path": null,
+    "driver": null,
+    "username": null,
+    "password": null
+}
