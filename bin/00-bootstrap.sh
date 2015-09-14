@@ -29,6 +29,14 @@ for file in "${MYCONF}" "${MYLIB}" "${JUJULIB}" ; do
 	}
 done 
 
+echo $(is_sudoer)
+
+if [ $(is_sudoer) -eq 0 ]; then
+	die "You must be root or sudo to run this script"
+fi
+
+exit 0
+
 # Check install of all dependencies
 log debug Validating dependencies
 ensure_cmd_or_install_package_apt jq jq

@@ -421,6 +421,26 @@ This is basically the content of our foodmart.cassandra file
 
 For more information and use of the CLI for Cassandra, refer to [the official page](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlCommandsTOC.html)
 
+## Using HBase
+
+The easiest way is to ssh into hbase-master/0 and run the hbase shell directly and run a get command:
+
+    $ hbase shell
+    hbase(main):006:0> get 'store','row0'
+    COLUMN                                   CELL                                                                                                               
+     info:region_id                          timestamp=1441898063336, value=0                                                                                   
+     info:store_city                         timestamp=1441898063820, value=Alameda                                                                             
+     info:store_country                      timestamp=1441898064165, value=USA                                                                                 
+     info:store_id                           timestamp=1441898062942, value=0                                                                                   
+     info:store_name                         timestamp=1441898063452, value=HQ                                                                                  
+     info:store_number                       timestamp=1441898063568, value=0                                                                                   
+     info:store_postal_code                  timestamp=1441898064053, value=55555                                                                               
+     info:store_state                        timestamp=1441898063941, value=WA                                                                                  
+     info:store_street_address               timestamp=1441898063694, value=1 Alameda Way                                                                       
+     info:store_type                         timestamp=1441898063131, value=HeadQuarters                                                                        
+    10 row(s) in 0.0910 seconds
+
+
 # Sample Outputs
 ## Bootstrapping
 

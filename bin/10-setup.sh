@@ -121,7 +121,7 @@ juju ssh "${TARGET_UNIT}" sudo rm -f /home/ubuntu/cqlshrc
 C_USERNAME=$(grep "username" "${MYDIR}/../tmp/cqlshrc" | cut -f3 -d' ')
 C_PASSWORD=$(grep "password" "${MYDIR}/../tmp/cqlshrc" | cut -f3 -d' ')
 
-log info COnnecting to Cassandra with ${C_USERNAME} and password ${C_PASSWORD}
+log info Connecting to Cassandra with ${C_USERNAME} and password ${C_PASSWORD}
 juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="${C_USERNAME}" password="${C_PASSWORD}"
 
 #####################################################################
@@ -133,6 +133,13 @@ juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DA
 WORKLOAD=hbase
 TARGET_UNIT="${WORKLOAD}-master/0"
 juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DATASET}" username="" password=""
+
+juju ssh ${TARGET_UNIT} wget -c "https://s3-us-west-2.amazonaws.com/samnco-static-files/demos/hbase/mapPhoenix.jar"
+juju scp "${DATADIR}/${WORKLOAD}/${DATASET}.sql" "${TARGET_UNIT}":/home/ubuntu/
+
+ZK=$(juju pprint | grep "zookeeper/0" | awk '{ print $3 }')
+
+juju ssh ${TARGET_UNIT} java -jar mapPhoenix.jar ${ZK}:2181:/hbase-unsecure
 
 #####################################################################
 #
