@@ -91,6 +91,46 @@ function ensure_cmd_or_install_package_apt() {
     local PKG=$*
     hash $CMD 2>/dev/null || { 
     	log warn $CMD not available. Attempting to install $PKG
-    	(apt-get update && apt-get install -yqq ${PKG}) || die "Could not find $PKG"
+    	(sudo apt-get update && sudo apt-get install -yqq ${PKG}) || die "Could not find $PKG"
     }
+}
+
+# ensure_cmd_or_install_from_curl: Test if command is available or install from URL
+# usage ensure_cmd_or_install_from_curl <cmd name> <URL>
+function ensure_cmd_or_install_from_curl() {
+    local CMD=$1
+    shift
+    local URL="$1"
+    hash $CMD 2>/dev/null || { 
+        ensure_cmd_or_install_package_apt curl curl
+        log warn ${CMD} not available. Attempting to install from ${URL}
+        curl -sL "${URL}" --output "${CMD}" \
+            && chmod 755 "${CMD}" \
+            && sudo mv "${CMD}" /usr/local/bin/ \
+            || die "Could not find $PKG"
+    }
+}
+
+# ensure_cmd_or_install_package_npm: Test if command available or install packages from npm
+function ensure_cmd_or_install_package_npm() {
+    local CMD=$1
+    shift
+    local PKG=$*
+    ensure_cmd_or_install_package_apt npm nodejs npm
+
+    hash $CMD 2>/dev/null || { 
+        log warn $CMD not available. Attempting to install $PKG via npm
+        sudo npm install -f -q -y -g "${PKG}" || die "Could not find $PKG"
+    }
+}
+
+# Test is a user is sudoer or not. echos 0 if no, and 1 if no. 
+function is_sudoer() {
+    CAN_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
+    if [ ${CAN_RUN_SUDO} -gt 0 ]
+    then
+        echo 1
+    else
+        echo 0
+    fi
 }
