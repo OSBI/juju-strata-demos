@@ -29,6 +29,10 @@ for file in "${MYCONF}" "${MYLIB}" "${JUJULIB}"; do
 	}
 done 
 
+if [ $(is_sudoer) -eq 0 ]; then
+	die "You must be root or sudo to run this script"
+fi
+
 # Switching to project 
 switchenv "${PROJECT_ID}" 
 
