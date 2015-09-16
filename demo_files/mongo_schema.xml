@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<schema metamodelVersion="4.0" name="Taxi Fares">
+    <Cube name="Fares">
+        <Annotations xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></Annotations>
+        <Dimensions>
+            <Dimension source="Fares" visible="true"/>
+        </Dimensions>
+        <MeasureGroups>
+            <MeasureGroup name="Default" table="fares">
+                <DimensionLinks>
+                    <FactLink dimension="Fares"/>
+                </DimensionLinks>
+                <Measures>
+                    <Measure aggregator="sum" column="total_amount" name="Total Amount" visible="true"/>
+                </Measures>
+            </MeasureGroup>
+        </MeasureGroups>
+    </Cube>
+    <Dimension key="ID" name="Fares" table="fares" visible="true">
+        <Attributes>
+            <Attribute hasHierarchy="false" levelType="Regular" name="ID">
+                <Key>
+                    <Column name="id"/>
+                </Key>
+            </Attribute>
+            <Attribute hasHierarchy="true" levelType="Regular" name="Medallion">
+                <Key>
+                    <Column name="medallion"/>
+                </Key>
+            </Attribute>
+            <Attribute hasHierarchy="true" levelType="Regular" name="Hack License">
+                <Key>
+                    <Column name="hack_license"/>
+                </Key>
+            </Attribute>
+            <Attribute hasHierarchy="true" levelType="Regular" name="Vendor ID">
+                <Key>
+                    <Column name="vendor_id"/>
+                </Key>
+            </Attribute>
+            <Attribute hasHierarchy="true" levelType="Regular" name="Pickup Time">
+                <Key>
+                    <Column name="pickup_datetime"/>
+                </Key>
+            </Attribute>
+            <Attribute hasHierarchy="true" levelType="Regular" name="Payment Type">
+                <Key>
+                    <Column name="payment_type"/>
+                </Key>
+            </Attribute>
+        </Attributes>
+        <Hierarchies/>
+    </Dimension>
+    <PhysicalSchema>
+        <Table name="fares" schema="">
+            <Key>
+                <Column name="id"/>
+            </Key>
+        </Table>
+    </PhysicalSchema>
+</schema>
