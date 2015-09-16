@@ -1,7 +1,7 @@
 #!/bin/bash
 #####################################################################
 #
-# Deploy financial ingest demo
+# Deploy Saiku demo
 #
 # Notes: 
 # 
@@ -102,7 +102,7 @@ add-unit mongodb
 sleep 60
 add-unit mongodb
 
-expose mongodb
+# expose mongodb
 
 #####################################################################
 #
@@ -116,7 +116,7 @@ expose mongodb
 deploy tomcat tomcat "mem=8G cpu-cores=4"
 
 # Saiku
-deploy cs:~f-tom-n/trusty/saikuanalytics-0 saiku
+deploy cs:~f-tom-n/trusty/saikuanalytics-enterprise-1 saiku
 
 # Relations
 add-relation tomcat saiku
@@ -124,3 +124,11 @@ add-relation tomcat saiku
 # Expose
 expose tomcat
 
+#####################################################################
+#
+# Connect to Data sources
+#
+#####################################################################
+
+add-relation spark saiku
+add-relation mongodb saiku
