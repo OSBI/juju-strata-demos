@@ -53,6 +53,7 @@ deploy cs:~x3v947pl/trusty/postgresql-dh postgresql "mem=2G cpu-cores=2 root-dis
 
 # Deploy Kafka
 deploy cs:~x3v947pl/trusty/kafka-dh kafka "mem=4G cpu-cores=2 root-disk=32G"
+add-unit kafka
 
 # Deploy ZooKeeper
 deploy cs:~x3v947pl/trusty/zookeeper-dh zookeeper "mem=2G cpu-cores=2"

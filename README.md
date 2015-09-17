@@ -27,10 +27,6 @@ PostgreSQL is used as the default database to store information about the deploy
 
 Kafka is used to maintain a stream of pubsub messages available at any time. 
 
-## Cassandra Cluster
-
-Cassandra is used for long term data storage. 
-
 ## Spark / Zeppelin
 
 Spark Streaming and Zeppelin are used to provide a programming interface to the cluster. 
@@ -130,6 +126,7 @@ Will completely rip of the environment and delete local files
     [Mon Sep 7 16:35:28 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2 root-disk=32G" for postgresql
     [Mon Sep 7 16:35:51 CEST 2015] [demo] [local0.debug] : Successfully deployed kafka
     [Mon Sep 7 16:35:55 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=4G cpu-cores=2 root-disk=32G" for kafka
+    [Mon Sep 7 16:35:55 CEST 2015] [demo] [local0.debug] : Successfully added 1 units of kafka
     [Mon Sep 7 16:36:20 CEST 2015] [demo] [local0.debug] : Successfully deployed zookeeper
     [Mon Sep 7 16:36:24 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=2G cpu-cores=2" for zookeeper
     [Mon Sep 7 16:36:40 CEST 2015] [demo] [local0.debug] : Successfully deployed nginx
