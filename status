@@ -6,14 +6,14 @@
 
 
 #Format
-Demo:Data Ingest for Financial Services
+Demo:Saiku Demo with MongoDB and Spark
 Complete: no (still WIP)
-DateOfTest: 27082015
-TestedBy: samuelc
+DateOfTest: 21092015
+TestedBy: samuel-cozannet
 InfrastructureStatus: pass
 PostDeployStatus: pass 
 History: 
-27082015 - Several deployments on AWS of the first services (quasardb, zk, kafka brokers) everything OK, waiting for the other charms. 
+21092015 - Configuration of Saiku. Still need a bit of polish but soon OK. 
 
 #####################################################################
 Demo:
