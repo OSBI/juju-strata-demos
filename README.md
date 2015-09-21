@@ -9,7 +9,6 @@ Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com>
 
 # Table of Content
 
-  * [Demo Name: Analytics Demo - SpagoBI with Many Data Sources](#demo-name-analytics-demo---spagobi-with-many-data-sources)
   * [Purpose of the demo](#purpose-of-the-demo)
   * [Main Services deployed](#main-services-deployed)
     * [spagoBI](#spagobi)
