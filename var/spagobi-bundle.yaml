@@ -100,7 +100,7 @@ services:
       "gui-x": "-150"
       "gui-y": "-600"
     to: 
-      - "tomcat/0"
+      - "tomcat"
   spagobi: 
     charm: "cs:~ana-tomic/trusty/spagobi-5"
     annotations: 
