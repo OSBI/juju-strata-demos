@@ -66,6 +66,8 @@ deploy apache-hadoop-plugin plugin
 deploy cs:~bigdata-dev/trusty/apache-hbase hbase-master "mem=4G cpu-cores=2"
 deploy cs:~bigdata-dev/trusty/apache-hbase hbase-regionserver "mem=4G cpu-cores=2"
 
+deploy cs:~bigdata-dev/trusty/apache-phoenix phoenix
+
 
 # Relations
 add-relation yarn-master hdfs-master
@@ -78,6 +80,7 @@ add-relation hbase-regionserver plugin
 add-relation zookeeper hbase-master
 add-relation zookeeper hbase-regionserver
 add-relation hbase-master:master hbase-regionserver:regionserver
+add-relation hbase-master:hbase phoenix:hbase
 
 # Available services
 expose hbase-master
@@ -159,8 +162,16 @@ expose mongodb
 # https://jujucharms.com/tomcat/trusty/1
 deploy tomcat tomcat "mem=8G cpu-cores=4"
 
+until [ "$(get-status tomcat)" = "started" ] 
+do 
+	log debug waiting for Tomcat to be up and running
+	sleep 30
+done
+
+TOMCAT_MACHINE_ID=$(juju status tomcat --format tabular | grep "tomcat/0" | awk '{ print $5 }')
+
 # MySQL for metadata
-deploy mysql mysql-metadata 
+juju deploy --to ${TOMCAT_MACHINE_ID} mysql mysql-metadata 
 
 # SpagoBI
 deploy cs:~ana-tomic/trusty/spagobi spagobi
@@ -186,9 +197,9 @@ expose tomcat
 
 # Create relation with Data Sources
 add-relation spagobi:mysqlds mysql-data-master
-add-relation spagobi:mongodbds mongodb
-add-relation spagobi:hiveds hive
-add-relation spagobi:cassandrads cassandra
-add-relation spagobi:hbaseds hbase-master:hbase
-add-relation spagobi:postgresqlds postgresql-data-master:db
+juju add-relation spagobi:mongodbds mongodb
+juju add-relation spagobi:hiveds hive
+juju add-relation spagobi:cassandrads cassandra
+juju add-relation spagobi:hbaseds hbase-master:hbase
+juju add-relation spagobi:postgresqlds postgresql-data-master:db
 

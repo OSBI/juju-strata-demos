@@ -67,9 +67,6 @@ juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="defa
 # juju ssh tomcat/0 sudo service tomcat7 restart
 # See http://stackoverflow.com/questions/30852380/java-nosuchmethoderror-when-connecting-via-jdbc-to-hive for info about the error
 
-
-
-
 #####################################################################
 #
 # Deploy MySQL Data
@@ -141,9 +138,9 @@ juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DA
 juju ssh ${TARGET_UNIT} wget -c "https://s3-us-west-2.amazonaws.com/samnco-static-files/demos/hbase/mapPhoenix.jar"
 juju scp "${DATADIR}/${WORKLOAD}/${DATASET}.sql" "${TARGET_UNIT}":/home/ubuntu/
 
-ZK=$(juju pprint | grep "zookeeper/0" | awk '{ print $3 }')
+ZK=$(juju ssh ${TARGET_UNIT} cat /etc/hbase/conf/hbase-site.xml | grep "value" | cut -f2 -d">" | cut -f1 -d"<" | tail -n1)
 
-juju ssh ${TARGET_UNIT} java -jar mapPhoenix.jar ${ZK}:2181:/hbase-unsecure
+juju ssh ${TARGET_UNIT} java -jar mapPhoenix.jar ${ZK}:2181:/hbase
 
 #####################################################################
 #

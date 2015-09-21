@@ -5,15 +5,15 @@
 #and refrain from any "colorful" commentary.
 
 
-#Format
-Demo:Data Ingest for Financial Services
-Complete: no (still WIP)
-DateOfTest: 27082015
-TestedBy: samuelc
+Demo:SpagoBI Analytics Multi Data Sources
+Complete: No
+DateOfTest: 21092015
+TestedBy: samuel-cozannet
 InfrastructureStatus: pass
 PostDeployStatus: pass 
 History: 
-27082015 - Several deployments on AWS of the first services (quasardb, zk, kafka brokers) everything OK, waiting for the other charms. 
+21092015 - Several deployments on AWS. All OK. Now need to finally have the latest documents created. 
+
 
 #####################################################################
 Demo:

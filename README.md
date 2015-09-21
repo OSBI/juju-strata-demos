@@ -9,56 +9,58 @@ Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com>
 
 # Purpose of the demo
 
-This demo aims at deploying SpagoBI and connect it to many different data sources, to express how easy it is to deploy a very complex data analytics solution with Juju. 
+This demo aims at deploying [SpagoBI](http://www.spagobi.org/) and connect it to many different data sources, to express how easy it is to deploy a very complex data analytics solution with Juju. 
 
 
 # Main Services deployed
 ## spagoBI
 
-SpagoBI is the main attraction of this demo, and the center of gravity of all data sources. To deploy it, we install a small MySQL server, a powerful Tomcat server, and the spagoBI subordinate charm, then we connect them together. 
+[SpagoBI](http://www.spagobi.org/) is the main attraction of this demo, and the center of gravity of all data sources. To deploy it, we install a small [MySQL](https://www.mysql.com/) server, a powerful [Tomcat](http://tomcat.apache.org/) server, and the spagoBI subordinate charm, then we connect them together. 
 
 ## Hadoop Cluster
 
-We run a simple Hadoop cluster with YARN, made of an HDFS Master + Compute Slaves, to which we attach a YARN Master to orchestrate compute. 
+We run a simple [Hadoop cluster](https://hadoop.apache.org/) with [YARN](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html), made of an [HDFS](http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html) Master + Compute Slaves, to which we attach a [YARN](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html) Master to orchestrate compute. 
 
-## HBase
+## [HBase](http://hbase.apache.org/)
 
-On top of our Hadoop Cluster we run a HBase cluster, with a Master, a Region Server, orchestrated by a ZooKeeper cluster. 
+On top of our Hadoop Cluster we run a [HBase](http://hbase.apache.org/) cluster, with a Master, a Region Server, orchestrated by a [ZooKeeper](https://zookeeper.apache.org/) cluster. 
 
-## Spark 
+In addition, we install [Phoenix](https://phoenix.apache.org/), a driver that will allow [SpagoBI](http://www.spagobi.org/) to connect to [HBase](http://hbase.apache.org/) and manipulate data inside of it in an easier way. 
 
-We run a set of Spark nodes managed via YARN on top of our Hadoop Cluster.
+## [Spark](http://spark.apache.org/) 
 
-## Hive
+We run a set of [Spark](http://spark.apache.org/) nodes managed via [YARN](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html) on top of our Hadoop Cluster.
 
-We have a small instance of Hive, running with MySQL. 
+## [Hive](https://hive.apache.org/)
 
-## Cassandra
+We have a small instance of [Hive](https://hive.apache.org/), running with [MySQL](https://www.mysql.com/). 
 
-We run a small cluster of Cassandra (3 nodes), the main tabular noSQL datastore on the market.
+## [Cassandra](http://cassandra.apache.org/)
 
-## MongoDB
+We run a small cluster of [Cassandra](http://cassandra.apache.org/) (3 nodes), the main tabular noSQL datastore on the market.
 
-We run a small cluster of MongoDB (only 1 node for this demo), the main noSQL document datastore available. 
+## [MongoDB](https://www.mongodb.org/)
 
-## MySQL
+We run a small cluster of [MongoDB](https://www.mongodb.org/) (only 1 node for this demo), the main noSQL document datastore available. 
 
-noSQL is not everything, so we also have a data source in a MySQL node.
+## [MySQL](https://www.mysql.com/)
 
-## PostgreSQL
+noSQL is not everything, so we also have a data source in a [MySQL](https://www.mysql.com/) node.
 
-To even things between SQL stores we also store some data in PostgreSQL.
+## [PostgreSQL](http://www.postgresql.org/)
+
+To even things between SQL stores we also store some data in [PostgreSQL](http://www.postgresql.org/).
 
 # Secondary Services deployed 
-## ZooKeeper
+## [ZooKeeper](https://zookeeper.apache.org/)
 
-ZK is a service to manage clusters of other services. In our case, the HBase cluster. We deploy 3 nodes of ZK to simulate a production cluster. 
+ZK is a service to manage clusters of other services. In our case, the [HBase](http://hbase.apache.org/) cluster. We deploy 3 nodes of ZK to simulate a production cluster. 
 
 # Data Sources
 
-We have databases from MySQL, Hive, Cassandra and MongoDB stored in /var, along with auto deployment scripts. 
+We have databases from [MySQL](https://www.mysql.com/), [Hive](https://hive.apache.org/), [Cassandra](http://cassandra.apache.org/) and [MongoDB](https://www.mongodb.org/) stored in /var, along with auto deployment scripts. 
 
-The databases are all the same, made of data about products and called foodmart. The target is to split all data across all data stores and show how we can agregate many of them through a unique interface, SpagoBI.
+The databases are all the same, made of data about products and called foodmart. The target is to split all data across all data stores and show how we can agregate many of them through a unique interface, [SpagoBI](http://www.spagobi.org/).
 
 # Usage
 ## Configuration
@@ -86,7 +88,7 @@ Will deploy the charms required for the demo
 
 	./bin/10-setup.sh
 
-Will install datasources into each database and run actions to install them into SpagoBI. 
+Will install datasources into each database and run actions to install them into [SpagoBI](http://www.spagobi.org/). 
 
 ## Resetting 
 
@@ -103,7 +105,16 @@ Will completely rip of the environment and delete local files
 # Validation Check and GUIs
 ## SpagoBI GUI Access
 
-Once deployed, you can connect on the Tomcat unit on port 8080 (by default) to access the SpagoBI GUI: http://TOMCAT/SpagoBI
+Once deployed, you can connect on the [Tomcat](http://tomcat.apache.org/) unit on port 8080 (by default) to access the [SpagoBI](http://www.spagobi.org/) GUI: http://TOMCAT:8080/SpagoBI
+
+You can get access to the [Tomcat](http://tomcat.apache.org/) by typing
+
+    juju status tomcat/0 --format tabular
+
+You will then land on the login page: 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-001.png)
+
 
 3 default users are provided by default, with a button to access the UI with them. 
 
@@ -111,9 +122,12 @@ Once deployed, you can connect on the Tomcat unit on port 8080 (by default) to a
 * To access visualization as an end-user, user bidemo;
 * To configure more aspects of BI, use biuser.
 
-## Using MySQL
 
-MySQL servers credentials are stored by Juju in /var/lib/mysql/mysql.passwd. Therefore you can run from your client
+
+
+## Using [MySQL](https://www.mysql.com/)
+
+[MySQL](https://www.mysql.com/) servers credentials are stored by Juju in /var/lib/mysql/mysql.passwd. Therefore you can run from your client
 
     $ juju ssh mysql-data-master/0 sudo cat /var/lib/mysql/mysql.passwd 
     XXXXXXXX-YYYY-XXXX-ZZZZ-UUUUUUUUUUUU
@@ -135,7 +149,7 @@ So now you have access to the root password. Connect on the mysql-data-master/0 
 
     mysql> 
 
-OK so you are in the MySQL shell and you can run a few commands to see what's in there. Let's list databases: 
+OK so you are in the [MySQL](https://www.mysql.com/) shell and you can run a few commands to see what's in there. Let's list databases: 
 
     mysql> show databases;
     +--------------------+
@@ -210,14 +224,14 @@ And of course you can run a classic command:
     ....
 
 
-For more information, refer to the [MySQL documentation](http://dev.mysql.com/doc/refman/5.6/en/)
+For more information, refer to the [[MySQL](https://www.mysql.com/) documentation](http://dev.mysql.com/doc/refman/5.6/en/)
 
-## MongoDB
+## [MongoDB](https://www.mongodb.org/)
 
-By default MongoDB will not protect the access to data. We can therefore just connect on the server mongodb/0 and enter into the shell using the command "mongo":
+By default [MongoDB](https://www.mongodb.org/) will not protect the access to data. We can therefore just connect on the server mongodb/0 and enter into the shell using the command "mongo":
 
     $ mongo
-    MongoDB shell version: 2.4.9
+    [MongoDB](https://www.mongodb.org/) shell version: 2.4.9
     connecting to: test
     > 
 
@@ -268,7 +282,7 @@ And we can also see that the products reference the product class:
     30,8,Washington,Washington Orange Juice,89770532250,2.5900,8.97,6.97,true,false,27,7,7.56,11.8,8.92
     30,9,Washington,Washington Cranberry Juice,49395100474,2.4200,7.14,5.13,false,false,34,7,18.5,16.1,14.4
 
-Let's output all documents in the MongoDB database that are ice creams (ID=9): 
+Let's output all documents in the [MongoDB](https://www.mongodb.org/) database that are ice creams (ID=9): 
 
     > db.product.find( { product_class_id: 9 })
     { "_id" : ObjectId("55eea5b543fcf8131b4326fa"), "product_class_id" : 9, "product_id" : 103, "brand_name" : "Golden", "product_name" : "Golden Ice Cream", "SKU" : NumberLong("46069397330"), "SRP" : 0.95, "gross_weight" : 9.81, "net_weight" : 8.81, "recyclable_package" : "true", "low_fat" : "false", "units_per_case" : 13, "cases_per_pallet" : 8, "shelf_width" : 6.22, "shelf_height" : 15.8, "shelf_depth" : 11.8 }
@@ -287,16 +301,16 @@ Let's output all documents in the MongoDB database that are ice creams (ID=9):
     { "_id" : ObjectId("55eea5b543fcf8131b432bdc"), "product_class_id" : 9, "product_id" : 1353, "brand_name" : "Carrington", "product_name" : "Carrington Ice Cream Sandwich", "SKU" : NumberLong("44153935313"), "SRP" : 2.24, "gross_weight" : 13.9, "net_weight" : 12.8, "recyclable_package" : "true", "low_fat" : "false", "units_per_case" : 19, "cases_per_pallet" : 7, "shelf_width" : 17.7, "shelf_height" : 20.4, "shelf_depth" : 22.9 }
     { "_id" : ObjectId("55eea5b543fcf8131b432be1"), "product_class_id" : 9, "product_id" : 1358, "brand_name" : "Carrington", "product_name" : "Carrington Popsicles", "SKU" : NumberLong("40161059498"), "SRP" : 2.1, "gross_weight" : 11.5, "net_weight" : 8.5, "recyclable_package" : "false", "low_fat" : "false", "units_per_case" : 13, "cases_per_pallet" : 8, "shelf_width" : 16.4, "shelf_height" : 7.24, "shelf_depth" : 17.9 }
 
-For more information refer to the [MongoDB documentation](http://docs.mongodb.org/manual/reference/mongo-shell/)
+For more information refer to the [[MongoDB](https://www.mongodb.org/) documentation](http://docs.mongodb.org/manual/reference/mongo-shell/)
 
-## Using Hive
+## Using [Hive](https://hive.apache.org/)
 
-Hive uses a directory tree structure stored in HDFS and maps a SQL database on top of it. There are no specific rights set up so you just have to connect to the hive/0 node. Then turn yourself into the hive user.
+[Hive](https://hive.apache.org/) uses a directory tree structure stored in [HDFS](http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html) and maps a SQL database on top of it. There are no specific rights set up so you just have to connect to the hive/0 node. Then turn yourself into the hive user.
 
     ubuntu@plugin-2:~$ sudo su hive
     hive@plugin-2:/home/ubuntu$ 
 
-Now let's list what's inside our tree structure using the HDFS command line:
+Now let's list what's inside our tree structure using the [HDFS](http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html) command line:
 
     $ hdfs dfs -ls -R /user/hive
     drwxr-xr-x   - hive supergroup          0 2015-09-08 10:19 /user/hive/inventory_fact_1998
@@ -322,7 +336,7 @@ And we can read inside one file with
     8,Deli Meats,Meat,Deli,Food
     9,Ice Cream,Frozen Desserts,Frozen Foods,Food
 
-Now we can also use the HiveQL language. Hortonworks wrote a nice manual [here](http://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/). Let's run the same query we ran for MongoDB: 
+Now we can also use the [Hive](https://hive.apache.org/)QL language. Hortonworks wrote a nice manual [here](http://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/). Let's run the same query we ran for [MongoDB](https://www.mongodb.org/): 
 
     hive@plugin-2:/home/ubuntu$ hive -e 'select * from product where product_class_id = 9'
 
@@ -352,9 +366,9 @@ Now we can also use the HiveQL language. Hortonworks wrote a nice manual [here](
 
 
 
-## Using Cassandra 
+## Using [Cassandra](http://cassandra.apache.org/) 
 
-We run all configuration and scripts on cassandra/0. The command line to interact with Cassandra is cqlsh, and you'll need credentials to use it. These are stored in /root/.cassandra/cqlshrc, and only visible by the root user. So from your client you can do: 
+We run all configuration and scripts on cassandra/0. The command line to interact with [Cassandra](http://cassandra.apache.org/) is cqlsh, and you'll need credentials to use it. These are stored in /root/.cassandra/cqlshrc, and only visible by the root user. So from your client you can do: 
 
     $ juju ssh cassandra/0 sudo cat /root/.cassandra/cqlshrc
     [authentication]
@@ -369,7 +383,7 @@ Now that you have your credentials, from the CLI you can run on the cassandra/0 
 
     $ cqlsh -u YYYYYYY -p XXXXXXX
     Connected to juju at 127.0.0.1:9042.
-    [cqlsh 5.0.1 | Cassandra 2.1.9 | CQL spec 3.2.0 | Native protocol v3]
+    [cqlsh 5.0.1 | [Cassandra](http://cassandra.apache.org/) 2.1.9 | CQL spec 3.2.0 | Native protocol v3]
     Use HELP for help.
     juju_cassandra_0@cqlsh> 
 
@@ -419,9 +433,9 @@ So here we can see that the foodmart dataset has been imported. Let's look at wh
 
 This is basically the content of our foodmart.cassandra file
 
-For more information and use of the CLI for Cassandra, refer to [the official page](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlCommandsTOC.html)
+For more information and use of the CLI for [Cassandra](http://cassandra.apache.org/), refer to [the official page](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlCommandsTOC.html)
 
-## Using HBase
+## Using [HBase](http://hbase.apache.org/)
 
 The easiest way is to ssh into hbase-master/0 and run the hbase shell directly and run a get command:
 
