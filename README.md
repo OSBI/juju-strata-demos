@@ -103,6 +103,12 @@ Will reset the environment but keep it alive.
 Will completely rip of the environment and delete local files
 
 # Validation Check and GUIs
+## Juju GUI
+
+The bundle should look like the below screenshot
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/juju-gui-001.png)
+
 ## SpagoBI GUI Access
 ### Login
 
