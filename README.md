@@ -7,10 +7,51 @@
 
 Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
 
+# Table of Content
+
+  * [Demo Name: Analytics Demo - SpagoBI with Many Data Sources](#demo-name-analytics-demo---spagobi-with-many-data-sources)
+  * [Purpose of the demo](#purpose-of-the-demo)
+  * [Main Services deployed](#main-services-deployed)
+    * [spagoBI](#spagobi)
+    * [Hadoop Cluster](#hadoop-cluster)
+    * [HBase](#hbase)
+    * [Spark](#spark)
+    * [Hive](#hive)
+    * [Cassandra](#cassandra)
+    * [MongoDB](#mongodb)
+    * [MySQL](#mysql)
+    * [PostgreSQL](#postgresql)
+  * [Secondary Services deployed](#secondary-services-deployed)
+    * [ZooKeeper](#zookeeper)
+  * [Data Sources](#data-sources)
+  * [Usage](#usage)
+    * [Configuration](#configuration)
+    * [Bootstrapping](#bootstrapping)
+    * [Deploying](#deploying)
+    * [Configure](#configure)
+    * [Resetting](#resetting)
+    * [Clean](#clean)
+  * [Validation Check and GUIs](#validation-check-and-guis)
+    * [Juju GUI](#juju-gui)
+    * [SpagoBI GUI Access](#spagobi-gui-access)
+      * [Login](#login)
+      * [Data Sources](#data-sources-1)
+      * [Data Sets](#data-sets)
+      * [Documents](#documents)
+      * [Conclusion](#conclusion)
+    * [Using MySQL](#using-mysql)
+    * [Using MongoDB](#mongodb-1)
+    * [Using Hive](#using-hive)
+    * [Using Cassandra](#using-cassandra)
+    * [Using HBase / Phoenix](#using-hbase)
+  * [Sample Outputs](#sample-outputs)
+    * [Bootstrapping](#bootstrapping-1)
+    * [Deployment](#deployment)
+    * [Reset](#reset)
+
 # Purpose of the demo
 
 This demo aims at deploying [SpagoBI](http://www.spagobi.org/) and connect it to many different data sources, to express how easy it is to deploy a very complex data analytics solution with Juju. 
-
 
 # Main Services deployed
 ## spagoBI
