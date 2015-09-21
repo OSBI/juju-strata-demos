@@ -1,35 +1,62 @@
 #####################################################################
 #
-# Demo Name: Analytics Demo - Meteorite.bi Saiku on Spark and [MongoDB](https://www.mongodb.org/)
-#
-# Notes: 
-# 
-# Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
+# Demo Name: Analytics Demo - Meteorite.bi [Saiku](http://www.meteorite.bi/products/saiku) on [Spark](http://spark.apache.org/) and [MongoDB](https://www.mongodb.org/)
 #
 #####################################################################
 
+Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
+
+  * [Purpose of the demo](#purpose-of-the-demo)
+  * [Main Services deployed](#main-services-deployed)
+    * [Saiku](#saiku)
+    * [Hadoop Cluster](#hadoop-cluster)
+    * [Spark](#spark)
+    * [MongoDB](#mongodb)
+  * [Data Sources](#data-sources)
+  * [Usage](#usage)
+    * [Configuration](#configuration)
+    * [Bootstrapping](#bootstrapping)
+    * [Deploying](#deploying)
+    * [Configure](#configure)
+    * [Resetting](#resetting)
+    * [Clean](#clean)
+  * [Access to GUIs](#access-to-guis)
+    * [Saiku](#saiku-1)
+      * [Login procedure](#login-procedure)
+      * [Main GUI](#main-gui)
+      * [MongDB Analytics](#mongdb-analytics)
+      * [Spark Analytics](#spark-analytics)
+      * [Dashboards](#dashboards)
+    * [MongoDB](#mongodb-1)
+    * [Spark](#spark-1)
+  * [Sample Outputs](#sample-outputs)
+    * [Bootstrapping](#bootstrapping-1)
+    * [Deployment](#deployment)
+    * [Reset](#reset)
+
+
 # Purpose of the demo
 
-This demo aims at deploying Saiku and connect it to Spark and [MongoDB](https://www.mongodb.org/), to express how easy it is to deploy a very complex data analytics solution with Juju. 
+This demo aims at deploying [Saiku](http://www.meteorite.bi/products/saiku) and connect it to [Spark](http://spark.apache.org/) and [MongoDB](https://www.mongodb.org/), to express how easy it is to deploy a very complex data analytics solution with Juju. 
 
 # Main Services deployed
 ## Saiku
 
-Saiku is the main attraction of this demo, and the center of gravity of all data sources. To deploy it, we install a powerful Tomcat server, and the Saiku subordinate charm, then we connect them together. 
+[Saiku](http://www.meteorite.bi/products/saiku) is the main attraction of this demo, and the center of gravity of all data sources. To deploy it, we install a powerful Tomcat server, and the [Saiku](http://www.meteorite.bi/products/saiku) subordinate charm, then we connect them together. 
 
-Saiku comes in 2 flavours
+[Saiku](http://www.meteorite.bi/products/saiku) comes in 2 flavours
 * Community Edition, that is free and doesn't have all features available
 * Enterprise Edition, that unlocks advanced features of the OLAP analysis. 
 
-In our demo, we will use Saiku EE, that provides a lot more options and is "the real thing"
+In our demo, we will use [Saiku](http://www.meteorite.bi/products/saiku) EE, that provides a lot more options and is "the real thing"
 
 ## Hadoop Cluster
 
 We run a simple Hadoop cluster with YARN, made of an HDFS Master + Compute Slaves, to which we attach a YARN Master to orchestrate compute. 
 
-## Spark 
+## Spark
 
-We run a set of Spark nodes managed via YARN on top of our Hadoop Cluster.
+We run a set of [Spark](http://spark.apache.org/) nodes managed via YARN on top of our Hadoop Cluster.
 
 ## [MongoDB](https://www.mongodb.org/)
 
@@ -38,7 +65,7 @@ We run a small cluster of [MongoDB](https://www.mongodb.org/) (3 nodes for this 
 # Data Sources
 
 * taxi: We deploy a set of [taxi courses](http://84.40.61.82/trip_fare_1.csv.zip) to [MongoDB](https://www.mongodb.org/) that allow to do spatial analysis and also some analytics
-* Store: Spark (HDFS) is fed with a standard Foodmart dataset
+* Store: [Spark](http://spark.apache.org/) (HDFS) is fed with a standard Foodmart dataset
 
 # Usage
 ## Configuration
@@ -84,7 +111,7 @@ Will completely rip of the environment and delete local files
 ## Saiku 
 ### Login procedure
 
-Saiku is a Java application running on top of Tomcat. First you need to find the IP address of Tomcat by running: 
+[Saiku](http://www.meteorite.bi/products/saiku) is a Java application running on top of Tomcat. First you need to find the IP address of Tomcat by running: 
 
     juju status tomcat/0 --format tabular
 
@@ -94,12 +121,12 @@ Then browse to http://<TOMCAT_IP_ADDRESS>:8080 to land on the login page:
 
 The default credentials are admin:admin
 
-* If Saiku complains that you don't have a license, it means you didn't upload and install the license. You need to have a valid license.lic file and run
+* If [Saiku](http://www.meteorite.bi/products/saiku) complains that you don't have a license, it means you didn't upload and install the license. You need to have a valid license.lic file and run
 
     juju scp /path/to/license.lic saiku/0:/tmp/
     juju action do saiku/0 addlicense oatg=/tmp/license.lic
 
-* If Saiku complains that an admin session is already opened, it means someone else is already using the GUI. You need to clear the other session to login. Proceed. 
+* If [Saiku](http://www.meteorite.bi/products/saiku) complains that an admin session is already opened, it means someone else is already using the GUI. You need to clear the other session to login. Proceed. 
 
 ### Main GUI
 
@@ -181,22 +208,22 @@ Or just count them:
     > db.fares.count({ hour: 18 })
     355464
 
-So yeah, there are 3 times as many taxi rides at 6PM than there are at 3AM. Surely not on Saturday nights but it's a start :). The rest will be done in the Saiku GUI 
+So yeah, there are 3 times as many taxi rides at 6PM than there are at 3AM. Surely not on Saturday nights but it's a start :). The rest will be done in the [Saiku](http://www.meteorite.bi/products/saiku) GUI 
 
 For more information refer to the [MongoDB documentation](http://docs.mongodb.org/manual/reference/mongo-shell/)
 
 ## Spark 
 
-Spark is an engine that tends to replace Map Reduce (and other things) in the Hadoop ecosystem. It is said to run about 100x faster than MR, due mostly to optimizations in the management of I/Os. 
+[Spark](http://spark.apache.org/) is an engine that tends to replace Map Reduce (and other things) in the Hadoop ecosystem. It is said to run about 100x faster than MR, due mostly to optimizations in the management of I/Os. 
 
-The first thing we can do with Spark is compute some decimals of Pi. From your Juju client, run
+The first thing we can do with [Spark](http://spark.apache.org/) is compute some decimals of Pi. From your Juju client, run
 
 
     $ juju ssh spark/0 spark-submit --class org.apache.spark.examples.SparkPi \ --master yarn-client /usr/lib/spark/lib/spark-examples*.jar 10
     Spark assembly has been built with Hive, including Datanucleus jars on classpath
     Pi is roughly 3.1385                                                                                                                                      
 
-If you expose the Spark Charm you can also have a look on port 18080. 
+If you expose the [Spark](http://spark.apache.org/) Charm you can also have a look on port 18080. 
 
     $ juju expose spark
     $ juju status spark/0 --format tabular
