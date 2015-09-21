@@ -108,6 +108,12 @@ Will reset the environment but keep it alive
 Will completely rip of the environment and delete local files
 
 # Access to GUIs
+## Juju GUI
+
+The workload should look like 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/saiku/var/screenshots/juju-gui-001.png)
+
 ## Saiku 
 ### Login procedure
 
