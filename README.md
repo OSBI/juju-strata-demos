@@ -205,8 +205,6 @@ then browse to http://<SPARK_IP_ADDRESS>:18080 and have a look at the recent job
 
 ![](https://github.com/SaMnCo/juju-strata-demos/blob/saiku/var/screenshots/spark-gui-001.png)
 
-
-
 # Sample Outputs
 ## Bootstrapping
 
