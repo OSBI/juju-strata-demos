@@ -104,6 +104,7 @@ Will completely rip of the environment and delete local files
 
 # Validation Check and GUIs
 ## SpagoBI GUI Access
+### Login
 
 Once deployed, you can connect on the [Tomcat](http://tomcat.apache.org/) unit on port 8080 (by default) to access the [SpagoBI](http://www.spagobi.org/) GUI: http://TOMCAT:8080/SpagoBI
 
@@ -115,15 +116,54 @@ You will then land on the login page:
 
 ![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-001.png)
 
-
 3 default users are provided by default, with a button to access the UI with them. 
 
 * To access the configuration, use the biadmin; 
 * To access visualization as an end-user, user bidemo;
 * To configure more aspects of BI, use biuser.
 
+### Data Sources
 
+Data Sources are sources of raw data configured by the relations and actions set between charms. You can access the list of data sources by hitting the button with gearings, then "Data Sources" such as on the below screenshot
 
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-002.png)
+
+If you click on one of these, you will load its definition and eventually modify it. If you do, hit the "save" button in the top right corner. 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-003.png)
+
+### Data Sets
+
+Data Sets in SpagoBI are pre-recorded queries or scripts run against the available data sources. You can access the list of data sets by hitting the button with gearings, then "Data Sets" link. 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-004.png)
+
+If you then hit one of the data sets, its configuration will pop up. Below is an example for Cassandra. There are 5 description tabs, of which the one named "Preview" is interactive and risk free for demos. Get there and hit the top right "Preview" button to run the query once and validate that the data set is will configured. If you go in the "type" tab and change the query, you'll be able to preview other results. 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-005.png)
+
+### Documents
+
+Documents in SpagoBI is the end result of the work. Using Data Sources and Data Sets combined, nice visualizations can be created to extract insights from data. 
+
+Hit the folder icon on the left hand bar to access the list of available documents. 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-006.png)
+
+In our example, among others, we can see 
+
+* Comparison by Family Product
+* Monthly Trend
+* Sales and Costs Analysis
+* Spatial Analysis
+
+Hitting any of these will run the query against data sets and sources, and display a view. Below is the example of the spatial analysis
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-007.png)
+
+### Conclusion
+
+In this SpagoBI demo, we have seen how Juju can automate the workflow of building a next generation BI solution until the moment Business Users or scientists can actually work with the solution. 
 
 ## Using [MySQL](https://www.mysql.com/)
 
