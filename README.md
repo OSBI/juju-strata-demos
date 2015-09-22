@@ -91,9 +91,11 @@ Will deploy the charms required for the demo
 
 ## Configure  
 
-	./bin/10-setup.sh
+	./bin/10-setup-saiku.sh
 
 Will configure whatever needs to be configured
+
+Note that this will take a LONG time as the datasets are pretty big. You can count about 30min just for that section of the deployment. 
 
 ## Resetting 
 
@@ -140,11 +142,16 @@ You should land on the main GUI page:
 
 ![](https://github.com/SaMnCo/juju-strata-demos/blob/saiku/var/screenshots/saiku-gui-002.png)
 
+
 ### MongDB Analytics
 
-TBD
+Now if you hit the folder icon in the top bar and select "homes/home:admin" then "demo_1.saiku" you should see a "play" button. Running it will take about 60sec in this configuration and compute the number of passenger per taxi ID. 
 
 ![](https://github.com/SaMnCo/juju-strata-demos/blob/saiku/var/screenshots/saiku-gui-003.png)
+
+The result will be a large table. You can also in the top right corner hit the little graph button and you'll end up with a graph
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/saiku/var/screenshots/saiku-gui-004.png)
 
 
 ### Spark Analytics

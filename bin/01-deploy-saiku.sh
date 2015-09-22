@@ -107,7 +107,7 @@ add-relation spark:spark thrift:spark
 #add-relation mongos:mongos shard2:database
 #add-relation mongos:mongos shard3:database
 
-deploy mongodb mongodb "mem=4G cpu-cores=2 root-disk=32G"
+deploy mongodb mongodb "mem=4G cpu-cores=2 root-disk=64G"
 add-unit mongodb
 sleep 60
 add-unit mongodb
