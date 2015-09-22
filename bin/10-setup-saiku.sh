@@ -29,7 +29,7 @@ for file in "${MYCONF}" "${MYLIB}" "${JUJULIB}"; do
 		exit 0
 	}
 done 
-
+ 
 # Check install of all dependencies
 # log debug Validating dependencies
 
@@ -43,8 +43,9 @@ switchenv "${PROJECT_ID}"
 #
 ##################################################
 
-juju scp "${MYDIR}/../var/licence.lic" saiku/0:/tmp/license.lic
-juju action do saiku/0 addlicense path=/tmp/license.lic
+
+juju scp "${MYDIR}/../var/license.lic" saiku/0:/tmp/license.lic
+juju action do saiku/0 addlicense path="/tmp/license.lic"
 
 ###################################################
 #
@@ -53,7 +54,7 @@ juju action do saiku/0 addlicense path=/tmp/license.lic
 ###################################################
 
 juju scp "${MYDIR}/../var/spark-store.sh" spark/0:/home/ubuntu/
-juju run spark/0 sudo /home/ubuntu/spark-store.sh
+juju ssh spark/0 sudo /home/ubuntu/spark-store.sh
 
 ###################################################
 #
@@ -62,7 +63,7 @@ juju run spark/0 sudo /home/ubuntu/spark-store.sh
 ###################################################
 
 juju scp "${MYDIR}/../var/mongodb-taxi.sh" mongodb/0:/home/ubuntu/
-juju run mongodb/0 "sudo /home/ubuntu/mongodb-taxi.sh"
+juju ssh mongodb/0 "sudo /home/ubuntu/mongodb-taxi.sh"
 
 ###################################################
 #

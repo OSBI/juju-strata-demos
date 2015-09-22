@@ -74,7 +74,8 @@ add-relation plugin hdfs-master
 #####################################################################
 
 # Services
-deploy apache-spark spark "mem=4G cpu-cores=2"
+# Note: we still on apache-spark-2 because it's Spark 1.3
+deploy apache-spark-2 spark "mem=4G cpu-cores=2"
 
 # Relations
 add-relation spark plugin
@@ -85,7 +86,7 @@ add-relation spark plugin
 #
 #####################################################################
 
-deploy cs:~f-tom-n/charms/trusty/spark-thrift thrift
+deploy cs:~f-tom-n/trusty/spark-thrift thrift
 add-relation spark:spark thrift:spark
 
 #####################################################################
@@ -106,7 +107,7 @@ add-relation spark:spark thrift:spark
 #add-relation mongos:mongos shard2:database
 #add-relation mongos:mongos shard3:database
 
-deploy mongodb mongodb "mem=4G cpu-cores=2 root-disk=16G"
+deploy mongodb mongodb "mem=4G cpu-cores=2 root-disk=32G"
 add-unit mongodb
 sleep 60
 add-unit mongodb
@@ -129,7 +130,7 @@ deploy cs:~f-tom-n/trusty/saikuanalytics-enterprise saiku
 
 # Relations
 add-relation tomcat saiku
-add-relation spark saiku
+add-relation spark:spark saiku:sparkdb
 
 # Expose
 expose tomcat

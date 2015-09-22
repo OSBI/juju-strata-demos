@@ -4,7 +4,7 @@ cd /home/ubuntu
 
 [ -f store.tgz ] || wget -c http://community.meteorite.bi/store.tgz -P /home/ubuntu
 
-[ -f store.par  ] || tar xvfz /home/ubuntu/store.tgz -C /home/ubuntu
+[ -d store.par  ] || tar xvfz /home/ubuntu/store.tgz -C /home/ubuntu
 
 su -c "hdfs dfs -put /home/ubuntu/store.par /user/ubuntu" ubuntu
 
@@ -14,7 +14,8 @@ su -c "hdfs dfs -put /home/ubuntu/store.par /user/ubuntu" ubuntu
 
 /usr/lib/spark/bin/beeline -u jdbc:hive2://localhost:10000 -e 'insert into table store select * from store2'
 
-rm -f store.tgz store.par
+rm -f store.tgz
+rm -rf store.par
 
 cd -
 
