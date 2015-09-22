@@ -86,3 +86,40 @@ add-relation flume-syslog flume-hdfs
 deploy rsyslog-forwarder-ha rsyslog-forwarder-ha
 juju add-relation rsyslog-forwarder-ha hdfs-master
 juju add-relation rsyslog-forwarder-ha flume-syslog
+
+#####################################################################
+#
+# Deploy Apache Spark & Zeppelin
+# https://jujucharms.com/apache-zeppelin
+# https://jujucharms.com/apache-spark 
+#
+# Note: Spark has to be 1.3.X for now, so we stick to rev 2. 
+#
+#####################################################################
+
+# Services
+# Note: we still on apache-spark-2 because it's Spark 1.3
+deploy apache-spark-2 spark "mem=4G cpu-cores=2"
+
+until [ "$(get-status spark)" = "started" ] 
+do 
+	log debug waiting for Spark to be up and running
+	sleep 30
+done
+
+# SPARK_MACHINE_ID=$(juju status spark --format tabular | grep "spark/0" | awk '{ print $5 }')
+
+deploy apache-zeppelin zeppelin
+
+# Relations
+add-relation spark plugin 
+add-relation spark zeppelin
+
+expose spark
+expose zeppelin
+
+sleep 30
+
+ZEPPELIN_IPADDRESS=$(juju status spark/0 --format tabular | grep zeppelin | tail -n1 | awk '{ print $6 }')
+log info You can now connect to Zeppelin on http://${ZEPPELIN_IPADDRESS}:9090
+

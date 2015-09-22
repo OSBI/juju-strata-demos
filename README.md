@@ -1,36 +1,75 @@
 #####################################################################
 #
-# Demo Name: Hadoop + Flume Syslog Sink Functionnality
-#
-# Notes: 
-# 
-# Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
+# Demo Name: [Hadoop](http://hadoop.apache.org/) + [Flume](http://flume.apache.org/) Syslog Sink Functionnality
 #
 #####################################################################
 
+Maintainer: Kevin Monroe @kwmonroe
+
+
+  * [Demo Name: <a href="http://hadoop.apache.org/">Hadoop</a>   <a href="http://flume.apache.org/">Flume</a> Syslog Sink Functionnality](#demo-name-hadoop--flume-syslog-sink-functionnality)
+  * [Purpose of the demo](#purpose-of-the-demo)
+  * [Main Services deployed](#main-services-deployed)
+    * [Hadoop Cluster](#hadoop-cluster)
+    * [Flume](#flume)
+    * [Spark](#spark)
+    * [Zeppelin](#zeppelin)
+  * [Usage](#usage)
+    * [Configuration](#configuration)
+    * [Bootstrapping](#bootstrapping)
+    * [Deploying](#deploying)
+    * [Demos](#demos)
+      * [HDFS Demo](#hdfs-demo)
+      * [Terasort demo](#terasort-demo)
+      * [Delete Terasort content](#delete-terasort-content)
+      * [Syslog demo](#syslog-demo)
+    * [Using the Zeppelin GUI](#using-the-zeppelin-gui)
+      * [Access to the GUI](#access-to-the-gui)
+    * [Resetting](#resetting)
+    * [Clean](#clean)
+  * [Sample Outputs](#sample-outputs)
+    * [Bootstrapping](#bootstrapping-1)
+    * [Deployment](#deployment)
+    * [HDFS Run](#hdfs-run)
+    * [Terasort Run](#terasort-run)
+    * [Delete Terasort Data](#delete-terasort-data)
+    * [Syslog Reading](#syslog-reading)
+    * [Reset](#reset)
+  * [Known Issues](#known-issues)
+    * [Syslog Reading](#syslog-reading-1)
+
 # Purpose of the demo
 
-This demo deploys Flume to ingest syslog data to HDFS, and test the functionality through various setups.
+This demo deploys [Flume](http://flume.apache.org/) to ingest syslog data to [HDFS](http://hadoop.apache.org/), and test the functionality through various setups.
 
-What we want to demonstrate is the ease of integration of a log collection system based on Hadoop with existing nodes in the system. Flume will act as a collector of nodes syslogs (in the example we only process the HDFS master logs but any number of nodes could be added), and ship them to an HDFS sink. 
+What we want to demonstrate is the ease of integration of a log collection system based on [Hadoop](http://hadoop.apache.org/) with existing nodes in the system. [Flume](http://flume.apache.org/) will act as a collector of nodes syslogs (in the example we only process the [HDFS](http://hadoop.apache.org/) master logs but any number of nodes could be added), and ship them to an [HDFS](http://hadoop.apache.org/) sink. 
 
 From there, you can imagine many scenarios where the data gets analysed in real time or batch. We do not go further than collecting the data. 
 
-# Main Services deployed
-## Hadoop Cluster
+The original blog post for this demo is available [here](https://github.com/juju-solutions/bigdata-community/blob/gh-pages/_drafts/syslog-analytics-with-apache-hadoop-flume.md)
 
-In this example the Hadoop Cluster is production ready. It has 2 HDFS namenodes (master & secondary), 3 compute slaves and a YARN Master. 
+# Main Services deployed
+## [Hadoop](http://hadoop.apache.org/) Cluster
+
+In this example the [Hadoop](http://hadoop.apache.org/) Cluster is production ready. It has 2 [HDFS](http://hadoop.apache.org/) namenodes (master & secondary), 3 compute slaves and a YARN Master. 
 
 It can scale out by adding more compute-slave units.
 
-## Flume 
+## [Flume](http://flume.apache.org/) 
 
-Flume is deployed with 3 subsystems: 
+[Flume](http://flume.apache.org/) is deployed with 3 subsystems: 
 
-* flume-hdfs, that connects a Flume stream to a HDFS sink, 
+* flume-hdfs, that connects a [Flume](http://flume.apache.org/) stream to a [HDFS](http://hadoop.apache.org/) sink, 
 * flume-syslog, that can take care of syslog data 
-* rsyslogforward-ha, which is not directly a Flume component but is used to forward syslog to our cluster. 
+* rsyslogforward-ha, which is not directly a [Flume](http://flume.apache.org/) component but is used to forward syslog to our cluster. 
 
+## [Spark](http://spark.apache.org/)
+
+[Spark](http://spark.apache.org/) is used here as a computing engine to do analytics on top of logs collected. 
+
+## [Zeppelin](https://zeppelin.incubator.apache.org/)
+
+[Zeppelin](https://zeppelin.incubator.apache.org/) is a notebook system edited by NFLabs. It allows to write and run code from your browser, on top of various compute engines, such as [Spark](http://spark.apache.org/) or Flink. 
 
 # Usage
 ## Configuration
@@ -54,15 +93,19 @@ Will set up the environment
 
 Will deploy the charms required for the demo
 
+You should have a GUI looking like 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/flume-ingestion/var/screenshots/juju-gui-001.png)
+
 ## Demos  
 
 All the scripts starting in "1X-XXXXXXX.sh" are demo scripts you can run
 
-### HDFS demo
+### [HDFS](http://hadoop.apache.org/) demo
 
     ./bin/10-run-hdfs.sh
 
-This is a simple demo that shows we can manipulate HDFS via CLI
+This is a simple demo that shows we can manipulate [HDFS](http://hadoop.apache.org/) via CLI
 
     $ ./bin/10-run-hdfs.sh 
     [Wed Sep 2 18:24:59 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
@@ -101,10 +144,30 @@ This deletes the output of the previous terasort demo.
 
     ./bin/13-read-syslog.sh
 
-This is interactive as the automation would be complex. The script will show a link to a file that contains the syslog data emitted by Flume. The user will then be asked to manually run a command (link provided) in order to check that data has really been sent to HDFS. 
+This is interactive as the automation would be complex. The script will show a link to a file that contains the syslog data emitted by [Flume](http://flume.apache.org/). The user will then be asked to manually run a command (link provided) in order to check that data has really been sent to [HDFS](http://hadoop.apache.org/). 
 
     $ ./bin/13-read-syslog.sh
  
+## Using the [Zeppelin](https://zeppelin.incubator.apache.org/) GUI
+### Access to the GUI
+
+You can find the [Zeppelin](https://zeppelin.incubator.apache.org/) GUI by running
+
+    $ juju status zeppelin/0 --format tabular | grep zeppelin | tail -n1 | awk '{ print $6 }'
+
+Then connecting on http://<ZEPPELIN_IP>:9090
+
+This should give you access to 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/flume-ingestion/var/screenshots/zeppelin-gui-001.png)
+
+From there you can hit the *[Zeppelin](https://zeppelin.incubator.apache.org/) Flume / HDFS Tutorial* and get to 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/flume-ingestion/var/screenshots/juju-gui-002.png)
+
+There you need to save the list of interpreters available, and you can thenhit the "play" button to have the demo run and display nice results. 
+
+Of course your can do the same for other demos. 
 
 ## Resetting 
 
@@ -158,7 +221,7 @@ Will completely rip of the environment and delete local files
     [Thu Sep 3 11:56:31 CEST 2015] [demo] [local0.debug] : Successfully created relation between rsyslog-forwarder-ha and hdfs-master
     [Thu Sep 3 11:56:32 CEST 2015] [demo] [local0.debug] : Successfully created relation between rsyslog-forwarder-ha and flume-syslog
 
-## HDFS Run
+## [HDFS](http://hadoop.apache.org/) Run
 
     $ ./bin/10-run-hdfs.sh 
     [Thu Sep 3 12:03:59 CEST 2015] [demo] [local0.debug] : Successfully switched to flume
@@ -196,11 +259,11 @@ Will completely rip of the environment and delete local files
             FILE: Number of read operations=0
             FILE: Number of large read operations=0
             FILE: Number of write operations=0
-            HDFS: Number of bytes read=252
-            HDFS: Number of bytes written=100000000
-            HDFS: Number of read operations=12
-            HDFS: Number of large read operations=0
-            HDFS: Number of write operations=6
+            [HDFS](http://hadoop.apache.org/): Number of bytes read=252
+            [HDFS](http://hadoop.apache.org/): Number of bytes written=100000000
+            [HDFS](http://hadoop.apache.org/): Number of read operations=12
+            [HDFS](http://hadoop.apache.org/): Number of large read operations=0
+            [HDFS](http://hadoop.apache.org/): Number of write operations=6
         Job Counters 
             Launched map tasks=3
             Other local map tasks=3
@@ -257,11 +320,11 @@ Will completely rip of the environment and delete local files
             FILE: Number of read operations=0
             FILE: Number of large read operations=0
             FILE: Number of write operations=0
-            HDFS: Number of bytes read=100000384
-            HDFS: Number of bytes written=100000000
-            HDFS: Number of read operations=18
-            HDFS: Number of large read operations=0
-            HDFS: Number of write operations=6
+            [HDFS](http://hadoop.apache.org/): Number of bytes read=100000384
+            [HDFS](http://hadoop.apache.org/): Number of bytes written=100000000
+            [HDFS](http://hadoop.apache.org/): Number of read operations=18
+            [HDFS](http://hadoop.apache.org/): Number of large read operations=0
+            [HDFS](http://hadoop.apache.org/): Number of write operations=6
         Job Counters 
             Launched map tasks=3
             Launched reduce tasks=3
@@ -319,44 +382,44 @@ Will completely rip of the environment and delete local files
 
     $ ./bin/13-read-syslog.sh 
     [Thu Sep 3 12:34:46 CEST 2015] [demo] [local0.debug] : Successfully switched to flume
-    For the next 3 minutes we will force the emission of logs ever 5 to 10s on the HDFS master
-    Now we list all FlumeData files available...
+    For the next 3 minutes we will force the emission of logs ever 5 to 10s on the [HDFS](http://hadoop.apache.org/) master
+    Now we list all [Flume](http://flume.apache.org/)Data files available...
     drwxr-xr-x   - flume supergroup          0 2015-09-03 10:10 /user/flume/flume-syslog/15-09-03
     drwxr-xr-x   - flume supergroup          0 2015-09-03 10:31 /user/flume/flume-syslog/15-09-03/10
-    -rw-r--r--   3 flume supergroup        607 2015-09-03 10:11 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275054285
-    -rw-r--r--   3 flume supergroup        981 2015-09-03 10:17 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275404446
-    -rw-r--r--   3 flume supergroup        988 2015-09-03 10:18 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275458441
-    -rw-r--r--   3 flume supergroup        663 2015-09-03 10:19 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275520432
-    -rw-r--r--   3 flume supergroup        299 2015-09-03 10:19 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275554886
-    -rw-r--r--   3 flume supergroup        663 2015-09-03 10:21 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275661839
-    -rw-r--r--   3 flume supergroup       1100 2015-09-03 10:24 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275886923
-    -rw-r--r--   3 flume supergroup        799 2015-09-03 10:25 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275886924
-    -rw-r--r--   3 flume supergroup       1084 2015-09-03 10:25 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926097
-    -rw-r--r--   3 flume supergroup       1116 2015-09-03 10:25 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926098
-    -rw-r--r--   3 flume supergroup       1071 2015-09-03 10:25 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926099
-    -rw-r--r--   3 flume supergroup       1185 2015-09-03 10:26 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926100
-    -rw-r--r--   3 flume supergroup       1120 2015-09-03 10:26 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926101
-    -rw-r--r--   3 flume supergroup       1084 2015-09-03 10:26 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926102
-    -rw-r--r--   3 flume supergroup       1116 2015-09-03 10:26 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926103
-    -rw-r--r--   3 flume supergroup       1071 2015-09-03 10:27 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926104
-    -rw-r--r--   3 flume supergroup       1185 2015-09-03 10:27 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926105
-    -rw-r--r--   3 flume supergroup       1120 2015-09-03 10:27 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926106
-    -rw-r--r--   3 flume supergroup       1084 2015-09-03 10:27 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926107
-    -rw-r--r--   3 flume supergroup       1007 2015-09-03 10:28 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441275926108
-    -rw-r--r--   3 flume supergroup       1084 2015-09-03 10:30 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441276197408
-    -rw-r--r--   3 flume supergroup       1116 2015-09-03 10:30 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441276197409
-    -rw-r--r--   3 flume supergroup       1071 2015-09-03 10:30 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441276197410
-    -rw-r--r--   3 flume supergroup        601 2015-09-03 10:31 /user/flume/flume-syslog/15-09-03/10/FlumeData.1441276197411
+    -rw-r--r--   3 flume supergroup        607 2015-09-03 10:11 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275054285
+    -rw-r--r--   3 flume supergroup        981 2015-09-03 10:17 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275404446
+    -rw-r--r--   3 flume supergroup        988 2015-09-03 10:18 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275458441
+    -rw-r--r--   3 flume supergroup        663 2015-09-03 10:19 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275520432
+    -rw-r--r--   3 flume supergroup        299 2015-09-03 10:19 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275554886
+    -rw-r--r--   3 flume supergroup        663 2015-09-03 10:21 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275661839
+    -rw-r--r--   3 flume supergroup       1100 2015-09-03 10:24 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275886923
+    -rw-r--r--   3 flume supergroup        799 2015-09-03 10:25 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275886924
+    -rw-r--r--   3 flume supergroup       1084 2015-09-03 10:25 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926097
+    -rw-r--r--   3 flume supergroup       1116 2015-09-03 10:25 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926098
+    -rw-r--r--   3 flume supergroup       1071 2015-09-03 10:25 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926099
+    -rw-r--r--   3 flume supergroup       1185 2015-09-03 10:26 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926100
+    -rw-r--r--   3 flume supergroup       1120 2015-09-03 10:26 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926101
+    -rw-r--r--   3 flume supergroup       1084 2015-09-03 10:26 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926102
+    -rw-r--r--   3 flume supergroup       1116 2015-09-03 10:26 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926103
+    -rw-r--r--   3 flume supergroup       1071 2015-09-03 10:27 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926104
+    -rw-r--r--   3 flume supergroup       1185 2015-09-03 10:27 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926105
+    -rw-r--r--   3 flume supergroup       1120 2015-09-03 10:27 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926106
+    -rw-r--r--   3 flume supergroup       1084 2015-09-03 10:27 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926107
+    -rw-r--r--   3 flume supergroup       1007 2015-09-03 10:28 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441275926108
+    -rw-r--r--   3 flume supergroup       1084 2015-09-03 10:30 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441276197408
+    -rw-r--r--   3 flume supergroup       1116 2015-09-03 10:30 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441276197409
+    -rw-r--r--   3 flume supergroup       1071 2015-09-03 10:30 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441276197410
+    -rw-r--r--   3 flume supergroup        601 2015-09-03 10:31 /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441276197411
     Connection to X.X.X.X closed.
-    Now copy the link to the latest FlumeData.<id> and run 'juju ssh flume-hdfs/0 hdfs dfs -tail -f <path-to-FlumeData>'
-    You should see lines of log that look like 'Sep  3 10:20:58 hdfs-master-0 FlumeDemo: Can you see me??'
+    Now copy the link to the latest [Flume](http://flume.apache.org/)Data.<id> and run 'juju ssh flume-hdfs/0 hdfs dfs -tail -f <path-to-[Flume](http://flume.apache.org/)Data>'
+    You should see lines of log that look like 'Sep  3 10:20:58 hdfs-master-0 [Flume](http://flume.apache.org/)Demo: Can you see me??'
 
-    $ juju ssh flume-hdfs/0 hdfs dfs -cat /user/flume/flume-syslog/15-09-03/10/FlumeData.1441276197410
+    $ juju ssh flume-hdfs/0 hdfs dfs -cat /user/flume/flume-syslog/15-09-03/10/[Flume](http://flume.apache.org/)Data.1441276197410
     <38>Sep  3 10:30:18 hdfs-master-0 sshd[23587]: Accepted publickey for ubuntu from 172.31.20.146 port 55588 ssh2: RSA 52:90:a0:9c:4d:bf:aa:5b:02:76:ce:b3:a3:2e:9c:e5
     <86>Sep  3 10:30:18 hdfs-master-0 sshd[23587]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
 
     ----------> THIS IS THE LINE WE WANT TO SEE <--------
-    <13>Sep  3 10:30:18 hdfs-master-0 FlumeDemo: Can you see me now Thu Sep 3 12:30:15 CEST 2015 ??
+    <13>Sep  3 10:30:18 hdfs-master-0 [Flume](http://flume.apache.org/)Demo: Can you see me now Thu Sep 3 12:30:15 CEST 2015 ??
     ----------> THIS IS THE LINE WE WANTED TO SEE <-----------
 
     <38>Sep  3 10:30:19 hdfs-master-0 sshd[23640]: Received disconnect from 172.31.20.146: 11: disconnected by user
@@ -364,7 +427,7 @@ Will completely rip of the environment and delete local files
     <35>Sep  3 10:30:26 hdfs-master-0 sshd[23642]: error: Could not load host key: /etc/ssh/ssh_host_ed25519_key
     <38>Sep  3 10:30:26 hdfs-master-0 sshd[23642]: Accepted publickey for ubuntu from 172.31.20.146 port 55589 ssh2: RSA 52:90:a0:9c:4d:bf:aa:5b:02:76:ce:b3:a3:2e:9c:e5
     <86>Sep  3 10:30:26 hdfs-master-0 sshd[23642]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
-    <13>Sep  3 10:30:27 hdfs-master-0 FlumeDemo: Can you see me now Thu Sep 3 12:30:23 CEST 2015 ??
+    <13>Sep  3 10:30:27 hdfs-master-0 [Flume](http://flume.apache.org/)Demo: Can you see me now Thu Sep 3 12:30:23 CEST 2015 ??
     Connection to 172.31.39.181 closed.
 
 ## Reset
@@ -379,6 +442,4 @@ Will completely rip of the environment and delete local files
 # Known Issues
 ## Syslog Reading
 
-For some reason, Flume is currently writing very small files to disk instead of big chunks. You may have to run the cat or tail on several files to get it to work. 
-
-
+For some reason, [Flume](http://flume.apache.org/) is currently writing very small files to disk instead of big chunks. You may have to run the cat or tail on several files to get it to work. 
