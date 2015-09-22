@@ -80,8 +80,10 @@ juju action do saiku/0 adddatasource content="type=OLAP\nname=taxi\ndriver=mondr
 
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/demo_1.saiku)" path="/homes/home:admin/demo_1.saiku"
 
+MONGODB_PRIVATE_IPADDRESS=$(juju run --unit mongodb/0 "hostname -i")
+
 juju action do saiku/0 addschema name=mongo content="$(cat ${MYDIR}/../var/mongo_schema.xml)"
 
-juju action do saiku/0 addschema name=mongo content="$(cat ${MYDIR}/../var/mongo_db)"
+juju action do saiku/0 addschema name=mongo content="$(sed -e s/MONGODB_HOST/${MONGODB_PRIVATE_IPADDRESS}/g ${MYDIR}/../var/mongo_db)"
 
 juju action do saiku/0 adddatasource content="type=OLAP\nname=taxi-mongo\ndriver=mondrian.olap4j.MondrianOlap4jDriver\nlocation=jdbc:mondrian:Jdbc=jdbc:calcite:model=mongo:///etc/mongoschema/taxi;Catalog=mondrian:///datasources/mongo.xml;JdbcDrivers=net.hydromatic.optiq.jdbc.Driver;\nusername=admin\npassword=admin"
