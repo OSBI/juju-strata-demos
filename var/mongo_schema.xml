@@ -4,14 +4,33 @@
         <Annotations xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></Annotations>
         <Dimensions>
             <Dimension source="Fares" visible="true"/>
+            <Dimension source="Time" visible="true"/>
         </Dimensions>
         <MeasureGroups>
             <MeasureGroup name="Default" table="fares">
                 <DimensionLinks>
                     <FactLink dimension="Fares"/>
+                    <FactLink dimension="Time"/>
                 </DimensionLinks>
                 <Measures>
                     <Measure aggregator="sum" column="total_amount" name="Total Amount" visible="true"/>
+                    <Measure aggregator="avg" column="total_amount" name="Average Total Amount" visible="true"/>
+                    <Measure aggregator="max" column="total_amount" name="Max Total Amount" visible="true"/>
+                    <Measure aggregator="sum" column="tolls_amount" name="Tolls Amount" visible="true"/>
+                    <Measure aggregator="avg" column="tolls_amount" name="Average Tolls Amount" visible="true"/>
+                    <Measure aggregator="max" column="tolls_amount" name="Max Tolls Amount" visible="true"/>
+                    <Measure aggregator="sum" column="tip_amount" name="Tip Amount" visible="true"/>
+                    <Measure aggregator="avg" column="tip_amount" name="Average Tip Amount" visible="true"/>
+                    <Measure aggregator="max" column="tip_amount" name="Max Tip Amount" visible="true"/>
+                    <Measure aggregator="sum" column="mta_tax" name="Tax Amount" visible="true"/>
+                    <Measure aggregator="avg" column="mta_tax" name="Average Tax Amount" visible="true"/>
+                    <Measure aggregator="max" column="mta_tax" name="Max Tax Amount" visible="true"/>
+                    <Measure aggregator="sum" column="surcharge" name="Surcharge Amount" visible="true"/>
+                    <Measure aggregator="avg" column="surcharge" name="Average Surcharge Amount" visible="true"/>
+                    <Measure aggregator="max" column="surcharge" name="Max Surcharge Amount" visible="true"/>
+                    <Measure aggregator="sum" column="fare_amount" name="Fare Amount" visible="true"/>
+                    <Measure aggregator="avg" column="fare_amount" name="Average Fare Amount" visible="true"/>
+                    <Measure aggregator="max" column="fare_amount" name="Max Fare Amount" visible="true"/>
                 </Measures>
             </MeasureGroup>
         </MeasureGroups>
@@ -46,6 +65,26 @@
             <Attribute hasHierarchy="true" levelType="Regular" name="Payment Type">
                 <Key>
                     <Column name="payment_type"/>
+                </Key>
+            </Attribute>
+        </Attributes>
+        <Hierarchies/>
+    </Dimension>
+    <Dimension key="ID" name="Time" table="fares" visible="true">
+        <Attributes>
+            <Attribute hasHierarchy="false" levelType="Regular" name="ID">
+                <Key>
+                    <Column name="id"/>
+                </Key>
+            </Attribute>
+            <Attribute hasHierarchy="true" levelType="Regular" name="Day">
+                <Key>
+                    <Column name="day"/>
+                </Key>
+            </Attribute>
+            <Attribute hasHierarchy="true" levelType="Regular" name="Hour">
+                <Key>
+                    <Column name="hour"/>
                 </Key>
             </Attribute>
         </Attributes>
