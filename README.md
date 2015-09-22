@@ -155,7 +155,7 @@ You can find the [Zeppelin](https://zeppelin.incubator.apache.org/) GUI by runni
 
     $ juju status zeppelin/0 --format tabular | grep zeppelin | tail -n1 | awk '{ print $6 }'
 
-Then connecting on http://<ZEPPELIN_IP>:9090
+Then connecting on http://ZEPPELIN_IP:9090
 
 This should give you access to 
 
