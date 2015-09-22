@@ -64,8 +64,8 @@ We run a small cluster of [MongoDB](https://www.mongodb.org/) (3 nodes for this 
 
 # Data Sources
 
-* taxi: We deploy a set of [taxi courses](http://84.40.61.82/trip_fare_1.csv.zip) to [MongoDB](https://www.mongodb.org/) that allow to do spatial analysis and also some analytics
-* Store: [Spark](http://spark.apache.org/) (HDFS) is fed with a standard Foodmart dataset
+* taxi fares: We deploy a set of [taxi fare](http://84.40.61.82/trip_fare_1.csv.zip) data to [MongoDB](https://www.mongodb.org/). This is similar to what you would find in an operational dataset for a Mongo cluster that backed a webservice or taxi logging data store. The data is fare information for NYC taxi's in Jan 2013 and allows users to perform cost/spend analysis over the data.
+* taxi trips: [Spark](http://spark.apache.org/) (HDFS) is fed with taxi journey information. This is intended to simulate a larger data set of semi structured data that would be stored in a HDFS cluster. The taxi journey includes information about the pickup point, drop off point, time taken etc to allow users to perform trip analysis.
 
 # Usage
 ## Configuration
