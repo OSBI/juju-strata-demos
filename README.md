@@ -40,6 +40,22 @@ Data is taken from Ubuntu Snappy devices sending data back to the [DeviceHive](h
 
 The simulator is a script that simulates a device and send values back to the cluster. These values can be "OK Values" and the behavior of the simulated device is OK, or "KO Values" and the cluster will think this device is broken or soon to be broken. 
 
+Simulators are deployed via charms, and you can connect to them with 
+
+    juju ssh simulator/0
+
+To start the simulator, do
+
+    $ cd /opt/dh-stream-simulator
+    $ ./start.sh
+
+
+Then if you want to stop it, 
+
+    $ ./stop.sh
+
+Have a look at the config.json file to change values if you'd like. 
+
 # Using the demo: Interfaces, GUIs... 
 ## DeviceHive
 
@@ -47,6 +63,12 @@ The [DeviceHive](http://devicehive.com/) charm is only exposed through [nginx](h
 
 * /admin will provide access to [DeviceHive](http://devicehive.com/) administration panel. Default credentials are dhadmin:dhadmin_#911
 * /api is the endpoint to send information back to [DeviceHive](http://devicehive.com/). 
+
+You can find the IP address by typing
+
+    juju pprint | grep nginx | awk '{ print $3 }'
+
+### API 
 
 In order to discover the version of the API and endpoints, you can curl the API: 
 
@@ -57,12 +79,45 @@ In order to discover the version of the API and endpoints, you can curl the API:
       "webSocketServerUrl": "ws://X.X.X.X/api/websocket"
     }
 
+### Admin GUI
+
+Once connected on http://DH_IPADDRESS/admin, and logged in you should see something like:
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/dataart/var/screenshots/dh-gui-001.png)
+
+The next step is to look at the "Devices" tab to access the list of available devices
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/dataart/var/screenshots/dh-gui-002.png)
+
+Then looking at the details, then "notifications" the list of the last 100 messages sent will be available. 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/dataart/var/screenshots/dh-gui-003.png)
+
 
 ## Zeppelin
 
 [Zeppelin](https://zeppelin.incubator.apache.org/) is a GUI that allows users to code in their browser for [Spark](https://spark.apache.org/) and other execution backends (Flink...). It opens an interface on port 8090 by default. You can connect directly on that interface once the service is exposed. 
 
-Once [Zeppelin](https://zeppelin.incubator.apache.org/) is exposed, you should copy-paste the code in var/zeppelin-code in a new note, then make sure the ZOOKEEPER_HOST is set properly to the URL set in the charm. Then you can run it. 
+You can find the UP address by typing 
+
+    juju pprint | grep zeppelin | awk '{ print $3 }'
+
+The GUI on http://ZEPPELIN_IPADDRESS should look like 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/dataart/var/screenshots/zeppelin-gui-001.png)
+
+You should copy-paste the code in var/zeppelin-code in a new note, then make sure the zkUrl property is set properly to the URL set in the charm. Then you can run it. 
+
+To find the zkURL value by typing
+
+    juju ssh zookeeper/0 hostname -i
+
+This will give you an internal IP address (X.X.X.X) for the ZooKeeper host. the zkUrl is then X.X.X.X:2181. Once set, press the little "play" button in the top right corner and you should get a cool real time visualization of notifications coming up
+
+It should then look like t
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/dataart/var/screenshots/zeppelin-gui-001.png)
+
 
 # Usage
 ## Configuration
