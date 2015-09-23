@@ -1,37 +1,34 @@
 #####################################################################
 #
-# Demo Name: Hadoop & Spark Functionnality
-#
-# Notes: 
-# 
-# Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
+# Demo Name: [Hadoop](https://hadoop.apache.org/) & [Spark](https://spark.apache.org/) Functionnality
 #
 #####################################################################
 
+Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com> 
+
 # Purpose of the demo
 
-This demo aims at deploying Spark on YARN, and test the functionality through various setups and GUIs.
-
+This demo aims at deploying [Spark](https://spark.apache.org/) on YARN, and test the functionality through various setups and GUIs.
 
 # Main Services deployed
-## Hadoop Cluster
+## [Hadoop](https://hadoop.apache.org/) Cluster
 
-In this example the Hadoop Cluster is production ready. It has 2 HDFS namenodes (master & secondary), 3 compute slaves and a YARN Master. 
+In this example the [Hadoop](https://hadoop.apache.org/) Cluster is production ready. It has 2 HDFS namenodes (master & secondary), 3 compute slaves and a YARN Master. 
 
 It can scale out by adding more compute-slave units.
 
-## Spark 
+## [Spark](https://spark.apache.org/) 
 
-Spark is deployed and connected to YARN to scale to all HDFS nodes. 
+[Spark](https://spark.apache.org/) is deployed and connected to YARN to scale to all HDFS nodes. 
 
 ## GUIs
-### Zeppelin
+### [Zeppelin](https://zeppelin.incubator.apache.org/)
 
-Zeppelin (from NFLabs) is deployed on the Spark unit, and provides an interface to publish Spark Apps into Spark in real time. 
+[Zeppelin](https://zeppelin.incubator.apache.org/) (from NFLabs) is deployed on the [Spark](https://spark.apache.org/) unit, and provides an interface to publish [Spark](https://spark.apache.org/) Apps into [Spark](https://spark.apache.org/) in real time. 
 
-### iPython Notebook
+### [iPython Notebook](http://ipython.org/notebook.html)
 
-iPython Notebook is deployed on the Spark unit, and also provides an interface to publish Spark Apps into Spark in real time. 
+[iPython Notebook](http://ipython.org/notebook.html) is deployed on the [Spark](https://spark.apache.org/) unit, and also provides an interface to publish [Spark](https://spark.apache.org/) Apps into [Spark](https://spark.apache.org/) in real time. 
 
 
 # Usage
@@ -52,7 +49,7 @@ Will set up the environment
 
 ## Deploying  
 
-	./bin/01-deploy-apache-spark.sh
+	./bin/01-deploy-apache-[Spark](https://spark.apache.org/).sh
 
 Will deploy the charms required for the demo
 
@@ -60,28 +57,28 @@ Will deploy the charms required for the demo
 
 All the scripts starting in "1X-XXXXXXX.sh" are demo scripts you can run
 
-### Spark Pi demo
+### [Spark](https://spark.apache.org/) Pi demo
 
-	./bin/10-run-sparkpi.sh
+	./bin/10-run-[Spark](https://spark.apache.org/)pi.sh
 
-This will run a Spark Application that computes Pi to a given decimal. 
+This will run a [Spark](https://spark.apache.org/) Application that computes Pi to a given decimal. 
 
-    $ ./bin/10-run-sparkpi.sh 
+    $ ./bin/10-run-[Spark](https://spark.apache.org/)pi.sh 
     [Wed Sep 2 18:21:12 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
     Warning: Permanently added 'X.X.X.X' (ECDSA) to the list of known hosts.
     Warning: Permanently added 'Y.Y.Y.Y' (ECDSA) to the list of known hosts.
-    Spark assembly has been built with Hive, including Datanucleus jars on classpath
+    [Spark](https://spark.apache.org/) assembly has been built with Hive, including Datanucleus jars on classpath
     Pi is roughly 3.141056                                                                                                                                       
     Connection to Y.Y.Y.Y closed.
 
 
-### Zeppelin demo
+### [Zeppelin](https://zeppelin.incubator.apache.org/) demo
 
-    ./bin/11-run-zeppelin.sh
+    ./bin/11-run-[Zeppelin](https://zeppelin.incubator.apache.org/).sh
 
-This will give you the URL to connect to to start using Zeppelin
+This will give you the URL to connect to to start using [Zeppelin](https://zeppelin.incubator.apache.org/)
 
-    $ ./bin/11-run-zeppelin.sh 
+    $ ./bin/11-run-[Zeppelin](https://zeppelin.incubator.apache.org/).sh 
     [Wed Sep 2 18:22:53 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
     [Wed Sep 2 18:22:54 CEST 2015] [demo] [local0.info] : Point your browser at http://X.X.X.X:9090
 
@@ -90,7 +87,7 @@ This will give you the URL to connect to to start using Zeppelin
 
     ./bin/12-run-notebook.sh
 
-This will give you the URL to connect to to start using iPython Notebook
+This will give you the URL to connect to to start using [iPython Notebook](http://ipython.org/notebook.html)
 
     $ ./bin/12-run-notebook.sh 
     [Wed Sep 2 18:23:25 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
@@ -107,14 +104,14 @@ This is a simple demo that shows we can manipulate HDFS via CLI
     Warning: Permanently added 'X.X.X.X' (ECDSA) to the list of known hosts.
     Warning: Permanently added 'X.X.X.X' (ECDSA) to the list of known hosts.
     Found 3 items
-    drwxr-xr-x   - hdfs   supergroup          0 2015-09-02 16:05 /tmp/hadoop
-    drwxrwxrwt   - hdfs   supergroup          0 2015-09-02 16:05 /tmp/hadoop-yarn
+    drwxr-xr-x   - hdfs   supergroup          0 2015-09-02 16:05 /tmp/[Hadoop](https://hadoop.apache.org/)
+    drwxrwxrwt   - hdfs   supergroup          0 2015-09-02 16:05 /tmp/[Hadoop](https://hadoop.apache.org/)-yarn
     drwxrwxrwx   - ubuntu supergroup          0 2015-09-02 16:25 /tmp/hdfs-test
     15/09/02 16:25:15 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 0 minutes, Emptier interval = 0 minutes.
     Deleted /tmp/hdfs-test
     Found 2 items
-    drwxr-xr-x   - hdfs supergroup          0 2015-09-02 16:05 /tmp/hadoop
-    drwxrwxrwt   - hdfs supergroup          0 2015-09-02 16:05 /tmp/hadoop-yarn
+    drwxr-xr-x   - hdfs supergroup          0 2015-09-02 16:05 /tmp/[Hadoop](https://hadoop.apache.org/)
+    drwxrwxrwt   - hdfs supergroup          0 2015-09-02 16:05 /tmp/[Hadoop](https://hadoop.apache.org/)-yarn
     Connection to X.X.X.X closed.
 
 
@@ -169,7 +166,7 @@ This runs terasort on our bundle.
             Physical memory (bytes) snapshot=557150208
             Virtual memory (bytes) snapshot=2500542464
             Total committed heap usage (bytes)=297271296
-        org.apache.hadoop.examples.terasort.TeraGen$Counters
+        org.apache.[Hadoop](https://hadoop.apache.org/).examples.terasort.TeraGen$Counters
             CHECKSUM=2148987642402270
         File Input Format Counters 
             Bytes Read=0
@@ -282,7 +279,7 @@ Will completely rip of the environment and delete local files
 
 ## Deployment
 
-    :~$ ./bin/01-deploy-apache-spark.sh 
+    :~$ ./bin/01-deploy-apache-[Spark](https://spark.apache.org/).sh 
     [Wed Sep 2 18:00:04 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
     [Wed Sep 2 18:00:16 CEST 2015] [demo] [local0.debug] : Successfully deployed hdfs-master
     [Wed Sep 2 18:00:19 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=7G cpu-cores=2 root-disk=32G" for hdfs-master
@@ -300,14 +297,14 @@ Will completely rip of the environment and delete local files
     [Wed Sep 2 18:01:33 CEST 2015] [demo] [local0.debug] : Successfully created relation between compute-slave and hdfs-master
     [Wed Sep 2 18:01:36 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and yarn-master
     [Wed Sep 2 18:01:37 CEST 2015] [demo] [local0.debug] : Successfully created relation between plugin and hdfs-master
-    [Wed Sep 2 18:01:48 CEST 2015] [demo] [local0.debug] : Successfully deployed spark
-    [Wed Sep 2 18:01:51 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=3G cpu-cores=2" for spark
-    [Wed Sep 2 18:01:52 CEST 2015] [demo] [local0.debug] : Successfully created relation between spark and plugin
-    [Wed Sep 2 18:01:57 CEST 2015] [demo] [local0.debug] : Successfully deployed zeppelin
-    [Wed Sep 2 18:01:58 CEST 2015] [demo] [local0.debug] : Successfully created relation between between spark and zeppelin
-    [Wed Sep 2 18:01:59 CEST 2015] [demo] [local0.debug] : Successfully exposed zeppelin
+    [Wed Sep 2 18:01:48 CEST 2015] [demo] [local0.debug] : Successfully deployed [Spark](https://spark.apache.org/)
+    [Wed Sep 2 18:01:51 CEST 2015] [demo] [local0.debug] : Successfully set constraints "mem=3G cpu-cores=2" for [Spark](https://spark.apache.org/)
+    [Wed Sep 2 18:01:52 CEST 2015] [demo] [local0.debug] : Successfully created relation between [Spark](https://spark.apache.org/) and plugin
+    [Wed Sep 2 18:01:57 CEST 2015] [demo] [local0.debug] : Successfully deployed [Zeppelin](https://zeppelin.incubator.apache.org/)
+    [Wed Sep 2 18:01:58 CEST 2015] [demo] [local0.debug] : Successfully created relation between between [Spark](https://spark.apache.org/) and [Zeppelin](https://zeppelin.incubator.apache.org/)
+    [Wed Sep 2 18:01:59 CEST 2015] [demo] [local0.debug] : Successfully exposed [Zeppelin](https://zeppelin.incubator.apache.org/)
     [Wed Sep 2 18:02:02 CEST 2015] [demo] [local0.debug] : Successfully deployed notebook
-    [Wed Sep 2 18:02:03 CEST 2015] [demo] [local0.debug] : Successfully created relation between between spark and notebook
+    [Wed Sep 2 18:02:03 CEST 2015] [demo] [local0.debug] : Successfully created relation between between [Spark](https://spark.apache.org/) and notebook
     [Wed Sep 2 18:02:04 CEST 2015] [demo] [local0.debug] : Successfully exposed notebook
 
 ## Reset
