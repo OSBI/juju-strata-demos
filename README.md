@@ -59,26 +59,26 @@ All the scripts starting in "1X-XXXXXXX.sh" are demo scripts you can run
 
 ### [Spark](https://spark.apache.org/) Pi demo
 
-	./bin/10-run-[Spark](https://spark.apache.org/)pi.sh
+	./bin/10-run-sparkpi.sh
 
 This will run a [Spark](https://spark.apache.org/) Application that computes Pi to a given decimal. 
 
-    $ ./bin/10-run-[Spark](https://spark.apache.org/)pi.sh 
+    $ ./bin/10-run-sparkpi.sh 
     [Wed Sep 2 18:21:12 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
     Warning: Permanently added 'X.X.X.X' (ECDSA) to the list of known hosts.
     Warning: Permanently added 'Y.Y.Y.Y' (ECDSA) to the list of known hosts.
-    [Spark](https://spark.apache.org/) assembly has been built with Hive, including Datanucleus jars on classpath
+    Spark assembly has been built with Hive, including Datanucleus jars on classpath
     Pi is roughly 3.141056                                                                                                                                       
     Connection to Y.Y.Y.Y closed.
 
 
 ### [Zeppelin](https://zeppelin.incubator.apache.org/) demo
 
-    ./bin/11-run-[Zeppelin](https://zeppelin.incubator.apache.org/).sh
+    ./bin/11-run-zeppelin.sh
 
 This will give you the URL to connect to to start using [Zeppelin](https://zeppelin.incubator.apache.org/)
 
-    $ ./bin/11-run-[Zeppelin](https://zeppelin.incubator.apache.org/).sh 
+    $ ./bin/11-run-zeppelin.sh 
     [Wed Sep 2 18:22:53 CEST 2015] [demo] [local0.debug] : Successfully switched to canonical
     [Wed Sep 2 18:22:54 CEST 2015] [demo] [local0.info] : Point your browser at http://X.X.X.X:9090
 

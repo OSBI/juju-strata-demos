@@ -76,7 +76,7 @@ add-relation plugin hdfs-master
 #####################################################################
 
 # Deploy Spark
-deploy apache-spark spark "mem=3G cpu-cores=2"
+deploy apache-spark-2 spark "mem=3G cpu-cores=2"
 
 # Relations
 add-relation spark plugin
