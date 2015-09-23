@@ -12,14 +12,14 @@ Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com>
 
 [Datafari](http://www.datafari.com/en/) leverages several Apache building blocks, and integrates them to make your life easier. Modular, reliable and documented, [Datafari](http://www.datafari.com/en/) can be used as a content management solution, but it can also be used as a product for a third party solution.
 
-* Apache Solr 4: A scalability for up to hundreds of millions of documents, advanced functionnalities (facets, autocompletion, suggestions...)
+* Apache [Solr](http://lucene.apache.org/solr/) 4: A scalability for up to hundreds of millions of documents, advanced functionnalities (facets, autocompletion, suggestions...)
 * Apache [Manifold](https://manifoldcf.apache.org/)CF: secured connectors for the main data sources.
 * AjaxFranceLabs: a graphical framework in HTML5/Javascript
 
 # Main Services deployed
 ## [Datafari](http://www.datafari.com/en/)
 
-[Datafari](http://www.datafari.com/en/) is a charm developed by France Labs, a member of our Charm Partner Programme. It is not yet published to the charm store, but this is a roadmapped evolution. More information on [their website](http://www.[Datafari](http://www.datafari.com/en/).com)
+[Datafari](http://www.datafari.com/en/) is a charm developed by France Labs, a member of our Charm Partner Programme. It is not yet published to the charm store, but this is a roadmapped evolution. More information on [their website](http://www.datafari.com/en/)
 
 ## [Hadoop](https://hadoop.apache.org/) Cluster
 
@@ -71,6 +71,13 @@ Will reset the environment but keep it alive.
 Will completely rip of the environment and delete local files
 
 # Validation Check and GUIs
+## Juju GUI 
+
+The GUI for this demo should look like 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/datafari/var/screenshots/juju-gui-001.png)
+
+
 ## [Datafari](http://www.datafari.com/en/) GUI Access
 
 Once deployed, you can connect on the [Datafari](http://www.datafari.com/en/) unit on port 8080 (by default) 
@@ -131,33 +138,29 @@ In this demo we focus on [Hadoop](https://hadoop.apache.org/), but many search t
  
 ## Using [Hadoop](https://hadoop.apache.org/)
 
-[Hadoop](https://hadoop.apache.org/) uses a directory tree structure stored in HDFS.
+[Hadoop](https://hadoop.apache.org/) uses a directory tree structure stored in HDFS. In this specific cas we only use it as a data store, hence there are not much computations that we can need
 
 Let's list what's inside our tree structure using the HDFS command line:
 
-    $ hdfs dfs -ls -R /user/ubuntu
-    drwxr-xr-x   - ubuntu supergroup          0 2015-09-08 10:19 /user/ubuntu/inventory_fact_1998
-    -rw-r--r--   3 ubuntu supergroup     330223 2015-09-08 10:19 /user/ubuntu/inventory_fact_1998/inventory_fact_1998.csv
-    drwxr-xr-x   - ubuntu supergroup          0 2015-09-08 10:20 /user/ubuntu/product
-    -rw-r--r--   3 ubuntu supergroup     153791 2015-09-08 10:20 /user/ubuntu/product/product.csv
-    drwxr-xr-x   - ubuntu supergroup          0 2015-09-08 10:19 /user/ubuntu/product_class
-    -rw-r--r--   3 ubuntu supergroup       5043 2015-09-08 10:19 /user/ubuntu/product_class/product_class.csv
-    drwxr-xr-x   - ubuntu supergroup          0 2015-09-08 10:19 /user/ubuntu/time_by_day
-    -rw-r--r--   3 ubuntu supergroup      43940 2015-09-08 10:19 /user/ubuntu/time_by_day/time_by_day.csv
-    drwxr-xr-x   - ubuntu supergroup          0 2015-09-08 08:25 /user/ubuntu/warehouse
-
-And we can read inside one file with 
-
-    ubuntu@plugin-2:/home/ubuntu$ hdfs dfs -cat /user/ubuntu/product_class/product_class.csv
-    1,Nuts,Specialty,Produce,Food
-    2,Shellfish,Seafood,Seafood,Food
-    3,Canned Fruit,Fruit,Canned Products,Food
-    4,Spices,Baking Goods,Baking Goods,Food
-    5,Pasta,Starchy Foods,Starchy Foods,Food
-    6,Yogurt,Dairy,Dairy,Food
-    7,Coffee,Dry Goods,Baking Goods,Drink
-    8,Deli Meats,Meat,Deli,Food
-    9,Ice Cream,Frozen Desserts,Frozen Foods,Food
+    $ hdfs dfs -ls -R /
+    drwxr-xr-x   - ubuntu supergroup          0 2015-09-23 06:10 /dataset
+    -rw-r--r--   1 ubuntu supergroup      26624 2015-09-23 06:10 /dataset/EEMC-EPMIsla.doc
+    -rw-r--r--   1 ubuntu supergroup      44032 2015-09-23 06:10 /dataset/EEMCLabelMid-8.01.doc
+    -rw-r--r--   1 ubuntu supergroup      26624 2015-09-23 06:10 /dataset/EEO.doc
+    -rw-r--r--   1 ubuntu supergroup     306688 2015-09-23 06:10 /dataset/EES Board 3Q r10 Blue steffes.ppt
+    -rw-r--r--   1 ubuntu supergroup      74752 2015-09-23 06:10 /dataset/EITF 97-10.doc
+    -rw-r--r--   1 ubuntu supergroup      60950 2015-09-23 06:10 /dataset/EIX092600.pdf
+    -rw-r--r--   1 ubuntu supergroup     399872 2015-09-23 06:10 /dataset/EKflyer2001.doc
+    -rw-r--r--   1 ubuntu supergroup     142336 2015-09-23 06:10 /dataset/ENA Upstream ( Master).doc
+    -rw-r--r--   1 ubuntu supergroup      28672 2015-09-23 06:10 /dataset/ENRON CORP Guaranty (Reliant).doc
+    -rw-r--r--   1 ubuntu supergroup      20992 2015-09-23 06:10 /dataset/EOL adds HoustonStreet.doc
+    -rw-r--r--   1 ubuntu supergroup      19456 2015-09-23 06:10 /dataset/EOL adds.doc
+    -rw-r--r--   1 ubuntu supergroup     382210 2015-09-23 06:10 /dataset/EOL_A4_Intl Sea Freight.pdf
+    -rw-r--r--   1 ubuntu supergroup      37888 2015-09-23 06:10 /dataset/EPNG Capacity Proposal II.doc
+    -rw-r--r--   1 ubuntu supergroup      35840 2015-09-23 06:10 /dataset/EPNG Capacity Proposal II1.doc
+    -rw-r--r--   1 ubuntu supergroup      57856 2015-09-23 06:10 /dataset/EPower Implementation Plan.doc
+    -rw-r--r--   1 ubuntu supergroup     348160 2015-09-23 06:10 /dataset/ERCOT Transmission Treia.ppt
+    -rw-r--r--   1 ubuntu supergroup      23040 2015-09-23 06:10 /dataset/ERCOT UBU Seller's Choice amend 5-21-01.doc
 
 # Sample Outputs
 ## Bootstrapping
