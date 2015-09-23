@@ -67,6 +67,23 @@ deploy cs:~x3v947pl/trusty/zeppelin-dh zeppelin --constraints="mem=4G cpu-cores=
 # Deploy Spark
 deploy cs:~x3v947pl/trusty/spark-dh spark --constraints="mem=4G cpu-cores=4"
 
+# Deploy Simulator from Git
+# Download the Git repository for quasardb charm
+[ -d "${MYDIR}/../tmp/charms/trusty" ] && rm -rf "${MYDIR}/../tmp/charms/trusty/*" \
+	|| mkdir -p "${MYDIR}/../tmp/charms/trusty"
+
+cd "${MYDIR}/../tmp/charms/trusty"
+git clone https://github.com/"${DHSIMULATOR_CHARM_GIT_REPO}".git "${DHSIMULATOR_CHARM_NAME}" 1>/dev/null 2>/dev/null \
+  && log debug Succesfully cloned "${DHSIMULATOR_CHARM_GIT_REPO}".git \
+  || log err Could not clone "${DHSIMULATOR_CHARM_GIT_REPO}".git
+DHSIMULATOR_CHARM_REPO="${MYDIR}/../tmp/charms"
+cd -
+
+# Now deploying Datafari
+juju deploy --repository "${DHSIMULATOR_CHARM_REPO}" --constraints "${DHSIMULATOR_CONSTRAINTS}" local:"trusty/${DHSIMULATOR_CHARM_NAME}" 2>/dev/null \
+  && log debug deployed ${DHSIMULATOR_CHARM_NAME} \
+  || log crit Could not deploy ${DHSIMULATOR_CHARM_NAME}
+
 # Relations
 add-relation zookeeper:ka kafka:zk
 add-relation devicehive:pg postgresql:dh
@@ -75,6 +92,7 @@ add-relation zookeeper devicehice
 add-relation kafka:dh devicehive:ka
 add-relation zeppelin zookeeper
 add-relation zeppelin spark
+add-relation "${DHSIMULATOR_CHARM_NAME}" devicehive
 
 # Expose
 expose nginx

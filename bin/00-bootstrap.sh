@@ -61,7 +61,6 @@ juju expose juju-gui 2>/dev/null \
 
 # Adding SSH Keys for our demo users
 juju authorized-keys import samuel-cozannet
-juju authorized-keys import asanjar
 juju authorized-keys import admcleod
 juju authorized-keys import kwmonroe
 juju authorized-keys import johnsca

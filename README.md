@@ -8,33 +8,33 @@ Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com>
 
 # Purpose of the demo
 
-DeviceHive makes any connected device part of the Internet of Things. It provides the communication layer, control software and multi-platform libraries to bootstrap development of smart energy, home automation, remote sensing, telemetry, remote control and monitoring software, and much more. Leave communications to DeviceHive and focus on product and innovation. Learn more at: http://devicehive.com
+[DeviceHive](http://devicehive.com/) makes any connected device part of the Internet of Things. It provides the communication layer, control software and multi-platform libraries to bootstrap development of smart energy, home automation, remote sensing, telemetry, remote control and monitoring software, and much more. Leave communications to [DeviceHive](http://devicehive.com/) and focus on product and innovation. Learn more at: http://devicehive.com
 
 # Main Services deployed
-## nginx
+## Nginx
 
-nginx is used as a Load Balancer and Router between DeviceHive instances. It allows to scale out the deployment. 
+[nginx](http://nginx.org/) is used as a Load Balancer and Router between [DeviceHive](http://devicehive.com/) instances. It allows to scale out the deployment. 
 
 ## DeviceHive
 
-DeviceHive is the main Java server, which is listening for notifications from connected devices and sends them to Kafka nodes. 
+[DeviceHive](http://devicehive.com/) is the main Java server, which is listening for notifications from connected devices and sends them to [Kafka](http://kafka.apache.org/) nodes. 
 
 ## PostgreSQL
 
-PostgreSQL is used as the default database to store information about the deployment, user authentication, devices, networks and other metadata.
+[PostgreSQL](http://www.postgresql.org/) is used as the default database to store information about the deployment, user authentication, devices, networks and other metadata.
 
-## Kafka Cluster 
+## Kafka
 
-Kafka is used to maintain a stream of pubsub messages available at any time. 
+[Kafka](http://kafka.apache.org/) is used to maintain a stream of pubsub messages available at any time. 
 
 ## Spark / Zeppelin
 
-Spark Streaming and Zeppelin are used to provide a programming interface to the cluster. 
+[Spark](https://spark.apache.org/) Streaming and [Zeppelin](https://zeppelin.incubator.apache.org/) are used to provide a programming interface to the cluster. 
  
 # Data Sources
 ## Snappy
 
-Data is taken from Ubuntu Snappy devices sending data back to the DeviceHive API. 
+Data is taken from Ubuntu Snappy devices sending data back to the [DeviceHive](http://devicehive.com/) API. 
 
 ## Simulator
 
@@ -43,10 +43,10 @@ The simulator is a script that simulates a device and send values back to the cl
 # Using the demo: Interfaces, GUIs... 
 ## DeviceHive
 
-The DeviceHive charm is only exposed through nginx. It will answer on port 80 on 2 routes: 
+The [DeviceHive](http://devicehive.com/) charm is only exposed through [nginx](http://nginx.org/). It will answer on port 80 on 2 routes: 
 
-* /admin will provide access to DeviceHive administration panel. Default credentials are dhadmin:dhadmin_#911
-* /api is the endpoint to send information back to DeviceHive. 
+* /admin will provide access to [DeviceHive](http://devicehive.com/) administration panel. Default credentials are dhadmin:dhadmin_#911
+* /api is the endpoint to send information back to [DeviceHive](http://devicehive.com/). 
 
 In order to discover the version of the API and endpoints, you can curl the API: 
 
@@ -60,9 +60,9 @@ In order to discover the version of the API and endpoints, you can curl the API:
 
 ## Zeppelin
 
-Zeppelin is a GUI that allows users to code in their browser for Spark and other execution backends (Flink...). It opens an interface on port 8090 by default. You can connect directly on that interface once the service is exposed. 
+[Zeppelin](https://zeppelin.incubator.apache.org/) is a GUI that allows users to code in their browser for [Spark](https://spark.apache.org/) and other execution backends (Flink...). It opens an interface on port 8090 by default. You can connect directly on that interface once the service is exposed. 
 
-Once Zeppelin is exposed, you should copy-paste the code in var/zeppelin-code in a new note, then make sure the ZOOKEEPER_HOST is set properly to the URL set in the charm. Then you can run it. 
+Once [Zeppelin](https://zeppelin.incubator.apache.org/) is exposed, you should copy-paste the code in var/zeppelin-code in a new note, then make sure the ZOOKEEPER_HOST is set properly to the URL set in the charm. Then you can run it. 
 
 # Usage
 ## Configuration
