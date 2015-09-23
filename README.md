@@ -130,6 +130,14 @@ Will deploy the charms required for the demo
 
 Will install datasources into each database and run actions to install them into [SpagoBI](http://www.spagobi.org/). 
 
+Now once that is done, you will need to import a data set. Login as the biadmin user and hit the last button (that looks like a palet) of the upper left hand toolbar. 
+
+You will get on a screen like
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-009.png)
+
+Upload the file var/spagobi-demo.zip to get access to the visualizations and cockpits. Select "Default Associations" as the option. 
+
 ## Resetting 
 
 	./bin/50-reset.sh
@@ -206,6 +214,21 @@ In our example, among others, we can see
 Hitting any of these will run the query against data sets and sources, and display a view. Below is the example of the spatial analysis
 
 ![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-007.png)
+
+### Dashboards
+
+Using the same folder image, in the tree select "biadmin"
+
+You can now see a cockpit named "DashBoard". Open it to access the below screen 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-008.png)
+
+What is interesting on this view is that 
+
+* The sales & cost graph comes from MySQL
+* The product Classes come from Cassandra
+* The Warehouses costs pie comes from Hive (Hadoop + Hive) 
+* The store locations come from MongoDB
 
 ### Conclusion
 

@@ -53,7 +53,7 @@ deploy apache-hadoop-hdfs-master hdfs-master "mem=4G cpu-cores=2 root-disk=32G"
 deploy apache-hadoop-yarn-master yarn-master "mem=2G cpu-cores=2"
 
 # Now deploying ZK Server
-deploy apache-zookeeper zookeeper mem=2G cpu-cores=2
+deploy apache-zookeeper zookeeper "mem=2G cpu-cores=2"
 add-unit zookeeper 2
 
 # Deploy Compute slaves

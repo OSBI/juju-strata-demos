@@ -35,6 +35,8 @@ if [ $(is_sudoer) -eq 0 ]; then
 	die "You must be root or sudo to run this script"
 fi
 
+[ ! -d "${MYDIR}/../tmp" ] && mkdir -p "${MYDIR}/../tmp"
+
 # Check install of all dependencies
 # log debug Validating dependencies
 
@@ -119,6 +121,7 @@ sleep 5
 juju scp "${TARGET_UNIT}":/home/ubuntu/cqlshrc "${MYDIR}/../tmp/cqlshrc"
 juju ssh "${TARGET_UNIT}" sudo rm -f /home/ubuntu/cqlshrc
 
+
 C_USERNAME=$(grep "username" "${MYDIR}/../tmp/cqlshrc" | cut -f3 -d' ')
 C_PASSWORD=$(grep "password" "${MYDIR}/../tmp/cqlshrc" | cut -f3 -d' ')
 
@@ -138,9 +141,9 @@ juju action do spagobi/0 add-datasource unitname="${TARGET_UNIT}" database="${DA
 juju ssh ${TARGET_UNIT} wget -c "https://s3-us-west-2.amazonaws.com/samnco-static-files/demos/hbase/mapPhoenix.jar"
 juju scp "${DATADIR}/${WORKLOAD}/${DATASET}.sql" "${TARGET_UNIT}":/home/ubuntu/
 
-ZK=$(juju ssh ${TARGET_UNIT} cat /etc/hbase/conf/hbase-site.xml | grep "value" | cut -f2 -d">" | cut -f1 -d"<" | tail -n1)
+# ZK=$(juju ssh ${TARGET_UNIT} cat /etc/hbase/conf/hbase-site.xml | grep "value" | cut -f2 -d">" | cut -f1 -d"<" | tail -n1)
 
-juju ssh ${TARGET_UNIT} java -jar mapPhoenix.jar ${ZK}:2181:/hbase
+# juju ssh ${TARGET_UNIT} java -jar mapPhoenix.jar ${ZK}:2181:/hbase
 
 #####################################################################
 #
