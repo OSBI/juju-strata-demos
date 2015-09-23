@@ -40,5 +40,3 @@ Thumbs.db
 # TMP Files #
 #############
 tmp/*.*
-tmp/cqlshrc
-tmp/mysql.passwd

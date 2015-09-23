@@ -53,7 +53,6 @@ add-unit hadoop-slavecluster 2
 add-relation hadoop-master:namenode hadoop-slavecluster:datanode
 add-relation hadoop-master:resourcemanager hadoop-slavecluster:nodemanager
 
-
 #####################################################################
 #
 # Deploy Datafari 
@@ -62,28 +61,33 @@ add-relation hadoop-master:resourcemanager hadoop-slavecluster:nodemanager
 
 # Services
 # Download the Git repository for quasardb charm
-#cd "${MYDIR}/../tmp"
-#git clone https://github.com/"${DATAFARI_CHARM_GIT_REPO}".git 1>/dev/null 2>/dev/null \
-#  && log debug Succesfully cloned "${DATAFARI_CHARM_GIT_REPO}".git \
-#  || log err Could not clone "${DATAFARI_CHARM_GIT_REPO}".git
-#REPO_NAME="$(echo "${DATAFARI_CHARM_GIT_REPO}" | cut -f2 -d'/')"
-#DATAFARI_CHARM_REPO="${MYDIR}/../tmp/${REPO_NAME}/charms"
-#cd -
+cd "${MYDIR}/../tmp"
+git clone https://github.com/"${DATAFARI_CHARM_GIT_REPO}".git 1>/dev/null 2>/dev/null \
+  && log debug Succesfully cloned "${DATAFARI_CHARM_GIT_REPO}".git \
+  || log err Could not clone "${DATAFARI_CHARM_GIT_REPO}".git
+REPO_NAME="$(echo "${DATAFARI_CHARM_GIT_REPO}" | cut -f2 -d'/')"
+DATAFARI_CHARM_REPO="${MYDIR}/../tmp/${REPO_NAME}/charms"
+cd -
 
-# Now deploying Quasardb
-#juju deploy --repository "${DATAFARI_CHARM_REPO}" --constraints "${DATAFARI_CONSTRAINTS}" local:"trusty/${DATAFARI_CHARM_NAME}" 2>/dev/null \
-#  && log debug deployed ${DATAFARI_CHARM_NAME} \
-#  || log crit Could not deploy ${DATAFARI_CHARM_NAME}
+# Now deploying Datafari
+juju deploy --repository "${DATAFARI_CHARM_REPO}" --constraints "${DATAFARI_CONSTRAINTS}" local:"precise/${DATAFARI_CHARM_NAME}" 2>/dev/null \
+  && log debug deployed ${DATAFARI_CHARM_NAME} \
+  || log crit Could not deploy ${DATAFARI_CHARM_NAME}
 
 # Relations
-#add-relation datafari hadoop-master
+add-relation datafari hadoop-master
 
 # Expose
-#expose datafari
+expose datafari
 
-#until [ "$(get-status datafari)" = "started" ] 
-#do 
-#	log debug waiting for SpagoBI to be up and running
-#	sleep 30
-#done
+until [ "$(get-status datafari)" = "started" ] 
+do 
+	log debug waiting for SpagoBI to be up and running
+	sleep 30
+done
+
+DATAFARI_IPADDRESS=$(juju status datafari/0 --format tabular| grep datafari | awk '{ print $7 }' | tail -n1)
+
+log debug Datafari ready! Connect on http://${DATAFARI_IPADDRESS}:8080
+
 
