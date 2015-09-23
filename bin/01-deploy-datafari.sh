@@ -61,6 +61,9 @@ add-relation hadoop-master:resourcemanager hadoop-slavecluster:nodemanager
 
 # Services
 # Download the Git repository for quasardb charm
+[ -d "${MYDIR}/../tmp" ] && rm -rf "${MYDIR}/../tmp/*" \
+	|| mkdir -p "${MYDIR}/../tmp"
+
 cd "${MYDIR}/../tmp"
 git clone https://github.com/"${DATAFARI_CHARM_GIT_REPO}".git 1>/dev/null 2>/dev/null \
   && log debug Succesfully cloned "${DATAFARI_CHARM_GIT_REPO}".git \
