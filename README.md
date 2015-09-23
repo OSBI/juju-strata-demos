@@ -90,14 +90,14 @@ Default credentials are admin:admin
 
 The search page should look like
 
-![](https://github.com/SaMnCo/juju-strata-demos/blob/[Datafari](http://www.datafari.com/en/)/var/screenshots/[Datafari](http://www.datafari.com/en/)-gui-001.png)
+![](https://github.com/SaMnCo/juju-strata-demos/blob/datafari/var/screenshots/datafari-gui-001.png)
 
 Then you can type and search things. Our demo dataset is made of about 200 documents extracted from the ENRONgate so you can use words from the energy vocabulary for example. 
 Words that will give results: edison, international, enron, energy... 
 
 The results you get are a list of links to the documents like 
 
-![](https://github.com/SaMnCo/juju-strata-demos/blob/[Datafari](http://www.datafari.com/en/)/var/screenshots/[Datafari](http://www.datafari.com/en/)-gui-002.png)
+![](https://github.com/SaMnCo/juju-strata-demos/blob/datafari/var/screenshots/datafari-gui-002.png)
 
 **IMPORTANT NOTE**: THe links are clickable but **will return an error** because this charm doesn't yet provide URL forwarding for HDFS links. Therefore do not click the links. 
 
@@ -107,15 +107,15 @@ The results you get are a list of links to the documents like
 
 The search page should look like
 
-![](https://github.com/SaMnCo/juju-strata-demos/blob/[Datafari](http://www.datafari.com/en/)/var/screenshots/[Datafari](http://www.datafari.com/en/)-admin-gui-001.png)
+![](https://github.com/SaMnCo/juju-strata-demos/blob/datafari/var/screenshots/datafari-admin-gui-001.png)
 
 ### Statistics
 
 When you click on Statistics, you can access the searches that users made in the past, and identify which keywords are most used. This can help adjusting search settings, adding synonyms and other key mechanisms to improve user experience
 
-![](https://github.com/SaMnCo/juju-strata-demos/blob/[Datafari](http://www.datafari.com/en/)/var/screenshots/[Datafari](http://www.datafari.com/en/)-admin-gui-002.png)
+![](https://github.com/SaMnCo/juju-strata-demos/blob/datafari/var/screenshots/datafari-admin-gui-002.png)
 
-![](https://github.com/SaMnCo/juju-strata-demos/blob/[Datafari](http://www.datafari.com/en/)/var/screenshots/[Datafari](http://www.datafari.com/en/)-admin-gui-003.png)
+![](https://github.com/SaMnCo/juju-strata-demos/blob/datafari/var/screenshots/datafari-admin-gui-003.png)
 
 ### [Manifold](https://manifoldcf.apache.org/) Configuration
 
@@ -123,11 +123,11 @@ When you click on Statistics, you can access the searches that users made in the
 
 When connected with default credentials (admin:admin), you can then have a look at the repository connections (list of search targets). 
 
-![](https://github.com/SaMnCo/juju-strata-demos/blob/[Datafari](http://www.datafari.com/en/)/var/screenshots/[Datafari](http://www.datafari.com/en/)-admin-gui-005.png)
+![](https://github.com/SaMnCo/juju-strata-demos/blob/datafari/var/screenshots/datafari-admin-gui-005.png)
 
 In this demo we focus on [Hadoop](https://hadoop.apache.org/), but many search targets can be added, including popular engines such as Dropbox: 
 
-![](https://github.com/SaMnCo/juju-strata-demos/blob/[Datafari](http://www.datafari.com/en/)/var/screenshots/[Datafari](http://www.datafari.com/en/)-admin-gui-004.png)
+![](https://github.com/SaMnCo/juju-strata-demos/blob/datafari/var/screenshots/datafari-admin-gui-004.png)
  
 ## Using [Hadoop](https://hadoop.apache.org/)
 
