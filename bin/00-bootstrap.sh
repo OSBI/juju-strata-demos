@@ -57,12 +57,11 @@ juju expose juju-gui 2>/dev/null \
 
 # Adding SSH Keys for our demo users
 juju authorized-keys import samuel-cozannet
-juju authorized-keys import asanjar
 juju authorized-keys import admcleod
 juju authorized-keys import kwmonroe
 juju authorized-keys import johnsca
 juju authorized-keys import arosales
-juju authorized-keys import  aurelien-mazoyer
+juju authorized-keys import aurelien-mazoyer
 
 
 log debug Bootstrapping process finished for ${PROJECT_ID}. You can safely move to deployment. 
