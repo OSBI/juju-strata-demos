@@ -62,6 +62,12 @@ juju ssh spark/0 sudo /home/ubuntu/spark-store.sh
 #
 ###################################################
 
+for i in $(seq 1 1 2); 
+do
+	juju scp "${MYDIR}/../var/mongodb-upgrade.sh" mongodb/$i:/home/ubuntu/
+	juju ssh mongodb/$i "sudo /home/ubuntu/mongodb-upgrade.sh"
+done
+
 juju scp "${MYDIR}/../var/mongodb-taxi.sh" mongodb/0:/home/ubuntu/
 juju ssh mongodb/0 "sudo /home/ubuntu/mongodb-taxi.sh"
 
