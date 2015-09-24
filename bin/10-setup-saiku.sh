@@ -95,7 +95,7 @@ juju action do saiku/0 addmongoschema content="$(sed -e s/MONGODB_HOST/${MONGODB
 
 juju action do saiku/0 adddatasource content="type=OLAP\nname=taxi-mongo\ndriver=mondrian.olap4j.MondrianOlap4jDriver\nlocation=jdbc:mondrian:Jdbc=jdbc:calcite:model=mongo:///etc/mongoschema/taxi;Catalog=mondrian:///datasources/mongo.xml;JdbcDrivers=org.apache.calcite.jdbc.Driver;\nusername=admin\npassword=admin"
 
-juju action do saiku/0 addreport content=$(cat ${MYDIR}/../var/avg_fare_amount_by_day.saiku) path="/homes/home:admin/avg_fare_amount_by_day.saiku"
+juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/avg_fare_amount_by_day.saiku)" path="/homes/home:admin/avg_fare_amount_by_day.saiku"
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/avg_p_count_by_day_mdx.saiku)" path="/homes/home:admin/avg_p_count_by_day_mdx.saiku"
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/avg_p_count_by_day_rotate.saiku)" path="/homes/home:admin/avg_p_count_by_day_rotate.saiku"
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/avg_p_count_by_day.saiku)" path="/homes/home:admin/avg_p_count_by_day.saiku"
@@ -110,3 +110,18 @@ juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/avg_trip_time_by
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/avg_trip_time_by_day.saiku)" path="/homes/home:admin/avg_trip_time_by_day.saiku"
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/avg_trip_time_by_hour.saiku)" path="/homes/home:admin/avg_trip_time_by_hour.saiku"
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/max_tips_waterfall.saiku)" path="/homes/home:admin/max_tips_waterfall.saiku"
+juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/daily_averages_dash.sdb)" path="/homes/home:admin/daily_averages_dash.sdb"
+juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/hourly_averages_dash2.sdb)" path="/homes/home:admin/hourly_averages_dash2.sdb"
+juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/hourly_averages_dash.sdb)" path="/homes/home:admin/hourly_averages_dash.sdb"
+juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~ROWS] AS {[Time].[Day].[Day].Members} SELECT NON EMPTY {[Measures].[Avg Passenger Count]} ON COLUMNS, NON EMPTY [~ROWS] ON ROWS FROM [Taxi]"
+juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~COLUMNS] AS {[Time].[Day].[Day].Members} SET [~ROWS] AS {[Time].[Hour].[All Hour]} SELECT NON EMPTY [~COLUMNS] ON COLUMNS, NON EMPTY CrossJoin({[Measures].[Avg Passenger Count]}, [~ROWS]) ON ROWS FROM [Taxi]"
+juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~ROWS] AS {[Time].[Hour].[Hour].Members}SELECTNON EMPTY {[Measures].[Avg Passenger Count]} ON COLUMNS,NON EMPTY [~ROWS] ON ROWSFROM [Taxi]"
+juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~COLUMNS] AS {[Time].[Hour].[Hour].Members} SET [~ROWS] AS {[Time].[Day].[All Day]} SELECT NON EMPTY [~COLUMNS] ON COLUMNS, NON EMPTY CrossJoin({[Measures].[Avg Passenger Count]}, [~ROWS]) ON ROWS FROM [Taxi]"
+juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~ROWS] AS {[Time].[Day].[Day].Members} SELECT NON EMPTY {[Measures].[Avg Trip Distance]} ON COLUMNS, NON EMPTY [~ROWS] ON ROWS FROM [Taxi]"
+juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~ROWS] AS {[Time].[Hour].[Hour].Members} SELECT NON EMPTY {[Measures].[Avg Trip Distance]} ON COLUMNS, NON EMPTY [~ROWS] ON ROWS FROM [Taxi]"
+juju action do saiku/0 warmcache cubeconnection=taxi-mongo cubecatalog="Taxi Fares" cubeschema="Taxi Fares" cubename="Fares" query="WITH SET [~ROWS] AS {[Time].[Day].[Day].Members} SELECT NON EMPTY {[Measures].[Average Tip Amount]} ON COLUMNS,NON EMPTY [~ROWS] ON ROWS FROM [Fares]"
+juju action do saiku/0 warmcache cubeconnection=taxi-mongo cubecatalog="Taxi Fares" cubeschema="Taxi Fares" cubename="Fares" query="WITH SET [~ROWS] AS {[Time].[Day].[Day].Members} SELECT NON EMPTY {[Measures].[Average Total Amount]} ON COLUMNS, NON EMPTY [~ROWS] ON ROWS FROM [Fares]"
+juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~ROWS] AS {[Time].[Day].[Day].Members} SELECT NON EMPTY {[Measures].[Avg Trip Time(secs)]} ON COLUMNS, NON EMPTY [~ROWS] ON ROWS FROM [Taxi]"
+juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~ROWS] AS {[Time].[Hour].[Hour].Members} SELECT NON EMPTY {[Measures].[Avg Trip Time(secs)]} ON COLUMNS, NON EMPTY [~ROWS] ON ROWS FROM [Taxi]"
+juju action do saiku/0 warmcache cubeconnection=taxi-mongo cubecatalog="Taxi Fares" cubeschema="Taxi Fares" cubename="Fares" query="WITH SET [~ROWS] AS {[Fares].[Payment Type].[Payment Type].Members} SELECT NON EMPTY {[Measures].[Max Tip Amount]} ON COLUMNS, NON EMPTY [~ROWS] ON ROWS FROM [Fares]"
+

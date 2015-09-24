@@ -294,3 +294,6 @@ then browse to http://<SPARK_IP_ADDRESS>:18080 and have a look at the recent job
     :~$ ./bin/50-reset.sh 
  
 
+## Other
+
+    Juju doesn't like JSON being passed in to actions and it needs escaping, currently the best place is here: http://bernhardhaeussner.de/odd/json-escape/
