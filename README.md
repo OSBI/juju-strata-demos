@@ -50,10 +50,24 @@ Maintainer: Samuel Cozannet <samuel.cozannet@canonical.com>
 
 # Purpose of the demo
 
-This demo aims at deploying [SpagoBI](http://www.spagobi.org/) and connect it to many different data sources, to express how easy it is to deploy a very complex data analytics solution with Juju. 
+The data challenge happens in many dimensions. Enterprises of today have an ever growing amount of data to store and manage, with an ever changing set of tools to store it, and an even faster and ever changing set of technologies to process it whether pre-write or post-read. 
+
+Looking at this with a longer term view, it means that IT departments will have to live with sliding surfaces between ingest, store and analytics. They must adopt a multi-tiers vision of their whole enterprise architecture or will face indecent costs trying to manage change. Said otherwise, it's the Enterprise Service Bus 2.0. 
+
+This demo is an expression of the multiple data stores an enterprise of today may use: 
+
+* [MySQL](https://www.mysql.com/), [PostgreSQL](http://www.postgresql.org/) for the traditional databases
+* [Cassandra](http://cassandra.apache.org/) and [MongoDB](https://www.mongodb.org/) for the new and cool applications based on noSQL
+* Hadoop and its collection of tools such as [HBase](http://hbase.apache.org/), [Hive](https://hive.apache.org/) and others
+
+To represent the analytics layer, we use [SpagoBI](http://www.spagobi.org/) and connect it to all data sources. 
+
+Configuration gives us an opportunity to mix and match the datasets to form a unique representation of the data and get insights from it. 
+
+On the long run and as applications in each layer evolve, Juju can then add more components (or remove others), scale what needs to be scaled. It will keep them related. And, more importantly, help making sure they remain value drivers and not only storage costs. 
 
 # Main Services deployed
-## spagoBI
+## SpagoBI
 
 [SpagoBI](http://www.spagobi.org/) is the main attraction of this demo, and the center of gravity of all data sources. To deploy it, we install a small [MySQL](https://www.mysql.com/) server, a powerful [Tomcat](http://tomcat.apache.org/) server, and the spagoBI subordinate charm, then we connect them together. 
 
@@ -136,7 +150,23 @@ You will get on a screen like
 
 ![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-009.png)
 
-Upload the file var/spagobi-demo.zip to get access to the visualizations and cockpits. Select "Default Associations" as the option. 
+Upload the file var/spagobi-demo.zip to get access to the visualizations and cockpits. Select "No Associations" as the option. 
+
+Then match the below screens to make sure everything is imported properly. 
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-010.png)
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-011.png)
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-012.png)
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-013.png)
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-014.png)
+
+![](https://github.com/SaMnCo/juju-strata-demos/blob/spagobi/var/screenshots/spago-gui-015.png)
+
+That's it! We are in good shape for the next stage. 
 
 ## Resetting 
 
