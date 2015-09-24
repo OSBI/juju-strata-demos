@@ -113,6 +113,7 @@ juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/max_tips_waterfa
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/daily_averages_dash.sdb)" path="/homes/home:admin/daily_averages_dash.sdb"
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/hourly_averages_dash2.sdb)" path="/homes/home:admin/hourly_averages_dash2.sdb"
 juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/hourly_averages_dash.sdb)" path="/homes/home:admin/hourly_averages_dash.sdb"
+juju action do saiku/0 addreport content="$(cat ${MYDIR}/../var/fare_info.sdb)" path="/homes/home:admin/fare_info.sdb"
 juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~ROWS] AS {[Time].[Day].[Day].Members} SELECT NON EMPTY {[Measures].[Avg Passenger Count]} ON COLUMNS, NON EMPTY [~ROWS] ON ROWS FROM [Taxi]"
 juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~COLUMNS] AS {[Time].[Day].[Day].Members} SET [~ROWS] AS {[Time].[Hour].[All Hour]} SELECT NON EMPTY [~COLUMNS] ON COLUMNS, NON EMPTY CrossJoin({[Measures].[Avg Passenger Count]}, [~ROWS]) ON ROWS FROM [Taxi]"
 juju action do saiku/0 warmcache cubeconnection=taxi cubecatalog=Spark cubeschema=Spark cubename="Taxi" query="WITH SET [~ROWS] AS {[Time].[Hour].[Hour].Members}SELECTNON EMPTY {[Measures].[Avg Passenger Count]} ON COLUMNS,NON EMPTY [~ROWS] ON ROWSFROM [Taxi]"
